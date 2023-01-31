@@ -1,0 +1,10 @@
+Dateien kopieren
+
+über ssh
+
+host->remote-server
+
+
+
+
+remote-server -> host
