@@ -4,7 +4,13 @@ Dateien kopieren
 
 host->remote-server
 
+scp /pfad/zur/lokale/datei loginname@zielserver:/zielpfad
 
+scp -r /pfad/zum/lokalem/verzeichnis loginname@zielserver:/zielpfad
 
 
 remote-server -> host
+
+scp loginname@zielserver:/zielpfad/zur/remote/datei  /pfad/zur/lokale/datei
+
+scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/verzeichnis 
