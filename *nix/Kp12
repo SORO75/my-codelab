@@ -1,0 +1,54 @@
+Programme die automatisch starten befinden sich in folgenden Verzeichnissen
+
+echo $PATH
+
+Programm im Hintergrund starten:
+
+firefox &
+
+unterbrechen:
+<Strg> +z
+forzetzen:
+
+bg
+
+Prozesse anzeigen
+
+ps ax
+ps aux
+
+
+top
+htop
+iotop
+pstree
+
+prozess beenden
+
+kill -15 PID
+kill -9 PID
+
+killall
+
+xkill
+
+
+Verteilung der Rechenzeit
+ein Prozess mit einem Prio starten
+
+nice -n (20 0 -20)
+
+Priorität ändern:
+renice
+
+ionice
+
+prozesse in datei speichern
+
+top > ps_test
+
+Pipe verwenden
+
+dpkg -l | egrep -i 'mysql|mariadb' | sort
+
+============================================
