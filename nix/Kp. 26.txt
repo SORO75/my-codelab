@@ -1,0 +1,26 @@
+Kernelmodule
+initrd Datei befinden sich in /boot
+
+wie erzeugt, und ändert diese Datei?
+
+Eigene Werzeuge bei jede Distribution
+
+
+make  gcc. 
+
+dev tools
+
+CentOS, RHEL			yum  groupinstall development -tools
+Debian, Ubuntu			apt-get install build-essential
+Fedora							dnf groupinstall development-tools
+SUSE							zypper install -t pattern devel_basis
+
+
+
+DKMS Dynamic Kernel Module Support
+
+
+Kernel kompilieren und installieren
+
+Verzeichnisse /proc und /sys
+
