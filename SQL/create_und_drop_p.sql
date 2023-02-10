@@ -18,7 +18,10 @@ DROP TABLE ORT;
 DROP TABLE LAND;
 DROP TABLE AUTO;
 DROP TABLE FAHRZEUGGRUPPE;
+
 */
+
+
 
 /* Tabellen erstellen */
 
