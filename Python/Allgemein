@@ -19,4 +19,31 @@ Wie sieht am besten mit Berechtigung?
 Editoren:
 
 
-Projektorlage
+Projektorlage einfach
+-------------------------------------
+README.rst
+LICENSE
+setup.py
+requirements.txt
+my_projekt/__init__.py
+my_projekt/core.py
+my_projekt/helpers.py
+docs/conf.py
+docs/index.rst
+tests/test_basic.py
+tests/test_advanced.py
+
+----------------------------------------
+https://docs.python-guide.org/
+
+
+https://www.delftstack.com/de/howto/python/python-project-structure/
+https://bodo-schoenfeld.de/python/
+
+
+
+
+Python3 --version
+
+
+
