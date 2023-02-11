@@ -3,52 +3,52 @@
 /* Löschen der Views */
 
 /*
-drop view kd1;
-drop view hitflug;
-drop view hitsee;
-drop view hitauto;
-drop view hithotel;
-drop view hotelkunden;
-drop view geb_hotel;
-drop view durchschnittsalter;
-drop view vielbuch_see;
-drop view vielbuch_hotel;
-drop view vielbuch_auto;
-drop view vielbuch_flug;
-drop view wichtige_hotel;
-drop view auswahl_auto;
-drop view reiseort;
-drop view flugplan_orte;
-drop view bilbao_oslo;
-drop view hotel_hotelkette;
-drop view reiseziel_august;
-drop view abflug_oslo;
+DROP view kd1;
+DROP view hitflug;
+DROP view hitsee;
+DROP view hitauto;
+DROP view hithotel;
+DROP view hotelkunden;
+DROP view geb_hotel;
+DROP view durchschnittsalter;
+DROP view vielbuch_see;
+DROP view vielbuch_hotel;
+DROP view vielbuch_auto;
+DROP view vielbuch_flug;
+DROP view wichtige_hotel;
+DROP view auswahl_auto;
+DROP view reiseort;
+DROP view flugplan_orte;
+DROP view bilbao_oslo;
+DROP view hotel_hotelkette;
+DROP view reiseziel_august;
+DROP view abflug_oslo;
 
 
 
 /* Löschen der Tabellen */
 
 
-drop TABLE BuchPosSee;
-drop TABLE BuchPosHotel;
-drop TABLE BuchPosAuto;
-drop TABLE BuchPosFlug;
-drop TABLE Flughafen;
-drop TABLE Flugplan;
-drop TABLE Zimmer;
-drop TABLE Hotel;
-drop TABLE Hotelkette;
-drop TABLE Auto;
-drop TABLE Autotyp;
-drop TABLE Buchung;
-drop TABLE Kunde;
-drop TABLE Reise;
-drop TABLE Kabinen;
-drop TABLE Land;
-drop TABLE Fuehrerschein;
-drop TABLE Schiff;
-drop TABLE Verpflegung;
-drop TABLE FLUG;
+DROP TABLE BuchPosSee;
+DROP TABLE BuchPosHotel;
+DROP TABLE BuchPosAuto;
+DROP TABLE BuchPosFlug;
+DROP TABLE Flughafen;
+DROP TABLE Flugplan;
+DROP TABLE Zimmer;
+DROP TABLE Hotel;
+DROP TABLE Hotelkette;
+DROP TABLE Auto;
+DROP TABLE Autotyp;
+DROP TABLE Buchung;
+DROP TABLE Kunde;
+DROP TABLE Reise;
+DROP TABLE Kabinen;
+DROP TABLE Land;
+DROP TABLE Fuehrerschein;
+DROP TABLE Schiff;
+DROP TABLE Verpflegung;
+DROP TABLE FLUG;
 
 commit;
 
@@ -77,7 +77,7 @@ CREATE TABLE Schiff (
 CREATE TABLE Kabinen (
 	KabNR NUMERIC NOT NULL,
 	SchiffID NUMERIC NOT NULL,
-	Kabinentyp Varchar2(50),
+	Kabinentyp VARCHAR(50),
 	KabinenPreis NUMERIC(10,2),
 	CONSTRAINT pk_kabinen PRIMARY KEY(KabNr, SchiffID),
 	CONSTRAINT fk1_kabinen FOREIGN KEY (SchiffID) REFERENCES Schiff(SchiffID)
@@ -85,8 +85,8 @@ CREATE TABLE Kabinen (
 
 CREATE TABLE Verpflegung (
 	VerpflegungsID NUMERIC PRIMARY KEY,
-	Verpflegungsart Varchar2 (30),
-	Tagespreis NUMERIC (10,2)
+	Verpflegungsart VARCHAR(30),
+	Tagespreis NUMERIC(10,2)
 );
 
 CREATE Table Reise (
@@ -154,7 +154,7 @@ CREATE TABLE Auto (
 
 CREATE TABLE Hotelkette (
 	HotelKetteID NUMERIC PRIMARY KEY,
-	Bezeichnung Varchar2 (255)
+	Bezeichnung VARCHAR (255)
 );
 
 CREATE TABLE Hotel (
@@ -163,9 +163,9 @@ CREATE TABLE Hotel (
 	VerpflegungsID NUMERIC,
 	Landeskennzeichen VARCHAR (3),
 	HotelName VARCHAR (255),
-	Kategorie Varchar2 (10),
-	Ort Varchar2 (150),
-	PLZ Varchar2 (50),
+	Kategorie VARCHAR (10),
+	Ort VARCHAR (150),
+	PLZ VARCHAR (50),
 	Strasse Varchar2 (150),
 	CONSTRAINT fk1_hotel FOREIGN KEY (HotelKetteID) REFERENCES Hotelkette (HotelKetteID),
 	CONSTRAINT fk2_hotel FOREIGN KEY (Landeskennzeichen) REFERENCES Land (Landeskennzeichen),
@@ -176,7 +176,7 @@ CREATE TABLE Hotel (
 CREATE TABLE Zimmer (
 	ZimmerID NUMERIC NOT NULL,
 	HotelID NUMERIC NOT NULL,
-	Zimmertyp Varchar2 (50),
+	Zimmertyp VARCHAR (50),
 	ZimmerPreis NUMERIC (10,2),
 	CONSTRAINT pk_zimmer PRIMARY KEY(HotelID, ZimmerID),
 	CONSTRAINT fk1_zimmer FOREIGN KEY (HotelID) REFERENCES Hotel(HotelID)
@@ -261,8 +261,7 @@ CREATE TABLE FLUG
 );
 
 
-ALTER TABLE FLUG ADD (
- PRIMARY KEY (FLUGNR));
+ALTER TABLE FLUG ADD ( PRIMARY KEY (FLUGNR));
 
 
 
