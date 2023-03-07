@@ -28,8 +28,46 @@ info
 whatis
 
 
+
+
 =======================
 	Verzeichnisse
 ======================
 
- 
+pwd
+cd
+mkdir
+rmdir
+rm
+diff
+basename
+dirname
+ls
+mv
+ln
+
+
+
+========================
+		Prozesse
+========================		
+
+ps									- Info über Prozesse anzeigen
+		a
+		x
+		U
+		C
+		H
+pstree							- Prozesshierarchie anzeigen
+top								- Prozesse sortierend anzeigen
+kill	PID						- Prozess beenden
+	15
+	1
+	9
+	- l
+killall		[name]				- Prozess [name]	beenden
+
+
+
+
+
