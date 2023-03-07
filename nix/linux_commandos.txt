@@ -69,5 +69,49 @@ killall		[name]				- Prozess [name]	beenden
 
 
 
+=========================
+				Ausgabe
+=========================
 
+
+cat		Datei
+tail		Datei
+head	Datei
+less		Datei
+more	Datei
+nl			Datei
+od		Datei
+hd		Datei
+wc 		Datei
+file 		Datei
+type 
+sum
+md5sum
+sha1sum
+fuser
+lsof
+cp
+diff
+comm
+cmp
+join
+sort
+touch 											Zeitstempel einer Datei ändern
+
+
+
+=======================
+			Suchen
+=======================					
+
+find
+locate
+slocate
+updatedb
+grep
+fgrep
+egrep
+which
+whereis
+	
 
