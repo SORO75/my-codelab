@@ -15,8 +15,29 @@ scp loginname@zielserver:/zielpfad/zur/remote/datei  /pfad/zur/lokale/datei
 scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/verzeichnis
 
 
+========================
+		Terminal
+========================
+stty
+setterm
+reset
+clear
+tty
+ALT + F1-F9
+chsh
+printenv
+set
+export
 
+alias
+unalias
 
+|
+ tee
+ >
+ <
+ 
+ 
 
 ========================
 	HILFE
@@ -27,7 +48,71 @@ apropos
 info
 whatis
 
+========================
+			System
+========================
+shutdown	
+reboot
+halt
+runlevel
+init
+dmesg
+uname
+uptime
+lspi
+hdparm
+date
+hwclock
+cal
 
+
+========================
+			Laufwerke
+========================
+mount
+unmount
+fdisk
+cfdisk
+parted
+fdformat
+dd
+
+
+mknod
+mkfifo
+
+
+mke2fs
+mkreiserfs
+mkswap
+swapon
+swapoff
+fsck
+badblocks
+
+
+
+
+
+
+
+
+========================
+			Netzwerk
+========================
+
+ping
+nostname
+host
+ifconfig
+ifup
+ifdown
+netstat
+traceroute
+ftp
+wget
+ssh
+scp
 
 
 =======================
@@ -67,6 +152,30 @@ kill	PID						- Prozess beenden
 	- l
 killall		[name]				- Prozess [name]	beenden
 
+nice
+renice
+
+&
+jobs
+[Strg] + C
+[Strg] + Z
+bg
+fg
+cron
+crontab
+watch
+at
+batch
+nohup
+sleep
+
+
+
+
+
+
+
+
 
 
 =========================
@@ -98,6 +207,18 @@ join
 sort
 touch 											Zeitstempel einer Datei ändern
 
+tr
+sed
+expand
+recode
+inconv
+uniq
+cut
+split
+csplit
+
+
+
 
 
 =======================
@@ -105,6 +226,16 @@ touch 											Zeitstempel einer Datei ändern
 =======================					
 
 find
+	- name
+	- mmin
+	- mtime
+	- group foo
+	- user
+	- size
+	- type
+	- exec
+	[+-] exact n 
+
 locate
 slocate
 updatedb
@@ -115,3 +246,61 @@ which
 whereis
 	
 
+
+=====================
+	Speicherplatz
+=====================
+
+df 
+quota
+free	
+	
+	
+=======================
+		Benutzer & Gruppen
+=======================		
+	
+uderadd, adduser
+usermod
+passwd
+chae
+uderdel
+logname
+whoami
+id
+groupadd
+groupmod
+groupdel
+groups
+newsgrp
+who, w
+wall
+last, lastlog
+logout
+exit
+
+=========================
+			Berechtigung
+=========================
+
+su
+sudo
+chmod
+chown
+chgrp
+chattr
+umask
+touch
+
+
+========================
+				Drucken
+========================
+
+lp
+lpr
+lpstat, lpq
+cancel
+lpc
+lprm
+				
