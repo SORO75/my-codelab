@@ -38,12 +38,27 @@ unalias
  <
  
  
+ 
+ CTRL 
+-c
+-u
+-z
+-l
+-s
+-q
+-p
+cmd &					Kommando cmd im Huintergrund ausführen
+cmd1; cmd2
+cmd1 && cmd2
+cmd1 ||  cmd2
+   
+ 
 
 ========================
 	HILFE
 ========================
 
-man
+man	 cmd								die Handbuchseite von cmd				
 apropos
 info
 whatis
