@@ -1,0 +1,101 @@
+Utilitys
+
+tkprof
+
+
+Debugger
+Grant for 
+	debug connect session
+	debug any procedure
+	
+PL/SQL Package dbms_debug
+
+
+	Rego Log - Alle Datenänderungen
+	
+	ACID 
+		Atomicity
+		Consistency
+		Isolation
+		Durability
+		
+	PDB Datenbank (Pluggable Databeses)
+	
+	Schema - ein Synonym für Benutzer, dem Tabellen (DAtenbankobjekte) gehören.
+					mehrere Schames pro Anwendung
+					
+	Tablespace 
+	
+	DB Listener
+	DB Session
+	
+	==============
+	System-Datendateien
+	Benutzer Daten-Dateien
+	Temporäre Dateien
+	Rollback-Datendateien
+	
+	
+	____________________
+	Redo-Log Dateien
+	Kontrolldateien
+	Parameterdateien
+	Passwortdatei
+	
+	
+	
+	FRA (Fast Recovery Area)
+	
+	ASM(Automatic Storage Management) Verwaltet Gruppen von Festplaten, balansiert I/O, 
+	
+	
+	ORACLE_HOME
+	
+	ORACLE INSTANZ
+		System Global Area (SGA)
+		
+		Java Pool
+		Large Pool
+		Streams Pool 
+		Shared Pool (Library Cache, Data Dictionary Cache)
+		
+		Data Block Buffer Cache (Default Pool, Keep Pool, Recycle Pool)
+		
+		
+		Redo Log Buffer
+
+		
+		Fixed SGA
+		
+		Hintegraundprozese
+		
+		----------------------------------------
+		
+		System Monitor (SMON)
+		Process Monitor (PMON)
+		Database BLock Writer (DBWn)
+		Log Writer (LGWR)
+		Checkpoint (CKPT)
+		Archive Prozess
+		
+		
+		Start der DAtenbank (Ausführliche Prozess)
+		
+		Connection ist eine physikalische Verbindunt zur Datenbank
+		Session ist eine logische Verbindung
+		
+		===============================
+		Verbindunsarten und Treiber
+		===============================
+		
+		#Oracle Net Services 
+				TCP/IP
+				eigener Netzwerkprotokol TNS und Easy Connect Naming Method
+				Parameterdateien (sqlnet.ora, listener.ora, tnsnames.ora) Im Verzeichnis ORACLE_HOME/network/admin
+		
+		Datenbanktreiber für Programmiersprachen
+		Dieketer Zugriff über HTTP, FTP und WebDAV
+		Verwaltung über LDAP
+		
+	
+	
