@@ -9,8 +9,9 @@ Datenbanken:
 
 
 
-
-+Installation
+---------------------------------
+    +Installation
+---------------------------------
     - Windows
     - Linux
     - MacOS
@@ -25,8 +26,9 @@ Datenbanken:
     - Connection (SSL)
 
     
-
-+ DBA
+---------------------------------
+    + DBA
+---------------------------------    
     - root user
     - Listner
     - Port
@@ -50,9 +52,6 @@ Datenbanken:
     - Backup
     - Admintools
     - Updating, Upgrating
-
-
-
     
 +DML
     Select
@@ -81,8 +80,9 @@ Datenbanken:
     - Prozedurale SQL
     - Pakete
 
-
+----------------------------
 +Datenbankfunktionalität
+----------------------------
     - DD
     - Tablespace
     - Schema
