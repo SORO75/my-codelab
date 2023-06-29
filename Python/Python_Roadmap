@@ -1,3 +1,128 @@
+
+BASIC
+	Installation
+	Basic Syntax
+	Variable and Data Types
+	Conditionals&Operation
+	Looping
+	Type Casting
+	Exception Handling
+	Funktions
+	Builtin Functions
+	Lists
+	Tepels
+	Sets
+	Dictionaries
+	Virtual environment
+
+Datenstres and Algorithms
+	Arrays
+	Linked Lists
+	Heaps
+	Stacks
+	Queues
+	Hash Tables
+
+	Binary Search Tree
+	Recurision
+	Sorting Algorithms
+
+ADVANCED TOPICS
+	OOP
+		Classes
+		Dataclasses
+		Interfaces
+		Properties
+		Static & Class Methods
+		Dunder
+	Regular Expression
+	Decorators
+	Generatoren
+	Modules
+		Builtin
+		Custom
+	Iterators
+	GUI
+	
+	Package vs Environment Managment
+		Anaconde vs MiniConda
+		PyPi
+		pip
+	Testing
+		pytest
+		unitest/PyUnit
+		nose
+		doctest
+	Logging
+		Setting UP Logging
+		Differnt Types of Handlers
+FRAMEWORKS
+	Django
+	Flask
+	FastAPI
+
+	gevent
+	aiohttp
+	Sanic
+	Tornado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Internetseiten:
 
 
