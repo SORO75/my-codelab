@@ -28,35 +28,56 @@ Datenstres and Algorithms
 	Sorting Algorithms
 
 ADVANCED TOPICS
+	Regular Expression
+	Decorators
+	Iterators
+	Closures
+	Generatoren
+	Lamdas
+	Threading
+	map,reduce, filters
+	Magic Methods
+	List compehensions
 	OOP
 		Classes
 		Dataclasses
+		Inheritance
 		Interfaces
 		Properties
 		Static & Class Methods
 		Dunder
-	Regular Expression
-	Decorators
-	Generatoren
+
 	Modules
 		Builtin
 		Custom
-	Iterators
+	
 	GUI
 	
+	Automation
+		File Manilupation
+		Web Scrapping
+		GUI AAutomations
+		Network Automation
+
 	Package vs Environment Managment
 		Anaconde vs MiniConda
 		PyPi
 		pip
+	
 	Testing
 		pytest
 		unitest/PyUnit
 		nose
 		doctest
+		End-to-End testing
+		Load testing
+		Seleni
+	
 	Logging
 		Setting UP Logging
 		Differnt Types of Handlers
-FRAMEWORKS
+
+WEB FRAMEWORKS
 	Django
 	Flask
 	FastAPI
@@ -65,6 +86,15 @@ FRAMEWORKS
 	aiohttp
 	Sanic
 	Tornado
+
+DATA SCIENCE
+	NumPy
+	Pandas
+	Matplotlib
+	Seaborn
+	Scikit-learn
+	TensorFlow
+	Pytorch
 
 
 
