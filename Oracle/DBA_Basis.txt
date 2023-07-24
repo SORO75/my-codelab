@@ -94,8 +94,43 @@ PL/SQL Package dbms_debug
 				Parameterdateien (sqlnet.ora, listener.ora, tnsnames.ora) Im Verzeichnis ORACLE_HOME/network/admin
 		
 		Datenbanktreiber für Programmiersprachen
-		Dieketer Zugriff über HTTP, FTP und WebDAV
+		Direkter Zugriff über HTTP, FTP und WebDAV
 		Verwaltung über LDAP
+		
+		
+		Werzeug "tnsping"
+		
+		==============================
+			XML Database (XDB)
+		==============================
+		
+		Zugriff über HTTP, WebDAV
+		
+		Dateien werden als BLOB Objekte in einer Tabelle gespeichert
+		
+		
+		_______________________________
+		
+		Database Resident Connection Pool (DRCP)
+		
+		Idex Organized Table (IOT)
+		Partitionierte Tabellen
+			Range
+			List
+			Hash
+			
+-------------------------
+Lesekonsistenz
+	Isolations Level
+		-read committed
+		-serializable
+		-read only
+		
+		
+	
+	
+		
+		
 		
 	
 	
