@@ -30,31 +30,125 @@ print (var)
 # Schleifen
     #while Schleife
 
-geheimnis = 1
-versuch = -1
-while versuch != geheimnis:
-    versuch = int(input('Raten Sie: '))
 
-print("Sie haben es geschafft!")
+#version1
+i = 1
+while i < 9:
+    print(i)
+    i += 1
+  
+#while Schleife mit else
+
+i = 1
+while i < 9:
+    print(i)
+    i += 1
+else: print ('Die Schleife wurde beendet')    
 
 
+# while Schleife mit breack und contienue
 
-versuch = int(input('Raten Sie: '))
-print (versuch)
+#with break
+import random
+secret = random.randint(1,10)
+i=0
+attempt = 42
+print (secret)
+while i<=3:
+    attempt = int(input('Guess: '))
+    i= i+1
+    if attempt==secret:
+        print ('Richtig, die Zahl ist :', attempt)
+        break
+    print("Versuchen Sie noch mal ")
+print ("Spiel ist zu Ende")
+
+
+#with break
+#variante 2
+import random
+secret = random.randint(1,10)
+i=0
+attempt = 42
+print (secret)
+while i<=5:
+    attempt =random.randint(1,10)
+    i= i+1
+    if attempt==secret:
+        print ('Richtig, die Zahl ist :', attempt)
+        break
+    print("Die Zahl", attempt, "ist falsch")
+print ("Spiel ist zu Ende")
 
 
 # for schleife
-# for schleife mit else
-#for Schleife mit elseif
+for i in [1,2,3]:
+    print (i)
+    
+#mit String
+for i in "Hallo":
+    print (i)
+    
+#with Dictionary	
 
-'''
-For Schleife als Zaelschleife
-range (stop)
-range (start, stop)
-range (start, stop, step)
+kids={'old':'Christoper', 'jung':'Theodor'}
+for pair in kids.items():
+    print(pair)
+    
+kids={'old':'Christoper', 'jung':'Theodor'}
+for k,v in kids.items():
+    print('key=',k, ', value=', v)
 
 
-'''
+
+#For Schleife als Zaelschleife
+#range (stop)
+for i in range (5):
+    print (i)
+
+#range (start, stop)
+for i in range (1,6):
+    print (i)
+#range (start, stop, step)
+for i in range (1,11,2):
+    print (i)
+
+
+#pass- Anweisung
+wert=5
+if wert == 5:
+    pass
+else:
+    print ('hier ist der neächten Schritt')
+    
+# for schleife mit break
+tiere = ['cat','dog','bird','cow']
+for t in tiere:
+	if t == 'bird':
+        break
+    print (t)
+    
+
+# for schleife mit continue
+
+tiere = ['cat','dog','bird','cow']
+for t in tiere:
+	if t == 'bird':
+        continue
+    print (t)
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 Datei CRUD
 Datei finden
