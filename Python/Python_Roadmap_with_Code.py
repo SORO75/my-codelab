@@ -142,19 +142,142 @@ for t in tiere:
 
 
 
+##################################################
+		Dateienoperationen
+##################################################
+
+#neue Datei erzeugen
+f = open ("neueDatei.txt", "x")
+f.write ('Erster Text') 
+f.close()         
+   
+f = open ("neueDatei.txt", "r")
+print (f.read())
+f.close
+         
+   
+#überschreibt komplett die Datei     
+f = open ("neueDatei.txt", "w")
+f.write ('Der erste Text wird überschrieben.') 
+f.close()         
+   
+f = open ("neueDatei.txt", "r")
+print (f.read())
+f.close
+
+# Text anhängen
+f = open ("neueDatei.txt", "a")
+f.write ('Hier ist noch ein Satz.') 
+f.close()         
+   
+f = open ("neueDatei.txt", "r")
+print (f.read())
+f.close
+
+#Datei löschen
+import os
+os.remove('neueDatei.txt')
+
+# check, ob die Datei vorhanden ist und dann löschen
+import os
+if os.path.exists('neueDatei.txt'):
+	os.remove('neueDatei.txt')
+else:
+	print ('Die gesuchte Datei ist nicht vorhanden')
+
+#Datei lesen, nur erste Zeile ausgeben
+import os
+if os.path.exists('words.txt'):
+	f = open ('words.txt', "r")
+	print (f.readline())
+	f.close
+else:
+	print ('Die gesuchte Datei ist nicht vorhanden')
+
+#Datei öffnen, wenn vorhanden ist. Zeile für Zeile ausgeben
+import os
+if os.path.exists('words.txt'):
+    f = open ('words.txt', "r")
+    print ('Inhalt aus der Datei: ')
+    for zeile in f:
+        print (f.readline())
+    f.close
+else:
+    print ('Die gesuchte Datei ist nicht vorhanden')
+    
+
+#Variante2
+# import os
+if os.path.exists('words.txt'):
+    f = open ('words.txt', "r")
+    print ('Inhalt aus der Datei: ')
+    for zeile in f:
+        print (zeile)
+    f.close
+else:
+    print ('Die gesuchte Datei ist nicht vorhanden')
+
+# ein komplexeres Programm mit tests und Exception
+import os
+
+def create_file(filename):
+	try:
+		with open(filename, 'w') as f:
+			f.write('Hello, world!\n')
+		print("File " + filename + " created successfully.")
+	except IOError:
+		print("Error: could not create file " + filename)
+
+def read_file(filename):
+	try:
+		with open(filename, 'r') as f:
+			contents = f.read()
+			print(contents)
+	except IOError:
+		print("Error: could not read file " + filename)
+
+def append_file(filename, text):
+	try:
+		with open(filename, 'a') as f:
+			f.write(text)
+		print("Text appended to file " + filename + " successfully.")
+	except IOError:
+		print("Error: could not append to file " + filename)
+
+def rename_file(filename, new_filename):
+	try:
+		os.rename(filename, new_filename)
+		print("File " + filename + " renamed to " + new_filename + " successfully.")
+	except IOError:
+		print("Error: could not rename file " + filename)
+
+def delete_file(filename):
+	try:
+		os.remove(filename)
+		print("File " + filename + " deleted successfully.")
+	except IOError:
+		print("Error: could not delete file " + filename)
 
 
+if __name__ == '__main__':
+	filename = "example.txt"
+	new_filename = "new_example.txt"
 
-
-
-
+	create_file(filename)
+	read_file(filename)
+	append_file(filename, "This is some additional text.\n")
+	read_file(filename)
+	rename_file(filename, new_filename)
+	read_file(new_filename)
+	delete_file(new_filename)
 
 
 '''
 Datei CRUD
 Datei finden
-Datei anlegen
+
 Dateityp bestimmen
+Prüfen, ob die DAtei leer ist
 Dateityp ändern
 datei öffenen
 datei auslesen (komplett, schrittweise (line))
@@ -170,12 +293,6 @@ strip methode
 als dictionary auslesen
 formatierter Text in die Datei schreiben
 ----
-
-fobj = open("ausgabe.txt", "w")
-for engl in woerter:
-    fobj.write("{} {}\n".format(engl, woerter[engl]))
-fobj.close()
-
 
 
 open(filename, [mode, buffering, encoding, errors, newline]) 
