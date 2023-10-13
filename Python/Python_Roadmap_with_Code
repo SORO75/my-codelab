@@ -1,3 +1,5 @@
+
+
 """
 BASIC
 	Installation
@@ -9,10 +11,7 @@ Basic Syntax
 ============================
 """
 # Kontrollstrukturen
-
 	# if Anweisung
-
-x=2
 
 if x == 1: 
     print("x hat den Wert 1")
@@ -21,135 +20,16 @@ elif x == 2:
 else: 
     print("Fehler: Der Wert von x ist weder 1 noch 2")
 
-#bedinte Ausdruck (conditional expression)
-# A id Bedingung else B
-var = (20 if x == 1 else 30)
-print (var)
-#
-# while Schleife mit breack und contienue
-
-# Schleifen
-    #while Schleife
-
-geheimnis = 1
-versuch = -1
-while versuch != geheimnis:
-    versuch = int(input('Raten Sie: '))
-
-print("Sie haben es geschafft!")
-
-
-
-versuch = int(input('Raten Sie: '))
-print (versuch)
-
-
-# for schleife
-# for schleife mit else
-#for Schleife mit elseif
-
-'''
-For Schleife als Zaelschleife
-range (stop)
-range (start, stop)
-range (start, stop, step)
-
-
-'''
-'''
-Datei CRUD
-Datei finden
-Datei anlegen
-Dateityp bestimmen
-Dateityp ändern
-datei öffenen
-datei auslesen (komplett, schrittweise (line))
-datei schliesen
-Ihnalt ausgeben
-Inhalt ändern
-Dateiname ändern
-DAteikopie anlegen
-Datei löschen
-Datei archivieren
-split methode
-strip methode
-als dictionary auslesen
-formatierter Text in die Datei schreiben
-----
-
-fobj = open("ausgabe.txt", "w")
-for engl in woerter:
-    fobj.write("{} {}\n".format(engl, woerter[engl]))
-fobj.close()
-
-
-
-open(filename, [mode, buffering, encoding, errors, newline]) 
-
-Daeimethoden
-.close()
-.fileno()
-.flush()
-.isatty()
-.next()
-read([size])
-.readline([size])
-.tell
-truncate([size])
-write(str)
-writelines(iterable)
-
-
-# String Methoden
-.split([sep, maxsplit])
-.rsplit
-.splitlines
-.partition
-.rpartition
-
-
-.find
-rfind
-.index
-rindex
-count
-
-
-.replace
-.lower
-.upper.
-swapcase
-.capitalize
-casefold
-title
-
-
-strip
-lstrip
-rstrip
-
-
-format
-
-
-
-
-'''
-
-
-
-
-
 
 
 
 
 """
-help funktion
 
 
 
-	Variable and Data Types (muttable und ummutable datentypen)
+
+	Variable and Data Types
 	Conditionals&Operation
 	Looping
 	Type Casting
@@ -157,15 +37,7 @@ help funktion
 	Funktions
 	Builtin Functions
 	Lists
-	# Methoden
-	.append(x)
-    .extend(t)
-    .insert(x)
-    .pop([i])
-    .remove(x)
-    .reverse()
-    .sort([key, reverse])
-	Tupels
+	Tepels
 	Sets
 	Dictionaries
 	Virtual environment
@@ -781,4 +653,3 @@ __del__ als Destruktor
 
 	 
 
-"""

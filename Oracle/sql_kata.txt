@@ -35,6 +35,48 @@ trancate
 commit
 
 
+
+
+
+
+
+REGEXP_LIKE
+IN
+BETWEEN
+DISTINCT
+ORDER By
+ASC/DESC
+NULLS FIRST NULLS LAST
+
+CASE
+DECODE
+ROW LIMITING
+ROWNUM
+ROWID
+ORA_ROWSCN
+
+
+NULL WErten
+
+
+SEQEUNCE
+.nextval
+.currval
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 savepoint xx;
 rollback xx;
 
@@ -63,6 +105,10 @@ Joins
 
 inner join
 outer join
+Equi join
+FULL join
+Cross 
+
 Kartesischer Produkt
 
 
