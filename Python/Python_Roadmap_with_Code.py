@@ -26,7 +26,6 @@ else:
 var = (20 if x == 1 else 30)
 print (var)
 #
-# while Schleife mit breack und contienue
 
 # Schleifen
     #while Schleife
