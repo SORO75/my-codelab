@@ -7,6 +7,30 @@ BASIC
 ============================			
 Basic Syntax
 ============================
+
+
+#Operatoren
+
+n1 = 1
+n2 = 2
+n3 = 3
+
+l1 = 'a'
+l2 = 'b'
+l3 = 'c'
+
+ 
+print ('Eins hoch Zwei ist:', n1 ** n2)
+print ('Zwei hoch Drei ist:' ,n2 ** n3)
+print ('Negative Eins:', -n1)
+print ('Produkt von Zwei und Drei:', n2 * n3)
+print ('Quotient von Zwei und Drei:', n2 / n3)
+print ('Rest (Modulo) bei ganzzahliger Division Zwei durch Drei:', n2%n3)
+print ('Ganzzahlige Division von Acht durch Drei ', 8//3)
+
+
+
+
 """
 # Kontrollstrukturen
 
