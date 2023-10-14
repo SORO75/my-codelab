@@ -8,7 +8,7 @@ BASIC
 Basic Syntax
 ============================
 
-
+"""
 #Operatoren
 
 n1 = 1
@@ -29,9 +29,49 @@ print ('Rest (Modulo) bei ganzzahliger Division Zwei durch Drei:', n2%n3)
 print ('Ganzzahlige Division von Acht durch Drei ', 8//3)
 
 
+#######################
+# numerische Datentypen
+########################
+
+# Konvertierung
+print (float (33))
+print (bool (13))
+print (int(13.55))
+
+print (1_0_0)
+
+#bit-Operationen
+#UND
+print (107 & 25)
+
+#ODER
+print (107 | 25)
+
+#XOR
+print (107 ^ 25)
 
 
-"""
+#Boolische Werte
+x = True
+y = False
+
+print (not x)
+print (x and y)
+print (x or y)
+
+print (bool(0.0))
+print (bool(False))
+print (bool(''))
+print (bool())
+print (bool([]))
+print (bool({}))
+print (bool(set()))
+print (not bool(set()))
+
+
+
+
+
 # Kontrollstrukturen
 
 	# if Anweisung
