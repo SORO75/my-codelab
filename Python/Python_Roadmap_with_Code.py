@@ -273,6 +273,12 @@ if __name__ == '__main__':
 
 
 '''
+Module
+pickle
+shelve
+
+kompelexes Programm mit os, pickle, shelve etc Programm schreiben für datei beiabeitung 
+
 Datei CRUD
 Datei finden
 
@@ -292,6 +298,9 @@ split methode
 strip methode
 als dictionary auslesen
 formatierter Text in die Datei schreiben
+
+
+
 ----
 
 
@@ -361,6 +370,19 @@ help funktion
 
 
 	Variable and Data Types (muttable und ummutable datentypen)
+	Instanzen eines mutablen Typs sind dazu in der Lage, nach ihrer Erzeugung andere Werte anzunehmen,
+	 während dies bei immutablen Datentypen nicht der Fall ist.
+
+	Immutable:
+		Numbers (Integer, Float, Complex, Decimal, Rational & Booleans)
+		Tuples
+		Strings
+		Frozen Sets
+	Muttable:
+		Lists
+		Sets
+		Dictionaries
+
 	Conditionals&Operation
 	Looping
 	Type Casting
