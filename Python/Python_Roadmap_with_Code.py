@@ -415,16 +415,42 @@ rstrip
 
 format
 
-
-
-
 '''
+###################################################
+# 			Sequenzille Datentypen
+###################################################
+
+#List	
+# Tuple
+# str
+# bytes
 
 
+lst =[32, 17, "Kind", 'Zwei',13.43, 0.04, 'a','b' ]
+print (type(lst))	
+
+print (3 not in lst)	
+print (32 in lst)	
+print (lst.count(3))
+print (len(lst))
+	
+lst.append('append')
+print (lst)	
+
+lst.extend ('extend')
+print (lst)	
+	
+lst.reverse()
+print (lst)
+	
+lst.sort()
+print(lst)		
 
 
-
-
+strg ='das ist ein Testtext'
+	
+print ('e' in strg)
+print (strg*5)
 
 
 
@@ -453,7 +479,12 @@ help funktion
 	Exception Handling
 	Funktions
 	Builtin Functions
-	Lists
+
+	'''
+	#Lists
+
+
+
 	# Methoden
 	.append(x)
     .extend(t)
@@ -1003,11 +1034,6 @@ Sys Module
 Python varianten…
 
 
-Datenstrukturen:
--Liste vs. (Array)
--Dictionaries
--Tupel (non mutable)
--Set
 
 
 
