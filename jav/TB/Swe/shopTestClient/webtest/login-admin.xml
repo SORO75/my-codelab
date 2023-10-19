@@ -1,0 +1,11 @@
+<invoke description="Aufruf der Startseite" url="/"/>
+<clickLink description="Login"
+	       label="${menue1.login}"/>
+<setInputField description="Eingabe des Benutzernamens"
+	           forLabel="${login.username.prompt}"
+	           value="${admin-name}"/>
+<setInputField description="Eingabe des Passworts"
+	           forLabel="${login.password.prompt}"
+	           value="${admin-password}"/>
+<clickButton description="Abschicken des Loginformulars"
+	         label="${login.submit}"/>

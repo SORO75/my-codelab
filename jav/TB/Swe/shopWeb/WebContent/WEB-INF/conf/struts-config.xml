@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<!-- FormBeans ============================= -->
+	<form-beans>
+		<form-bean name="loginForm" type="de.kipf.shop.admin.ui.LoginForm" />
+	</form-beans>
+	 
+	<global-forwards>
+		<forward name="start" path="/index.jsp"/>
+		<forward name="warenkorb" path="/vorgaenge/warenkorb.jsp"/>
+	</global-forwards>
+	
+	<!-- ActionMappings ======================== -->
+	<action-mappings>	
+
+				<!-- Navigationsleiste -->
+		<action path="/Start"
+			    forward="/index.jsp"/>
+
+		<action path="/Login"
+				type="de.kipf.shop.admin.ui.LoginAction"
+				validate="false" />
+				
+		<action path="/Logout"
+				type="de.kipf.shop.admin.ui.LogoutAction"
+				validate="false" />
+				
+		<action path="/MyAccount"
+			    forward="/admin/myaccount.jsp"/>			    
+			    	
+	</action-mappings>
+
+	<!-- JSP-Seiten liegen immer unter /WEB-INF/jsp -->
+	<controller contentType="application/xhtml+xml"
+		forwardPattern="/WEB-INF/jsp/$M$P" />
+
+	<!-- Message Resources ===================== -->
+	<message-resources parameter="de.kipf.shop.util.messageResources" />
+	
+	<!-- Plug-In fuer Validator ===================== -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			          value="/WEB-INF/conf/validator-rules.xml, /WEB-INF/conf/validation.xml" />
+		<set-property property="stopOnFirstError" value="false"/>
+	</plug-in>
+</struts-config>

@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+
+<project name="Web Modul fuer kipf.shop" default="war">
+
+	<!-- P r o p e r t i e s -->
+	<property environment="env"/>
+	<property file="${basedir}/../shop/build.global.properties" />
+	<property file="${basedir}/build.properties" />
+	
+	<property name="src.dir" value="${basedir}/src"/>
+	<property name="classes.dir" value="${basedir}/build/classes"/>
+	<property name="webcontent.dir" value="${basedir}/WebContent"/>
+	<property name="webinf.dir" value="${basedir}/WebContent/WEB-INF"/>
+	<property name="work.dir" value="${basedir}/build/work"/>
+	<property name="jar.build.dir" value="${basedir}/build/lib"/>
+	<property name="war.file" value="${jar.build.dir}/${ear.project.name}Web.war"/>
+	<property name="ejb.lib.dir" value="${basedir}/../${ear.project.name}EJB/build/lib"/>
+	<property name="ejb.client.jar" value="${ear.project.name}EJB-client.jar"/>
+
+	<!-- P f a d e i n s t e l l u n g e n -->
+	<path id="javac.classpath">
+		<pathelement location="${ejb.lib.dir}/${ejb.client.jar}"/>
+		<fileset dir="${env.JBOSS_HOME}/client">
+			<include name="commons-logging.jar"/>
+			<include name="jboss-j2ee.jar"/>
+			<include name="jboss-ejb3-client.jar"/>
+			<include name="jbosssx-client.jar"/>
+			<include name="javax.servlet.jar"/>
+			<include name="ejb3-persistence.jar"/>
+		</fileset>
+		<pathelement location="${env.JBOSS_HOME}/server/default/lib/javax.servlet.jsp.jar"/>
+		<fileset dir="${webinf.dir}/lib">
+			<include name="jstl.jar"/>
+			<include name="struts-core-${struts.version}.jar"/>
+			<include name="struts-extras-${struts.version}.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="jspc.classpath">
+		<pathelement location="${classes.dir}"/>
+		<pathelement location="${ejb.lib.dir}/${ejb.client.jar}"/>
+		<pathelement location="${env.JBOSS_HOME}/client/javax.servlet.jar"/>
+		<pathelement location="${env.JBOSS_HOME}/client/ejb3-persistence.jar"/>
+		<pathelement location="${env.JBOSS_HOME}/server/default/lib/javax.servlet.jsp.jar"/>
+		<fileset dir="${env.JBOSS_HOME}/server/default/deploy/jbossweb-tomcat55.sar">
+			<include name="jasper-compiler.jar"/>
+			<include name="jasper-runtime.jar"/>
+			<include name="commons-el.jar"/>
+		</fileset>
+		<fileset dir="${env.JBOSS_HOME}/client">
+			<include name="commons-logging.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="PasswordHasher.classpath">
+		<pathelement location="${classes.dir}"/>
+		<pathelement location="${env.JBOSS_HOME}/client/jbossall-client.jar"/>
+	</path>
+
+	<!-- T a s k   f u e r   U e b e r s e t z u n g   d e r   J S P - S e i t e n -->
+	<taskdef classname="org.apache.jasper.JspC" name="jasper" classpathref="jspc.classpath"/>
+
+	<!-- V e r z e i c h n i s s e   a n l e g e n -->
+	<target name="make-dirs">
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${work.dir}"/>
+		<mkdir dir="${jar.build.dir}"/>
+	</target>
+	
+	<!-- U e b e r s e t z u n g   d e r   Q u e l l d a t e i e n -->
+	<target name="java-compile" depends="make-dirs">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" deprecation="on"
+			   classpathref="javac.classpath">
+			<compilerarg value="${additional.warnings}"/>
+		</javac>
+	</target>
+	
+	<!-- J S P - S e i t e n   u e b e r s e t z e n -->
+	<target name="jsp-compile" description="Uebersetzung der JSP-Seiten">
+		<jasper uriroot="${webcontent.dir}" outputDir="${work.dir}" compile="true" verbose="1"
+		        compilerSourceVM="1.5" compilerTargetVM="1.5"/>
+	</target>
+	
+	<!-- V a l i d i e r u n g   d e r   X M L - K o n f i g u r a t i o n s d a t e i e n -->
+	<target name="validate-xml">
+		<!-- Fehler in %JBOSS_HOME%\docs\schema\j2ee_1_4.xsd, Zeile 722:
+		     A schema cannot contain two global components with the same name; this schema contains two occurrences of 'http://java.sun.com/xml/ns/j2ee,listenerType'. -->
+		<!-- Task schemavalidate ab ANT 1.7 -->
+		<!--
+		<schemavalidate file="${webinf.dir}/web.xml" warn="true">
+			<schema namespace="http://java.sun.com/xml/ns/j2ee"
+			        file="${env.JBOSS_HOME}/docs/schema/web-app_2_4.xsd" />
+			<schema namespace="http://www.w3.org/XML/1998/namespace"
+				    file="${env.JBOSS_HOME}/docs/schema/xml.xsd"/>
+		</schemavalidate>
+		-->
+	</target>
+	
+	<!-- W A R - D a t e i   f u e r   W e b - M o d u l -->
+	<target name="war" depends="java-compile, jsp-compile, validate-xml">
+		<war destfile="${war.file}"
+			 webxml="${webcontent.dir}/WEB-INF/web.xml">
+			<zipfileset dir="${webcontent.dir}" includes="*.html, *.jsp, css/*, images/*"/>
+			<webinf dir="${webcontent.dir}/WEB-INF" includes="conf/*, jsp/**/*.jsp*, jsp/**/*.html, tags/*, layout/*, *.html, sql/**/*.jspf, jboss-web.xml"/>
+			<classes dir="${classes.dir}" includes="**/*.class"/>
+			<classes dir="${src.dir}" includes="**/*.properties"/>
+			<lib dir="${webcontent.dir}/WEB-INF/lib" includes="*.jar"/>
+			<manifest>
+				<attribute name="Class-Path" value="./${ejb.client.jar}"/>
+				<attribute name="Built-By" value="${user.name}"/>
+			</manifest>
+		</war>
+	</target>
+
+	<!-- A u f r a e u m e n -->
+	<target name="clean" description="Aufraeumen">
+		<delete dir="${classes.dir}"/>
+		<delete dir="${jar.build.dir}"/>
+		<delete dir="${work.dir}"/>
+	</target>
+
+	<!-- N e u   e r s t e l l e n -->
+	<target name="rebuild" depends="clean, war" description="Komplett neu erstellen"/>
+	
+	<!-- P a s s w o r t - V e r s c h l u e s s e l u n g -->
+	<target name="password-hash" description="Passwort-Verschluesselung">
+		<available classname="de.${ear.project.name}.util.PasswordHasher" classpathref="PasswordHasher.classpath" property="password.hasher.present"/>
+		<antcall target="password-hash-exec"/>
+	</target>
+	<target name="password-hash-exec" depends="war" if="password.hasher.present">
+		<java classname="de.${ear.project.name}.util.PasswordHasher" fork="yes" classpathref="PasswordHasher.classpath">
+			<arg line="${hashing} ${password.clear}"/>
+		</java>
+	</target>
+
+</project>

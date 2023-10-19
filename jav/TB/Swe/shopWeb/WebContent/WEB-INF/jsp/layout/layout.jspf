@@ -1,0 +1,19 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+
+<tiles:definition id="shop.layout" page="/WEB-INF/jsp/layout/tiles.jsp" scope="request">
+	<tiles:put name="header" value="/WEB-INF/jsp/layout/header.jspf"/>
+	<tiles:put name="menue1" value="/WEB-INF/jsp/layout/menue1.jspf"/>
+
+	<c:choose>
+		<c:when test="${Administrator eq true}">
+			<tiles:put name="menue2" value="/WEB-INF/jsp/layout/menue2_admin.jspf"/>
+		</c:when>
+		<c:otherwise>
+			<tiles:put name="menue2" value="/WEB-INF/jsp/layout/menue2.jspf"/>
+		</c:otherwise>
+	</c:choose>
+	<tiles:put name="footer" value="/WEB-INF/jsp/layout/footer.jspf"/>
+</tiles:definition>

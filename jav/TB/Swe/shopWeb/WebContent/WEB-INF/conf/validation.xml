@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<global>
+		<constant>
+			<constant-name>name</constant-name>
+			<constant-value>^[A-ZÄÖÜ][a-zäöüß]+(-[A-ZÄÖÜ][a-zäöüß]+)?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>username</constant-name>
+			<constant-value>^[a-z]+([0-9])*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>cityname</constant-name>
+			<constant-value>^[A-ZÄÖÜ][a-zäöüß]+(\s[A-ZÄÖÜ][a-zäöüß]+)?(-[A-ZÄÖÜ][a-zäöüß]+)?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>preis</constant-name>
+			<constant-value>^[0-9]+(.[0-9]{1,2})$</constant-value>
+		</constant>		
+		
+	</global>
+
+	<formset>
+		<form name="createBenutzerForm">
+		   <field property="benutzername"
+				   depends="required, mask, minlength, maxlength">
+				<arg position="0" key="benutzerverw.create.username"/>
+				<arg position="1" key="${var:minlength}" name="minlength" resource="false"/>
+				<arg position="2" key="${var:maxlength}" name="maxlength" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+				<msg name="mask" key="benutzerverw.create.username.maskmsg"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${username}</var-value>
+				</var>
+			</field>
+			<field property="passwort"
+				   depends="required, validwhen, minlength, maxlength">
+				<arg position="0" key="benutzerverw.create.password"/>
+				<arg position="1" key="${var:minlength}" name="minlength" resource="false"/>
+				<arg position="2" key="${var:maxlength}" name="maxlength" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+				<msg name="validwhen" key="benutzerverw.create.password.validwhen"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>(*this* == passwort2)</var-value>
+				</var>
+			</field>
+		   <field property="nachname"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.create.surname.maskmsg"/>
+				<arg position="0" key="benutzerverw.create.surname"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+			</field>
+		   <field property="vorname"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.create.firstname.maskmsg"/>
+				<arg position="0" key="benutzerverw.create.firstname"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+			</field>
+			<field property="strasse"
+				  depends="required">
+				<arg position="0" key="benutzerverw.create.street"/>
+			</field>
+			<field property="plz"
+				  depends="required">
+				<arg position="0" key="benutzerverw.create.postcode"/>
+			</field>
+			<field property="ort"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.create.city.maskmsg"/>
+				<arg position="0" key="benutzerverw.create.city"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${cityname}</var-value>
+				</var>
+			</field>
+			<field property="email" depends="required, email">
+				<arg position="0" key="benutzerverw.create.email"/>
+			</field>
+			<field property="geburtsdatum" depends="required, date">
+				<arg position="0" key="benutzerverw.create.dateofbirth"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd.MM.yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		
+		<form name="updateBenutzerForm">
+			<field property="passwort"
+				   depends="validwhen, minlength, maxlength">
+				<arg position="0" key="benutzerverw.update.password"/>
+				<arg position="1" key="${var:minlength}" name="minlength" resource="false"/>
+				<arg position="2" key="${var:maxlength}" name="maxlength" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+				<msg name="validwhen" key="benutzerverw.update.password.validwhen"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>(*this* == passwort2)</var-value>
+				</var>
+			</field>
+		   <field property="nachname"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.update.surname.maskmsg"/>
+				<arg position="0" key="benutzerverw.update.surname"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+			</field>
+		   <field property="vorname"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.update.firstname.maskmsg"/>
+				<arg position="0" key="benutzerverw.update.firstname"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+			</field>
+			<field property="strasse"
+				  depends="required">
+				<arg position="0" key="benutzerverw.update.street"/>
+			</field>
+			<field property="plz"
+				  depends="required">
+				<arg position="0" key="benutzerverw.update.postcode"/>
+			</field>
+			<field property="ort"
+				  depends="required, mask">
+				<msg name="mask" key="benutzerverw.update.city.maskmsg"/>
+				<arg position="0" key="benutzerverw.update.city"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${cityname}</var-value>
+				</var>
+			</field>
+			<field property="email" depends="required, email">
+				<arg position="0" key="benutzerverw.update.email"/>
+			</field>
+			<field property="geburtsdatum" depends="required, date">
+				<arg position="0" key="benutzerverw.update.dateofbirth"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd.MM.yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		
+		<form name="suchForm">
+		   <field property="bezeichnung"
+				   depends="mask">
+				<arg position="0" key="suche.desc.mask"/>
+				<msg name="mask" key="suche.desc.maskmsg"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${cityname}</var-value>
+				</var>
+			</field>
+			<field property="preis"
+				   depends="mask">
+				<arg position="0" key="suche.price.mask"/>
+				<msg name="mask" key="suche.price.maskmsg"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${preis}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+</form-validation>

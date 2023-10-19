@@ -1,0 +1,251 @@
+/* CSS fuer eine normale grafische Darstellung */
+* {
+/* set all to 0 */
+	margin: 0;
+	padding: 0;
+}
+body#all {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 15px 0;
+	background-color: #ccc;
+	color: #000;
+}
+/* Text und Links allgemein */
+p, li {
+	font-size: 80%;
+}
+a {
+	height: 1%;
+/* damit der IE den ganzen Link aktiviert */
+	text-decoration: none;
+	background-color: transparent;
+	color: #555;
+	border-bottom: 1px solid #555;
+}
+a:hover {
+	background-color: transparent;
+	color: #0066ff;
+	border-bottom: 1px solid #000000;
+}
+/* Container mit ihren Inhalten */
+#wrapper {
+/* umschlieszt alles */
+	text-align: left;
+	width: 86%;
+	margin: 0 auto;
+	background-color: #fff;
+	/*color: #000;
+	border: 1px solid #000;
+*/
+}
+/* Header */
+#header {
+	padding: 10px 10px;
+	background-color: #0000ff;
+	color: #000;
+	border-bottom: 8px solid #777;
+}
+h1 {
+/* vorbehalten fuer Titel|Banner */
+	padding: 5px 10px;
+	background-color: #bbb;
+	color: #000;
+	border: 1px solid #000;
+}
+/* Menues */
+#menue1 {
+/* Menue oben */
+	height: 30px;
+	background-color: #a4a4a4;
+	color: #000;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+#menue1 p {
+	float: right;
+	width: 580px;
+/* Opera braucht fuer Linkleisten in Absaetzen eine Breite, sonst setzt er die Links nicht nebeneinander */
+}
+#menue1 a {
+	display: block;
+	float: left;
+/* bringt die Links trotz Blockformatierung nebeneinander - und zwar in der richtigen Reihenfolge */
+	margin-left: 16px;
+	padding: 2px 6px;
+	background-color: #0066ff;
+	color: #ffffff;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+}
+#menue1 a:hover {
+	background-color: #cee1ff;
+	color: #000000;
+}
+#menue2 {
+/* links von content floatendes Menue */
+	float: left;
+	width: 200px;
+	background-color: #79aeff;
+	color: #fff;
+}
+#menue2 p {
+	padding-bottom: 10px;
+}
+#menue2 a {
+	display: block;
+	margin: 10px 10px;
+	padding: 3px 5px;
+	background-color: #888;
+	color: #fff;
+	border: 1px solid #000;
+}
+#menue2 a:hover {
+	background-color: #bfbfbf;
+	color: #0000ff;
+}
+/* Content */
+#content {
+/* mit linkem Rahmen in der Breite und BG-Color von menue2 */
+	padding: 10px 0;
+	background-color: #fff;
+	color: #000;
+	border-left: 200px solid #79AEFF; 
+}
+#content p {
+	line-height: 150%;
+	padding: 0 60px 10px 40px;
+}
+#content p#error {
+	line-height: 200%;
+	margin: 0 60px 10px 60px;
+	color: #FF0000;
+	background-color: #D8D8D8;
+	font-size: medium;
+	font-weight: bold;
+}
+#content p.topper {
+	padding: 10px 60px 20px 40px;
+}
+#content p#submenue {
+	line-height: 150%;
+	padding: 10px 450px 10px 60px;
+}
+#content p#submenue a {
+	display: block;
+	margin: 10px 10px;
+	padding: 3px 5px;
+	background-color: #888;
+	color: #fff;
+	border: 1px solid #000;
+}
+#content p#submenue a:hover {
+	background-color: #bfbfbf;
+	color: #0000ff;
+}
+#content ul {
+	line-height: 150%;
+	padding: 0 60px 10px 60px;
+}
+#content #table {
+	padding: 0 60px 10px 60px;
+}
+#content table {
+	border-style: none;
+}
+#content table th {
+  border-style: none;
+	padding: 2px 10px 2px 10px;
+}
+#content table td {
+	border-style: none;
+	padding: 2px 10px 2px 10px;
+	vertical-align: top;
+}
+#content #table table {
+	/* border-style: solid; */
+	empty-cells: show;
+}
+#content #table table th {
+  border-style: none;
+	background-color: #0066ff;
+	color: #ffffff;
+	font-size: 80%;
+	padding: 2px 10px 2px 10px;
+}
+#content #table table td {
+	border-style: none;
+	background-color: #cee1ff;
+	font-size: 80%;
+	padding: 2px 10px 2px 10px;
+	vertical-align: top;
+}
+#content #form {
+	padding: 0 60px 10px 60px;
+}
+#content #form .css {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #0066ff;
+	cursor: hand;
+	background-color: #eeeeee;
+	padding: 2px 10px 2px 10px;
+}
+#content #form select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #0066ff;
+	cursor: hand;
+	background-color: #eeeeee;
+}
+#content #form textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #0066ff;
+	background-color: #eeeeee;
+	padding: 2px 0px 0px 10px;
+}
+h2, h3, h4 {
+	padding: 15px 0 10px 40px;
+}
+h2 {
+	padding: 25px 0 15px 40px;
+}
+/* Footer */
+#footer {
+	clear: both;
+	height: 34px;
+	background-color: #0000ff;
+	color: #ccc;
+	border-top: 6px solid #777;
+}
+#footer p {
+	position: absolute;
+	left: 7%;
+	padding: 8px 15px;
+}
+#footer a {
+	text-decoration: none;
+	background-color: transparent;
+	color: #fff;
+	border: 0 none;
+}
+#footer a:hover {
+	background-color: transparent;
+	color: #0066ff;
+}
+/* Ausgeblendetes */
+.invis, hr {
+	display: none;
+}
+#content .einschub {
+	background-color: #fffff0;
+	color: #000;
+}
+code {
+	font-size: 110%;
+	font-family: serif;
+	background-color: transparent;
+	color: #cc00ff;
+}

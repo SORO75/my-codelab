@@ -1,0 +1,3 @@
+<factorypath>
+    <factorypathentry kind="PLUGIN" id="org.hibernate.eclipse.jdt.apt.ui" enabled="true" runInBatchMode="false"/>
+</factorypath>

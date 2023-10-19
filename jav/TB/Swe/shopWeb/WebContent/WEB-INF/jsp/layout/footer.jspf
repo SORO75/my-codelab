@@ -1,0 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+        <p>
+          &copy; Jens Kirchner &amp; Tobias Pfeifer 2007 | <a href="impressum.jsp"><fmt:message key="footer.impress"/></a>
+        </p>
+

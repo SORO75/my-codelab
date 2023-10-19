@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project SYSTEM "WebTest.dtd" [
+	<!ENTITY config SYSTEM "config.xml">
+	<!ENTITY login SYSTEM "login.xml">
+	<!ENTITY login-admin SYSTEM "login-admin.xml">
+]>
+
+<project name="webtest" basedir="." default="report">
+
+	<!-- P r o p e r t i e s -->
+	<property environment="env"/>
+	<property file="${basedir}/../../shop/build.global.properties" />
+	<property file="${basedir}/build.properties" />
+
+	<property name="webtest.log.dir" value="${basedir}/../log/webtest"/>
+	<property name="db.dir" value="${basedir}/../../${ear.project.name}DB/"/>
+	<property name="web.dir" value="${basedir}/../../${ear.project.name}Web"/>
+	<property name="messageResources" value="${web.dir}/src/de/kipf/${ear.project.name}/util/messageResources_${lang}.properties"/>
+	<property file="${messageResources}"/>
+
+	<!-- W e b T e s t   T a s k s -->
+	<taskdef file="${webtest.home}/webtestTaskdefs.properties">
+		<classpath>
+			<fileset dir="${webtest.home}/lib" includes="*.jar"/>
+		</classpath>
+	</taskdef>
+
+	<!-- ============================================================== -->
+	<!-- T a r g e t s                                                  -->
+	<!-- ============================================================== -->
+	
+	<target name="dbReload">
+		<ant antfile="${db.dir}/build.xml" dir="${db.dir}" target="reload" inheritAll="false"/>
+	</target>
+
+	<!-- L o g i n   u n d   L o g o u t -->
+	<target name="loginLogout">
+		<testSpec name="Login und Logout">
+			&config;
+			<steps>
+				&login;
+				<clickLink description="MyAccount aufrufen"
+					       label="${menue1.myaccount}"/>
+				<verifyTitle description="Ueberpruefung des Titels der MyAccount-Seite"
+					         text="${myaccount.header.title}$"
+							 regex="true"/>
+				<clickLink description="Logout druchführen"
+					       label="${menue1.logout} (${user-name})"/>
+				<clickLink description="Auf MyAccount zurückgehen"
+					       label="${menue1.myaccount}"/>
+				<verifyTitle description="Ueberpruefung des Titels der Login-Seite"
+					         text="${login.header.title}$"
+							 regex="true"/>
+			</steps>
+		</testSpec>
+	</target>
+
+
+	<!-- B e n u t z e r d a t e n   ä n d e r n  ( a l s  A d m i n ) -->
+	<target name="updateBenutzerAsAdmin">
+		<testSpec name="Update Benutzer als Admin">
+			&config;
+			<steps>
+				&login-admin;
+				<clickLink description="Auf Benutzerverwaltung gehen"
+							label="${menue2_admin.listusers}"/>
+				<verifyTitle description="Ueberpruefung des Titels der Benutzerverwaltungsseite"
+							text="${benutzerverw.liste.header.title}$"
+							regex="true"/>
+				<clickLink description="Benutzer für die Änderung auswählen"
+							href="/shop/FindBenutzer.do?user=${user-name}"/>
+				<verifyInputField description="Nachsehen, ob der richtige Benutzer ausgewählt wurde"
+							name="benutzername"
+							value="${user-name}"/>
+				<setInputField description="Eingabe eines neuen Nachnamens"
+							forLabel="${benutzerverw.update.surname}"
+							value="${user-newsurname}"/>
+				<setInputField description="Eingabe eines neuen Vornamens"
+							forLabel="${benutzerverw.update.firstname}"
+							value="${user-newfirstname}"/>
+				<setSelectField description="Auswahl einer zusätzlichen Gruppe"
+							name="benutzergruppen"
+							multiselect="true"
+							value="${user-roleguest}"/>
+				<clickButton description="Abschicken des Formulars"
+							label="${benutzerverw.update.submit}"/>
+				<clickLink description="Auf Benutzerverwaltung gehen"
+							label="${menue2_admin.listusers}"/>
+				<verifyTitle description="Ueberpruefung des Titels der Benutzerverwaltungsseite"
+							text="${benutzerverw.liste.header.title}$"
+							regex="true"/>
+				<clickLink description="Benutzer für die Änderung auswählen"
+							href="/shop/FindBenutzer.do?user=${user-name}"/>
+				<verifyInputField description="Nachsehen, ob der richtige Benutzer ausgewählt wurde"
+							name="benutzername"
+							value="${user-name}"/>
+				<verifyInputField description="Überprüfung des Nachnamens"
+							name="nachname"
+							value="${user-newsurname}"/>
+				<verifyInputField description="Überprüfung des Vornamens"
+							name="vorname"
+							value="${user-newfirstname}"/>
+				<verifySelectField description="Überprüfen der Benutzergruppen"
+							name="benutzergruppen"
+							value="${user-roleguest}"/>
+				<verifySelectField description="Überprüfen der Benutzergruppen"
+							name="benutzergruppen"
+							value="${user-roleuser}"/>
+			</steps>
+		</testSpec>
+	</target>
+	
+	<target name="suchenTest">
+		<testSpec name="Test der Suchfunktion der Weboberfläche">
+			&config;
+			<steps>
+				<invoke description="Aufruf der Startseite" url="/"/>
+				<verifyTitle description="Ueberpruefung des Titels der Indexseite"
+							text=".*${index.header.title}"
+							regex="true"/>
+				<clickLink description="Link fuer Suche mit Nachname"
+							label="Suche"/>
+				<verifyTitle description="Ueberpruefung des Titels der Suchseite"
+							text=".*${suche.header.title}"
+							regex="true"/>
+				<setSelectField description="Auswahl des Fahrradtyps"
+							name="indexTyp"
+							optionIndex="1"/>
+				<setInputField description="Eingabe Suchstrings"
+							name="bezeichnung"
+							value="St"/>
+				<setInputField description="Eingabe des MaxPreises"
+							name="preis"
+							value="1000"/>
+				<clickButton description="Abschicken des Suchformulars"
+							label="suchen"/>
+				<verifyTitle description="Ueberpruefung des Titels der Ergebnisseite"
+							text=".*${ergebnis.header.title}"
+							regex="true"/>
+				<verifyText description="Ueberpruefung der Treffer"
+							text=".*Stiffee Three.*"
+							regex="true"/>
+				<clickLink description="Link fuer Suche mit Nachname"
+							label="Suche"/>
+				<setInputField description="Eingabe des MaxPreises"
+							name="preis"
+							value="900"/>
+				<clickButton description="Abschicken des Suchformulars"
+							label="suchen"/>				
+				<verifyText description="Ueberpruefung der nix gfunne meldung"
+							text=".*Keine Produkte gefunden, die zu Ihrer Anfrage passen!.*"
+							regex="true"/>				
+			</steps>		
+		</testSpec>	
+	</target>
+	
+
+	<!-- H T M L - R e p o r t -->
+	<target name="report" description="Alle WebTests mit HTML-Report" depends="prepare, clean">
+		<!-- antcall statt Attribut "depends" wegen Uebersichtlichkeit -->
+		<antcall target="dbReload"/>
+		<antcall target="loginLogout"/>
+		<antcall target="updateBenutzerAsAdmin"/>
+		<antcall target="suchenTest"/>
+	
+		<tstamp>
+			<format property="report.time" pattern="dd.MM.yyyy hh:mm:ss"/>
+		</tstamp>
+		
+		<!-- ab ANT 1.7: Task xslt -->
+		<!-- bis ANT 1.6.5: Task style -->
+		<xslt in="${webtest.log.dir}/index.xml"
+			   out="${webtest.log.dir}/index.html"
+			   style="${webtest.log.dir}/WebTestReport.xsl"
+			   processor="trax">
+			<param name="reporttime" expression="${report.time}"/>
+		</xslt>
+	</target>
+	
+	<!-- V o r b e r e i t e n -->
+	<target name="prepare">
+		<mkdir dir="${webtest.log.dir}"/>
+			<copy todir="${webtest.log.dir}">
+				<fileset dir="${basedir}/template" /> 
+			</copy>
+		</target>
+	
+	<!-- A u f r a e u m e n -->
+	<target name="clean">
+		<delete>
+			<fileset dir="${webtest.log.dir}" includes="index.xml, index.html"/>
+		</delete>
+	</target>
+
+</project>

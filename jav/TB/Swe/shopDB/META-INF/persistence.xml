@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+
+	<persistence-unit name="kipf" transaction-type="RESOURCE_LOCAL">
+		<class>de.kipf.shop.personen.db.Benutzer</class>
+		<class>de.kipf.shop.personen.db.Benutzergruppe</class>
+		<class>de.kipf.shop.vorgaenge.db.Auftrag</class>
+		<class>de.kipf.shop.vorgaenge.db.Auftragstatus</class>
+		<class>de.kipf.shop.vorgaenge.db.Auftragstatustyp</class>
+		<class>de.kipf.shop.vorgaenge.db.Warenkorb</class>
+		<class>de.kipf.shop.vorgaenge.db.WarenkorbPosition</class>
+		<class>de.kipf.shop.teile.db.AngebotsModell</class>
+		<class>de.kipf.shop.teile.db.Einzelteil</class>
+		<class>de.kipf.shop.teile.db.Fahrradtyp</class>
+		<class>de.kipf.shop.teile.db.KundenModell</class>
+		<class>de.kipf.shop.teile.db.Lagerbuchung</class>
+		<class>de.kipf.shop.teile.db.Modell</class>
+		<class>de.kipf.shop.teile.db.ModellEinzelteil</class>		
+		<class>de.kipf.shop.teile.db.Teiltyp</class>
+
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.connection.url" value="jdbc:postgresql:kipfdb"/>
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+			
+			<!--
+			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
+			-->
+
+			<!-- Schemaname = Benutzerkennung -->
+			<property name="hibernate.default_schema" value="shop"/>
+			
+			<!-- Keine proprietaeren Erweiterungen von HQL nutzen -->
+			<property name="hibernate.query.jpaql_strict_compliance" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

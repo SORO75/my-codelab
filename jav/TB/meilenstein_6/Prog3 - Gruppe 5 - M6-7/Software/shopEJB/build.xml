@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<project name="KiPf Fahrrad Webshop - EJB Modul" default="jar">
+
+	<!-- P r o p e r t i e s -->
+	<property environment="env"/>
+	<property file="${basedir}/../shop/build.global.properties" />
+	
+	<property name="src.dir" value="${basedir}/ejbModule"/>
+	<property name="classes.dir" value="${basedir}/build/classes"/>
+	<property name="jar.build.dir" value="${basedir}/build/lib"/>
+	<property name="ejb.jar" value="${ear.project.name}EJB.jar"/>
+	<property name="ejb.client.jar" value="${ear.project.name}EJB-client.jar"/>
+	<property name="metainf.dir" value="${src.dir}/META-INF"/>
+	<property name="xml.schema.dir" value="${basedir}/schema"/>
+
+
+	<!-- P f a d e i n s t e l l u n g e n -->
+	<path id="javac.classpath">
+		<fileset dir="${env.JBOSS_HOME}/client">
+			<include name="commons-logging.jar"/>
+			<include name="jboss-j2ee.jar"/>
+			<include name="jbossall-client.jar"/>
+			<include name="jboss-ejb3-client.jar"/>
+			<include name="ejb3-persistence.jar"/>
+			<include name="hibernate-client.jar"/>
+		</fileset>
+		<pathelement location="${env.JBOSS_HOME}/server/default/deploy/ejb3.deployer/jboss-annotations-ejb3.jar"/>
+	</path>
+
+	<path id="PasswordHasher.classpath">
+		<pathelement location="${jar.build.dir}/${ejb.jar}"/>
+		<pathelement location="${env.JBOSS_HOME}/client/jbossall-client.jar"/>
+	</path>
+	
+	<!-- V e r z e i c h n i s s e   a n l e g e n -->
+	<target name="make-dirs">
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${jar.build.dir}"/>
+	</target>
+	
+	<!-- U e b e r s e t z u n g   d e r   Q u e l l d a t e i e n -->
+	<target name="compile" depends="make-dirs">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" deprecation="on"
+			   target="${target.version}" classpathref="javac.classpath">
+			<compilerarg value="${additional.warnings}"/>
+		</javac>
+	</target>
+
+	<!-- V a l i d i e r u n g   v o n   X M L - D a t e i e n -->
+	<target name="validate-xml">
+		<!-- Task schemavalidate ab ANT 1.7 -->
+		<schemavalidate file="${metainf.dir}/ejb-jar.xml" warn="true">
+			<schema namespace="http://java.sun.com/xml/ns/javaee"
+			        file="${xml.schema.dir}/ejb-jar_3_0.xsd" />
+			<schema namespace="http://www.w3.org/XML/1998/namespace"
+				    file="${env.JBOSS_HOME}/docs/schema/xml.xsd"/>
+		</schemavalidate>
+		<schemavalidate file="${metainf.dir}/persistence.xml" warn="true">
+			<schema namespace="http://java.sun.com/xml/ns/persistence"
+			        file="${xml.schema.dir}/persistence_1_0.xsd" />
+		</schemavalidate>
+		<schemavalidate file="${metainf.dir}/orm.xml" warn="true">
+			<schema namespace="http://java.sun.com/xml/ns/persistence/orm"
+			        file="${xml.schema.dir}/orm_1_0.xsd" />
+		</schemavalidate>
+	</target>
+
+	<!-- J A R - A r c h i v   f u e r   E J B - M o d u l -->
+	<target name="jar" depends="compile, validate-xml">
+		<jar destfile="${jar.build.dir}/${ejb.client.jar}">
+			<zipfileset dir="${classes.dir}"
+				        includes="**/*.class"
+				        excludes="**/*Bean.class, **/*DAO.class"/>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+			</manifest>
+		</jar>
+		<jar destfile="${jar.build.dir}/${ejb.jar}">
+			<zipfileset dir="${classes.dir}" includes="**/*Bean.class, **/*DAO.class"/>
+			<metainf dir="${metainf.dir}" includes="persistence.xml, orm.xml, ejb-jar.xml"/>
+			<manifest>
+				<attribute name="Class-Path" value="./${ejb.client.jar}"/>
+				<attribute name="Built-By" value="${user.name}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<!-- A u f r a e u m e n -->
+	<target name="clean" description="Aufraeumen">
+		<delete dir="${classes.dir}"/>
+		<delete file="${ejbjar.file}"/>
+	</target>
+	
+	<!-- N e u   e r s t e l l e n -->
+	<target name="rebuild" depends="clean, jar" description="Komplett neu erstellen"/>
+
+	<!-- K o m p l e t t   n e u   e r s t e l l e n -->
+	<target name="password-hash" depends="jar" description="Passwort-Verschluesselung">
+		<java classname="de.kipf.${ear.project.name}.util.PasswordHasher" fork="yes" classpathref="PasswordHasher.classpath">
+			<arg line="${hashing} ${password.clear}"/>
+		</java>
+	</target>
+</project>
