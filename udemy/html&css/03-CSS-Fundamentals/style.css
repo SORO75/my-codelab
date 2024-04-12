@@ -87,3 +87,16 @@ aside {
 body {
   /* background-color: blue;*/
 }
+/*
+.first-li {
+  font-weight: bold;
+}
+*/
+
+li:first-child {
+  font-weight: bold;
+}
+
+li:last-child {
+  font-style: italic;
+}
