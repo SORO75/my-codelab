@@ -115,12 +115,58 @@ x = 1
 for row in file:
     print(str(x)+" - "+row )
     x=+1
-file.close()   
+file.close()
 
 
 '''116
-Import the data from the Books.csv file into a list. Display the list to the user. Ask them to select which row from the list they want to delete and remove it from the list. Ask the user which data they want to change and allow them to change it. Write the data back to the original .csv file, overwriting the existing data with the amended data.
+Import the data from the Books.csv file into a list.
+Display the list to the user. Ask them to select which row from 
+the list they want to delete and remove it from the list. 
+Ask the user which data they want to change and allow them to change it. 
+Write the data back to the original .csv file, overwriting the existing data with the amended data.
 '''
+import csv
+file = list(csv.reader(open("Books.csv")))
+booklist = []
+for row in file:
+    booklist.append(row)
+#print(tmp)
+
+x = 0
+for row in booklist:
+    print(x+1,booklist[x])
+    x+=1
+getId = int(input("Enter a row number to delete: "))
+del booklist[getId]
+
+
+x = 0
+for row in booklist:
+    print(x+1,booklist[x])
+    x+=1
+file.close()
+
+alterId = int(input("Enter a row number to alter: "))
+x=0
+for row in booklist[alter-1]
+    print(x+1,booklist[alter-1][x])
+    x+=1
+
+file = open("Books.csv", "w")
+x = 0
+for row in booklist:
+    newrecord = booklist[x] [0] + ", " +booklist [x][1] + ", " +booklist [x][2] + "\n"
+    file.write(newrecord)
+    x = x+1
+file.close()
+
+
+
+
+
+
+
+
 
 '''117
 Create a simple maths quiz that will ask the user for their name and then generate two random questions. 
