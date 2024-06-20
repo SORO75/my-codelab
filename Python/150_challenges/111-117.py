@@ -88,7 +88,20 @@ Display all books released between those two years.
 '''
 import csv
 start = int(input("Enter the starting year"))
-stop = int(input("Enter the end year"))
+end = int(input("Enter the end year"))
+
+file = list(csv.reader(open("Books.csv")))
+tmp = []
+for row in file:
+    tmp.append(row)
+#print(tmp)
+
+x = 0
+for row in tmp:
+    if int(tmp[x][2])>= start and int(tmp[x][2]) <=end:
+        print(tmp[x])
+        x=x+1
+
 
 
 
