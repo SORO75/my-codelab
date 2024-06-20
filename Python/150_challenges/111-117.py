@@ -109,6 +109,14 @@ for row in tmp:
 
 Using the Books.csv file, display the data in the file along with the row number of each.
 '''
+import csv
+file = open("Books.csv", "r")
+x = 1
+for row in file:
+    print(str(x)+" - "+row )
+    x=+1
+file.close()   
+
 
 '''116
 Import the data from the Books.csv file into a list. Display the list to the user. Ask them to select which row from the list they want to delete and remove it from the list. Ask the user which data they want to change and allow them to change it. Write the data back to the original .csv file, overwriting the existing data with the amended data.
