@@ -16,20 +16,81 @@ Year Released 1960
 1813
 
 '''
+import csv
+file = open("Books.csv","w")
+newrecord = "To Kill A Mockingbird, Harper Lee, 1960\n"
+file.write(str(newrecord))
+newrecord = "A Brief History of Time, Stephen Hawking, 1988\n"
+file.write(str(newrecord))
+newrecord = "The Great Gatsby, F. Scott Fitzgerald, 1922\n"
+file.write(str(newrecord))
+newrecord = "The Man Who Mistook His Wife for a Har, Oliver Sacks, 1985\n"
+file.write(str(newrecord))
+newrecord = "Pride and Prejudice, Jane Austen, 1813\n"
+file.write(str(newrecord))
+file.close()
 
 '''112
 Using the Books.csv file from program 111, ask the user to enter another record and add it to the end of the file. 
 Display each row of the .csv file on a separate line.
 '''
+import csv
+title = input("Enter a title:")
+author = input("Enter author:")
+year = input("Enter the year it was released: ")
+newrecord = title+","+author+","+year+"\n"
+file = open("Books.csv","a")
+
+file.write(str(newrecord))
+file.close()
+
+file = open("Books.csv","r")
+for row in file:
+    print(row)
+file.close()
+
+
 
 '''113
-Using the Books.csv file, ask the user how many records they want to add to the list and then allow them to add that many. After all the data has been added, ask for an author and display all the books in the list by that author. If there are no books by that author in the list, display a suitable message
+Using the Books.csv file, ask the user how many records they want to add to the list 
+and then allow them to add that many. 
+After all the data has been added, ask for an author
+ and display all the books in the list by that author. 
+ If there are no books by that author in the list, display a suitable message
 '''
+import csv
+n = int(input("How many records do you want to add to the list"))
+file = open("Books.csv", "a")
+for i in range(0,n):
+    title = input("Enter a title:")
+    author = input("Enter author:")
+    year = input("Enter the year it was released: ")
+    newrecord = title+","+author+","+year+"\n"
+    file.write(str(newrecord))
+file.close()
+
+author = input("Which Author want you see? ")
+file = open("Books.csv", "r")
+reader = csv.reader(file)
+count = 0
+for row in file:
+    if author in str(row):
+        print(row)
+        count = count+1
+if count == 0:
+    print("Theare are no books by that author in this list.")
+file.close()
+
 
 '''114
 Using the Books.csv file, ask the user to enter a starting year and an end year. 
 Display all books released between those two years.
 '''
+import csv
+start = int(input("Enter the starting year"))
+stop = int(input("Enter the end year"))
+
+
 
 '''115
 
@@ -41,7 +102,8 @@ Import the data from the Books.csv file into a list. Display the list to the use
 '''
 
 '''117
-Create a simple maths quiz that will ask the user for their name and then generate two random questions. Store their name, the questions they were asked, their answers and their final score in a .csv file. 
+Create a simple maths quiz that will ask the user for their name and then generate two random questions. 
+Store their name, the questions they were asked, their answers and their final score in a .csv file. 
 Whenever the program is run it should add to the .csv file and not overwrite anything.
 '''
 
