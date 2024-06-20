@@ -162,15 +162,44 @@ file.close()
 
 
 
-
-
-
-
-
-
 '''117
 Create a simple maths quiz that will ask the user for their name and then generate two random questions. 
 Store their name, the questions they were asked, their answers and their final score in a .csv file. 
 Whenever the program is run it should add to the .csv file and not overwrite anything.
 '''
 
+import csv
+import random
+
+score = 0
+name = input("What ist your name: ?")
+q1n1 = random.randint(10,50)
+q1n2 = random.randint(10,50)
+question1 = str(q1n1) + " + " + str(q1n2) + " = "
+ans1 = int(input(question1))
+realans1 = q1n1 + q1n2
+if ans1==realans1:
+    score = score +1
+q2n1 = random.randint(10,50)
+q2n2 = random.randint(10,50)
+question2 = str(q2n1) + " + " + str(q2n2) + " = "
+ans2 = int(input(question2))
+realans2 = q2n1 + q2n2
+if ans2==realans2:
+    score = score +1
+
+file = open("QuizScore.csv", "a")
+newrecord = name + ","+question1+","+str(ans1)+","+question2+","+str(ans2)+"\n"
+file.write(str(newrecord))
+file.close()
+
+
+
+
+
+
+
+
+
+
+d
