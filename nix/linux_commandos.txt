@@ -48,18 +48,50 @@ lspci							PCI Geräte
 lsusb							USB-Geräte
 lsblk							Blockgeräte
 
+=====================================================================
+								Verzeichnisse
+=====================================================================
+tree 							Verzeichnisstruktur
+tree -h							Zeigt Grosse von Verzeichnisse und Dateien
+tree -d							zeigt nur Verzeichnisse
+pwd								das aktuelle Verzeichnis
+cd								wechselt Verzeichnis
+cd ..							ein Verzeichnis nach oben
+cd -							zum vorherigen Verzeichnis
+cd ~							zu Home Verzeichnis
+mkdir							neus Verzeichnis
+mkdir -p						Verchachtelte Verzeichnisse erstellen
+rmdir							leeres Verzeichnis löschen
+rm dateiname					löscht Datei
+rm -r 							löscht Verzeichnis und Inhalte rekrusiv
+rm -ri 							mit Bestätigung		
+rm -rf							alles löschen ohne Rückfragen
+rm -R							Verzeichnisse löschen
+ls								listet ein Verzeichnis auf 
+ls -la							auch versteckte Dateien 
+du -sh /pfad					Speicherplatz des Verzeichnis analisieren
+basename						Dateiname aus einem Pfad extrahieren
+dirname							Verzeichnis aus einem Pfad extrahieren
+cp								Datei kopieren
+cp -r 							Verzeichnis mit Dateien kopieren
+cp -i 							mit Bestätigung
+cp -v 							Details anzeigen
+cp -p							Bewährt Berechtigung
+mv								verschiebt oder benennt ein Verzeichnis oder Datei um
+mv -i							mit Nachfrage
+mv -n							überschreibt die Dateien nicht
+diff							Vergleicht Dateien oder Verzeichnisse
+diff -a -c -d					Ausgabe mit Änderungen ( add, change, delete)
+diff -y							nur Unterschiede anzeigen
+dirr -r 						Vergliecht Ihnhalte zweier Verzeichnisse
+ln -s							erstellt einen symbolischen Link
 
 
 
 
-
-
-
-
-
-=====================================
-		Terminal
-========================
+======================================================================
+								Terminal
+======================================================================
 stty
 setterm
 reset
@@ -156,21 +188,7 @@ ssh
 scp
 
 
-=======================
-	Verzeichnisse
-======================
 
-pwd
-cd
-mkdir
-rmdir
-rm
-diff
-basename
-dirname
-ls
-mv
-ln
 
 
 
