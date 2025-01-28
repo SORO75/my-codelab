@@ -15,7 +15,49 @@ scp loginname@zielserver:/zielpfad/zur/remote/datei  /pfad/zur/lokale/datei
 scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/verzeichnis
 
 
-========================
+=====================================================================
+								System
+=====================================================================
+
+hostname 						hostname
+lsb_release -a 					Distribution und Version
+cat /etc/os-release				Distribution und Version
+uname -r 						Kernel-Version
+uname -m						Systemarchitektur
+uptime							uptime
+sudo shutdown now				Sofort herunterfahren
+			+10					herunterfahren in 10 min
+			-r					mit neustart
+sudo reboot						Neustart des Systems
+sudo halt						stopp alle Prozesse und shaltet das System aus
+		--no-reboot				Neustart vermeiden
+date							Systemzeit
+runlevel						aktuelle Runlevel des Systems
+init							änder Runlelel des Systems		
+
+======================================================================
+								HARDWARE
+======================================================================					
+
+lscpu							CPU Info
+cat /proc/cpuinfo 				CPU Info
+free -h							RAM Information
+lsblk							HD Information
+df -h							Filesystem
+lspci							PCI Geräte
+lsusb							USB-Geräte
+lsblk							Blockgeräte
+
+
+
+
+
+
+
+
+
+
+=====================================
 		Terminal
 ========================
 stty
@@ -63,22 +105,6 @@ apropos
 info
 whatis
 
-========================
-			System
-========================
-shutdown	
-reboot
-halt
-runlevel
-init
-dmesg
-uname
-uptime
-lspi
-hdparm
-date
-hwclock
-cal
 
 
 ========================
