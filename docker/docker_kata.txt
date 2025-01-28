@@ -1,0 +1,49 @@
+docker Hub
+
+
+
+
+Allgemeine Information
+
+docker info                                       Docker Systeminformation
+
+docker --version                                  Docker-Version anzeigen
+
+docker pull <image_name>                          Image herunterladen
+docker build .                                    neues Image von Dockerfile erstellen
+docker images                   
+docker rmi <image_id>                             ein Image löschen
+docker image prune                                nicht verwendete Images löschen
+
+----------------------------------------------------
+            Container Aktionen
+----------------------------------------------------
+
+docker run <image_name>                            neuen Container ausführen
+docker run -it bash                                
+docker run ps
+docker run -d
+docker exec -it
+docker start <container_id>                        einen Container starten
+docker stop <container_id>                         einen Container stoppen
+docker restart <container_id>                      einen Container restarten
+
+
+
+
+
+docker run -it bash
+docker run -d
+docker run ps
+docker logs
+docker start -a
+docker stop
+docker kill
+docker rm
+docker system prune --all 
+
+docker build .
+docker network ls 
+network prune
+docker exec -it
+docker inspect

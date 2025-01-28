@@ -1,0 +1,30 @@
+Images runterladen von DockerHub
+
+ubuntu
+centOS
+debian
+RedHat
+Suse
+
+Software
+postgres
+pgadmin
+mysql
+mongoDB
+redis
+oracle DB
+python
+Jenkins
+Spark
+hadoop
+nextcloud
+tomcate
+ngix
+Spring
+Apache webserver
+prometeus
+openshift
+
+--------------------------------------------------------
+Container starten mit bash 
+Cotainer starten mit 
