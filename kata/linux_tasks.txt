@@ -1,0 +1,99 @@
+Live-Überwachung des users
+sudo tail -f /home/<username>/.bash_history     
+
+#Syslog oder Auth-log auswerten
+sudo cat /var/log/auth.log | grep <username> 
+oder
+sudo cat /var/log/secure | grep <username>
+
+#auditd aktivieren (erweiterte Systemüberwachung):
+
+sudo apt install auditd -y   # Installation (Debian/Ubuntu)
+sudo systemctl enable auditd --now  # Aktivieren
+
+# eine Nachricht an angemeldeten Benutzer senden
+wall <nachricht>
+
+
+cat /etc/passwd – Listet alle Benutzer auf
+cat /etc/group – Listet alle Gruppen auf
+cat /etc/shadow – Zeigt Passwort-Hashes (nur root kann darauf zugreifen)
+
+
+
+
+
+2. Live-Überwachung der Systemaktivitäten eines Benutzers
+
+2.1 Aktuelle Prozesse des Benutzers anzeigen
+ps -u <username>
+Falls du eine Echtzeit-Ansicht möchtest:
+
+watch -n 1 ps -u <username>
+2.2 Geöffnete Dateien des Benutzers anzeigen
+lsof -u <username>
+Oder um es live zu beobachten:
+
+watch -n 1 lsof -u <username>
+2.3 Aktuelle Login-Sitzungen anzeigen
+who | grep <username>
+Falls du die IP-Adresse und Anmeldezeit sehen willst:
+
+w | grep <username>
+3. Überwachung mit auditd (fortgeschritten)
+
+Falls auditd nicht installiert ist:
+
+sudo apt install auditd -y  # Für Debian/Ubuntu
+sudo yum install audit -y   # Für RHEL/CentOS
+sudo systemctl enable auditd --now
+3.1 Bestimmte Befehle eines Benutzers überwachen
+Falls du z. B. verfolgen möchtest, wann ein Benutzer rm ausführt:
+
+sudo auditctl -w /bin/rm -p x -k delete_watch
+Um die Logs zu sehen:
+
+sudo ausearch -k delete_watch
+3.2 Alle Aktivitäten eines bestimmten Benutzers loggen
+sudo auditctl -a always,exit -F auid=<UID> -F perm=x -k user_monitor
+Die UID bekommst du mit:
+
+id <username>
+Um die Logs später zu prüfen:
+
+sudo ausearch -k user_monitor
+4. Echtzeit-Überwachung mit pam_tty_audit (Befehlsprotokollierung)
+
+Falls du ALLE eingegebenen Befehle eines Nutzers aufzeichnen willst:
+
+Modul aktivieren
+sudo echo "session required pam_tty_audit.so enable=*" >> /etc/pam.d/sshd
+Den Benutzer gezielt überwachen
+sudo pam_tty_audit -u <username> enable
+Protokolle ansehen
+sudo ausearch -m USER_TTY -ts today
+5. Netzwerkaktivitäten eines Benutzers überwachen
+
+Falls du sehen möchtest, welche Verbindungen ein Benutzer aufbaut:
+
+sudo netstat -tunp | grep <username>
+Oder mit tcpdump in Echtzeit:
+
+sudo tcpdump -i eth0 -n -vv src host <Benutzer-IP>
+6. Automatisierte Überwachung mit acct (Benutzer-Tracking)
+
+Falls du ALLE Befehle eines Benutzers inklusive Zeitstempel aufzeichnen möchtest:
+
+Paket installieren
+sudo apt install acct   # Debian/Ubuntu
+sudo yum install psacct # RHEL/CentOS
+sudo systemctl enable acct --now
+Aufzeichnung aktivieren
+sudo accton on
+Aktivitäten eines Benutzers abrufen
+sudo lastcomm | grep <username>
+7. Automatische Warnungen bei bestimmten Aktivitäten (z. B. Dateiänderungen)
+
+Falls du benachrichtigt werden möchtest, wenn ein Benutzer eine bestimmte Datei bearbeitet:
+
+sudo inotifywait -m /home/<username>/important_file.txt -e modify

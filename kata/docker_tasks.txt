@@ -1,7 +1,3 @@
-Docker auf Ubuntu installieren
-Docker auf CentOS installieren
-
-
 Images runterladen von DockerHub
 
 ubuntu
@@ -31,4 +27,4 @@ openshift
 
 --------------------------------------------------------
 Container starten mit bash 
-Cotainer starten m
+Cotainer starten mit 
