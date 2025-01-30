@@ -314,42 +314,43 @@ batch							Aufgaben bei niedriger Systemlast ausführen
 nohup							Befehl fortsetzen, auch wenn die Sitzung geschlossen wird
 sleep							Verzögerung einfügen
 
-=========================
-				Ausgabe
-=========================
+===================================================================
+								Verarbeitung und Analyse von Dateien
+===================================================================
 
 
-cat		Datei
-tail		Datei
-head	Datei
-less		Datei
-more	Datei
-nl			Datei
-od		Datei
-hd		Datei
-wc 		Datei
-file 		Datei
-type 
-sum
-md5sum
-sha1sum
-fuser
-lsof
-cp
-diff
-comm
-cmp
-join
-sort
-touch 											Zeitstempel einer Datei ändern
-
-tr
-sed
-expand
-recode
-inconv
-uniq
-cut
-split
-csplit
+cat								Datei anzeigen						
+tail							letze Zeilen einer Datei enazeigen
+tail -n 20						die letzten 20 zeilen anzeigen
+tila -f 						Echtzeit-Überwachung der Datei
+head -n 5						Erste 5 Zeilen einer Datei anzeigen
+less                            eine Datei skrollen	
+more							Datei seitenweise anzeigen
+nl								Zeilennummer hinzufügen		
+od, hd							Datei im Hexadezimlaformat anzeigen		
+wc -l 							Zeilenanzahl
+wc -w							Wörteranzahl
+wc -c 							Zeichenanzahl						
+file 							Dateityp anzeigen
+type 							typ eines Befehl prüfen
+sum								prüfsumme berechnen
+md5sum							MD5-Hash berechnen
+sha1sum							sha-1 Hash berechnen
+fuser							welche Prozesse benutzen eine Datei?
+lsof							offene Datei anzeigen
+comm							geinemsame Zeilen zwische DAteien finden
+cmp								Byte für Byte Vergleich
+join							zwei Datei verbinden
+sort							Zeilen sortieren
+touch 							Zeitstempel einer Datei ändern oder Datei erstellen
+tr								Zeichen ersetzen oder löschen
+tr-d 'a'						entfernt Zeichen 'a'
+sed								Stream-Editor(Texte ersetzen, Zeilen bearbeiten)
+expand							Tabs in Leerzeichen umwandeln
+recode							Zeichensatz konvertieren
+inconv							Dateikodierung umwandeln
+uniq							Doppelte Zeilen entfernen
+cut								Text ausschneiden
+split							Datei in mehrere Dateien aufteilen
+csplit							Datei anhand von Mustern aufteilen
 
