@@ -151,8 +151,6 @@ touch -c datei					ändert den Zeitstempel, wenn die Datei existiert
 touch -d <time> datei			Setzt ein bestimmtes Änderungsdatum
 start							detaillirte Datei Informationen anzeigen
 
-
-
 ===================================================================
 								Laufwerke
 ===================================================================
@@ -171,7 +169,6 @@ fsck							prüft und reparieert ein beschädigtes Dateisystem
 cfdisk							interaktive Partitionierungwerzeug
 mkswap							Erstellt eine SWAP-Partition
 swapon							Aktiviert eine SWAP -Partition 					
-
 
 =====================================================================
 								Suchen
@@ -204,20 +201,38 @@ which -a						liste alle gefunden Pfade eines Programms auf
 								Netzwerk
 =====================================================================
 
-ping
-nostname
-host
-ifconfig
-ifup
-ifdown
-netstat
-traceroute
-ftp
-wget
-ssh
-scp
+ip a 							Zeigt IP-Adressen und Schnittstellen an (ersetzt ifconfig).
+ip link 						Zeigt alle Netzwerkschnittstellen an.
+ip route						Zeigt die Roting-Tabelle
+ifconfig (veraltet) 			Zeigt Netzwerkschnittstellen und Konfiguration.
+hostname -I 					Zeigt die IP-Adresse des Hosts.	
+rfkill							aktiviert oder deaktiviert WLAN und BL Schnittschtellen				
+ping							testet die Erreichbarkeit eindes Hosts über das Netzwerk
+hostname						Zeigt den Namen des aktuellen Computers an
+hostname -I 					Zeigt die IP -Adresse
+host							zeigt DNS-Information zu einer Domain doer IP-Adresse an
+mtr 							Echtzeit traceroute
+dig <domain>					DNS Abfragen
+tcpdump							Netzwerk analysieeren
+nmap							Port und Netzwerkscanner
+ifup							aktiviert eine Netzwerkschnittstelle
+ifdown							deaktiivert eine Netzwerkschnittstelle
+netstat		(veralttet)			Zeigt offene Ports, Verbindungen und Routing-Tabellen
+ss -a 							alle offenen TCP/UDP Verbindungen anzeigen	
+traceroute						zeigt den Weg der Datenpakete zum Zielserver
+ftp								verbindung mit einem FTP Server
+wget							lädt Datei über HTTP/FTP herunter
+ssh								ssh Verbindzun zu einem SErver
+scp								kopiert dateien über SSH
 
+ufw								Einfache Firewall-Verwaltung fpr Iptables
+ufw status						Firewall status
+ufw enable						aktiviert die Firewall
+iptables -L -v -n				Zeigt aktuelle regul
 
+route -n (veraltet)				Zeigt die Routing Tabelle
+ip route
+systemctl restart networking	Startet den Wnzwerkdienst neu
 
 ======================================================================
 								Terminal
@@ -268,21 +283,6 @@ STRG + a + dann					von der Session sich trennen
 exit							Aktuelles Fenster schlissen			
    
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ========================
