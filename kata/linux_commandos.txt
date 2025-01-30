@@ -177,7 +177,7 @@ swapon							Aktiviert eine SWAP -Partition
 								Suchen
 =================================================================					
 
-find
+find							Such Datein nach Name, Typ, Großee, Datum
 	- name
 	- mmin
 	- mtime
@@ -186,21 +186,18 @@ find
 	- size
 	- type
 	- exec
-	[+-] exact n 
-
-locate
-slocate
+locate							Schnelle Dateisuche
+slocate							suche mit ZUgriffrechtschutz
 updatedb
-grep
-fgrep
-egrep
-which
-whereis
-	
-
-
-
-
+grep "String" datei.txt			Such nach Zeichenketten in Dateien
+grep -r "String" /etc			Rekursive Suche
+grep -i							ohne klein/Großschreibung
+rg 								schnellere Alternative zu grep
+fgrep (grep -F)					sucht ohne reguläre Ausdrücke
+egrep							mit regulären Ausdrücken
+which							zeigt den vollständigen Pfad einer ausführbaren Datei
+whereis							Zeigt Standorte eines Programms
+which -a						liste alle gefunden Pfade eines Programms auf
 
 
 ======================================================================
