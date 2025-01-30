@@ -156,32 +156,26 @@ start							detaillirte Datei Informationen anzeigen
 ===================================================================
 								Laufwerke
 ===================================================================
-mount
-unmount
-fdisk
-cfdisk
-parted
-fdformat
-dd
+
+fdisk -la						listet alle Festplatten mit Details auf
+fdiski							interaktive Tool zur Partitionierung von Festplatten
+df								zeigt den belegten und freien Speicherplatz
+mount							hängt ein Dateisystem in Dateisystembaum ein
+unmount							hängt ein Daeinsystem aus
+/etc/fstab						Konfigurationsdatei für Laufwerkemounting
+parted							modernes Partitionierungwerzeug
+dd 								klont ein gesamtes Laufwerk oder eine Partition
+rsync							Synchronisiert Dateien oder Verzeichnissen
+smartctl						Überprüft den Zustand von Festplatten mit SMART 
+fsck							prüft und reparieert ein beschädigtes Dateisystem
+cfdisk							interaktive Partitionierungwerzeug
+mkswap							Erstellt eine SWAP-Partition
+swapon							Aktiviert eine SWAP -Partition 					
 
 
-mknod
-mkfifo
-
-
-mke2fs
-mkreiserfs
-mkswap
-swapon
-swapoff
-fsck
-badblocks
-
-
-
-=======================
-			Suchen
-=======================					
+=================================================================
+								Suchen
+=================================================================					
 
 find
 	- name

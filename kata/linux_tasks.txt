@@ -97,3 +97,9 @@ sudo lastcomm | grep <username>
 Falls du benachrichtigt werden möchtest, wenn ein Benutzer eine bestimmte Datei bearbeitet:
 
 sudo inotifywait -m /home/<username>/important_file.txt -e modify
+
+
+
+Alee geräte im Netzwerk
+
+Netzwerk anzeigenwofür /etc/host
