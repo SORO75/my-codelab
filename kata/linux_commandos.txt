@@ -173,9 +173,9 @@ mkswap							Erstellt eine SWAP-Partition
 swapon							Aktiviert eine SWAP -Partition 					
 
 
-=================================================================
+=====================================================================
 								Suchen
-=================================================================					
+=====================================================================					
 
 find							Such Datein nach Name, Typ, Großee, Datum
 	- name
@@ -200,58 +200,9 @@ whereis							Zeigt Standorte eines Programms
 which -a						liste alle gefunden Pfade eines Programms auf
 
 
-======================================================================
-								Terminal
-======================================================================
-stty
-setterm
-reset
-clear
-tty
-ALT + F1-F9
-chsh
-printenv
-set
-export
-!!
-alias
-unalias
-
-|
- tee
- >
- <
- 
- 
- 
- CTRL 
--c
--u
--z
--l
--s
--q
--p
-cmd &					Kommando cmd im Huintergrund ausführen
-cmd1; cmd2
-cmd1 && cmd2
-cmd1 ||  cmd2
-   
- 
-
-
-
-
-
-
-
-
-
-
-
-========================
-			Netzwerk
-========================
+=====================================================================
+								Netzwerk
+=====================================================================
 
 ping
 nostname
@@ -265,6 +216,69 @@ ftp
 wget
 ssh
 scp
+
+
+
+======================================================================
+								Terminal
+======================================================================
+stty							konfiguriert Terminal einsteelungen
+setterm							steuert Terminal-Dastellungseinstellungen
+reset							setz das Terminal zurück, fall es sich "aufgehängt" hat
+clear							löscht den Bildschirm des Terminals
+tty								Zeigt das aktuelle Terminal-Geräte an
+ALT + F1-F9						wechselt zwischen verschidenen virtuellen Konsolen
+CTRL + C 						Beendet das aktuelle Programm.
+CTRL + U 						Löscht die Eingabezeile.
+CTRL + Z 						Stoppt einen Prozess (kann mit fg oder bg wieder aufgenommen werden).
+CTRL + L						Entspricht clear, leert den Bildschirm.
+CTRL + S 						Hält die Ausgabe an (mit CTRL + Q wieder starten).
+CTRL + Q 						Startet eine gestoppte Ausgabe erneut.
+CTRL + P 						Navigiert durch den Befehlshistorie (wie Pfeiltaste ↑)
+chsh							ändert die Standard-SHell
+printenv						zeigt Umgebugsvariablen
+set								zeigt oder setzt Shel-Variablen
+export							Setzt Umgebungsvariablen für Unterprozesse
+!!								Führt den letzten befehl erneut aus
+alias							Erstellt Aliase für Befehle
+unalias							löscht einen Alias
+|								pipe
+tee								schreibt Asugabe gleichzeitig in eine Datei und gibt sie aus
+>								Umleitung der Ausgabe in eine Datei
+<								Liest Eingaben aus einer Datei
+>>								Fügt die Asusbe an eine DAtei an
+cmd & 							Führt einen Befehl im Hintergrund aus
+-s oder --silent				in einem ruhigen Modus Program ausführen
+cmd1; cmd2						Führt cmd1, dann cmd2 aus, unabhängig vom Erfolg
+cmd1 && cmd2					Führt cmd2 nur aus, wenn cmd1 erfolgreich ist
+cmd1 | cmd2						Asugabe von cmd1 ist eine Eingabe für cmd2
+cmd1 || cmd2					Führt cmd2 nur aus, wenn cmd1 fehlschlägt
+
+
+screen							Terminal-Multiplexer	
+screen -S session_name			Neue Sitzung mit neuem Namen
+screen -ls						alle laufende Sitzungen
+screen -r session name			mit der Session sich wieder verbinden
+STRG + a + C					neue 
+STRG + a + n 					nächstes Fenster	
+STRG + a + P					vorhriges Fenster (previos)	
+STRG + a + <zahl>				FEnster nach Nummer auswählen
+STRG + a + x					Terminal sperren
+STRG + a + dann					von der Session sich trennen
+exit							Aktuelles Fenster schlissen			
+   
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
