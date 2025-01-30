@@ -1,0 +1,160 @@
+DDL  (Data Definition Language)				create, alter, drop
+DML  (Data Manipulation Language)			select, insert update, merge, lock table
+DCL  (Data Control Language)					grant, revoke
+
+
+
+COMMIT
+SAVEPOINT
+ROLLBACK
+
+
+Datenbankdateien *. dbf  im Verzeichniss oradata. 
+
+
+mit sys eine Directory anlgegen
+create or reppace directory dir_ext_daten as 'pfad'
+
+GRANT read, write on directory dier_ext_daten to hr;
+
+arbeiten mit externen Tabellen
+organisazation external
+
+
+SQL*Loader 
+sqlcl
+SQL * Plus (start in der konsole)
+
+neuer User anlegen, Tabellen kopieren
+user kopieren mit allen Tabellen
+
+Sysdate abfragen
+
+
+trancate
+commit
+
+
+
+
+
+
+
+REGEXP_LIKE
+IN
+BETWEEN
+DISTINCT
+ORDER By
+ASC/DESC
+NULLS FIRST NULLS LAST
+
+CASE
+DECODE
+ROW LIMITING
+ROWNUM
+ROWID
+ORA_ROWSCN
+
+
+NULL WErten
+
+
+SEQEUNCE
+.nextval
+.currval
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+savepoint xx;
+rollback xx;
+
+order by;
+group by;
+
+rollup;
+cube;
+
+
+
+group by mit Having
+
+AVG();
+count();
+max ();
+min();
+sum();
+
+
+
+rowid();
+
+
+Joins
+
+inner join
+outer join
+Equi join
+FULL join
+Cross 
+
+Kartesischer Produkt
+
+
+
+Like
+Between
+IN
+NOT IN
+
+EXIST
+NOT EXIST
+
+ALL
+ANY
+
+
+UNION, INTERSECT, MINUS
+
+
+
+
+Volltextsuche, context index
+
+
+Squenzen
+	increment by
+	minvalue
+	nominvalue
+	maxvalue
+	noaxvalue
+	strat with
+	cycle
+	nocycle
+	cache
+	nocache
+	order
+	noorder
+	
+	
+	
+	
+	----------------
+	
+	
+	CONSTRAINT CHECK
+	
+	Synonyme
+	 
+

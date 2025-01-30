@@ -16,6 +16,17 @@ scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/v
 
 
 =====================================================================
+								Hilfe
+=====================================================================
+
+man								die Handbuchseite vom Befehlä	
+help							kurze beschreiubnt		
+apropos							zeigt zusammenhängende Befehle
+info							zeit detalierte Info über einn Befehl
+whatis							gibt eine kurze Beschreibung des Befehls
+tldr							kurze Beispiele für die Verwendung des Befehls
+
+=====================================================================
 								System
 =====================================================================
 
@@ -87,12 +98,10 @@ dirr -r 						Vergliecht Ihnhalte zweier Verzeichnisse
 ln -s							erstellt einen symbolischen Link
 
 
-
-
 =======================================================================
-		Benutzer & Gruppen
-=======================================================================		
-
+								Benutzer & Gruppen
+=======================================================================
+	
 whoami 							Aktuellen Benutzernamen
 w oder who						angemeldete Bunutzer
 id <username>					zeit Benutzer und Gruppen-IDs
@@ -118,8 +127,6 @@ usermod -l						Benutzer umbenennen
 userdel -r <user>				Benutzer und dessen Home-Verzeichnis löschen
 
 
-
-
 =====================================================================
 								Berechtigung
 =====================================================================
@@ -143,6 +150,62 @@ touch							erstelle ien leere Datei
 touch -c datei					ändert den Zeitstempel, wenn die Datei existiert
 touch -d <time> datei			Setzt ein bestimmtes Änderungsdatum
 start							detaillirte Datei Informationen anzeigen
+
+
+
+===================================================================
+								Laufwerke
+===================================================================
+mount
+unmount
+fdisk
+cfdisk
+parted
+fdformat
+dd
+
+
+mknod
+mkfifo
+
+
+mke2fs
+mkreiserfs
+mkswap
+swapon
+swapoff
+fsck
+badblocks
+
+
+
+=======================
+			Suchen
+=======================					
+
+find
+	- name
+	- mmin
+	- mtime
+	- group foo
+	- user
+	- size
+	- type
+	- exec
+	[+-] exact n 
+
+locate
+slocate
+updatedb
+grep
+fgrep
+egrep
+which
+whereis
+	
+
+
+
 
 
 
@@ -185,40 +248,8 @@ cmd1 ||  cmd2
    
  
 
-========================
-	HILFE
-========================
-
-man	 cmd								die Handbuchseite von cmd				
-apropos
-info
-whatis
 
 
-
-========================
-			Laufwerke
-========================
-mount
-unmount
-fdisk
-cfdisk
-parted
-fdformat
-dd
-
-
-mknod
-mkfifo
-
-
-mke2fs
-mkreiserfs
-mkswap
-swapon
-swapoff
-fsck
-badblocks
 
 
 
@@ -337,30 +368,7 @@ csplit
 
 
 
-=======================
-			Suchen
-=======================					
 
-find
-	- name
-	- mmin
-	- mtime
-	- group foo
-	- user
-	- size
-	- type
-	- exec
-	[+-] exact n 
-
-locate
-slocate
-updatedb
-grep
-fgrep
-egrep
-which
-whereis
-	
 
 	
 
