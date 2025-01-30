@@ -106,7 +106,7 @@ pgrep -u <username>				listet PIDs eines Users
 groupadd <groupname>			neue Gruppe erstellen
 groupmod -n						Gruppe umbenennen
 groupdel <groupname>			Gruppe löschen
-groups <groupname>				Zeigt die Gruppen eines Benutzer
+groups <username>				Zeigt die Gruppen eines Benutzer
 newgrp <groupname>				in neu Gruppe wechseln ohne Abmeldung
 gpasswd -a <username> <group>	Benutzer zu einer Gruppe hinzufügen
 gpasswd -d <username> <group>	Benutzer aus einer Gruppe entfernen
@@ -116,6 +116,35 @@ passwd <username>				Passwort für einen Benutzer setzen/ändern
 usermod -aG <group> <user>		Benuter zu einer Gruppe hinzufügen
 usermod -l						Benutzer umbenennen
 userdel -r <user>				Benutzer und dessen Home-Verzeichnis löschen
+
+
+
+
+=====================================================================
+								Berechtigung
+=====================================================================
+su 								wechselt zu roo-Benutzer
+su <username>					wechselt zu einem bestimmten Bunutzer
+su - <username>					vollständige Anmeldung als neuer User
+sudo <befehl>					führt Befehl mit Superuser-Rechten aus
+sudo -i							ähnlich wie su
+sudo !!							führt den letzten Befehl mit sudo aus
+usermod -aG sudo <user>			einem Benutzer sudo Befehle zu geben
+chmod u+rwx, g+rx, o+r Datei	Zugriffsrechte ändern
+chmod 755 Datei					
+chown <user> <datei>			ändert den Besitzer der Datei		
+chown -R 						ändert den Besitzer für alle Datein im Verzeichnis							
+chgrp <neue_gruppe> datei		änder die Gruppe einer Datei
+chattr +i						Setz die Datei auf unveränderlich
+chattr +a						Entfernt die unveränderlichkeit
+lsattr							zeigt aktuelle Datei-Atribute an
+umask							Standardrechte fpr neue DAteien setzen
+touch							erstelle ien leere Datei
+touch -c datei					ändert den Zeitstempel, wenn die Datei existiert
+touch -d <time> datei			Setzt ein bestimmtes Änderungsdatum
+start							detaillirte Datei Informationen anzeigen
+
+
 
 ======================================================================
 								Terminal
@@ -130,7 +159,7 @@ chsh
 printenv
 set
 export
-
+!!
 alias
 unalias
 
@@ -333,51 +362,7 @@ which
 whereis
 	
 
-
-=====================
-	Speicherplatz
-=====================
-
-df 
-quota
-free	
 	
-	
-=======================
-		Benutzer & Gruppen
-=======================		
-	
-uderadd, adduser
-usermod
-passwd
-chae
-uderdel
-logname
-whoami
-id
-groupadd
-groupmod
-groupdel
-groups
-newsgrp
-who, w
-wall
-last, lastlog
-logout
-exit
-
-=========================
-			Berechtigung
-=========================
-
-su
-sudo
-chmod
-chown
-chgrp
-chattr
-umask
-touch
 
 
 ========================
