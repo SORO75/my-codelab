@@ -282,53 +282,37 @@ STRG + a + x					Terminal sperren
 STRG + a + dann					von der Session sich trennen
 exit							Aktuelles Fenster schlissen			
    
- 
 
+======================================================================
+								Prozesse
+======================================================================		
 
-========================
-		Prozesse
-========================		
+ps								Info über Prozesse anzeigen
+	a							zeigt alle Prozesse an von allen Benuter
+	x							zeigt auch Prozese, die keine Terminal-Verbindung haben
+	U							zeigt alle Prozesse für einen bestimmten Benutzer an
+	C							zeigt die Prozesserlast in Prozent fpr jeden Prozent an
+	H							zeigt eine hierarchische Baumstruktur
+pstree							Prozesshierarchie anzeigen
+ps aux | grep <name>			Prozess suchen
+top								Prozesse sortierend anzeigen
+kill	PID						Prozess beenden mit einem bestimmten PID
+	-15							sanfes Beenden
+	-1							restart einen Prozess 
+	-9							sofortiges Beenden eines Prozesses
+killall		[name]				Prozess [name]	beenden
 
-ps									- Info über Prozesse anzeigen
-		a
-		x
-		U
-		C
-		H
-pstree							- Prozesshierarchie anzeigen
-top								- Prozesse sortierend anzeigen
-kill	PID						- Prozess beenden
-	15
-	1
-	9
-	- l
-killall		[name]				- Prozess [name]	beenden
+nice							Prozess mit niedrigerer Priorität starten
+&								Prozess im Hinergrund starten
+jobs							Alle hintergrundprozesse anzeigenbg
 
-nice
-renice
-
-&
-jobs
-[Strg] + C
-[Strg] + Z
-bg
-fg
-cron
-crontab
-watch
-at
-batch
-nohup
-sleep
-
-
-
-
-
-
-
-
-
+cron							geplante aufgaben verwalten
+crontab 						Cron-TAbellen verwalten
+watch							Befehle regelmäsig ausführen
+at								einmalige Aufgaben planen
+batch							Aufgaben bei niedriger Systemlast ausführen
+nohup							Befehl fortsetzen, auch wenn die Sitzung geschlossen wird
+sleep							Verzögerung einfügen
 
 =========================
 				Ausgabe
@@ -369,23 +353,3 @@ cut
 split
 csplit
 
-
-
-
-
-
-
-	
-
-
-========================
-				Drucken
-========================
-
-lp
-lpr
-lpstat, lpq
-cancel
-lpc
-lprm
-				
