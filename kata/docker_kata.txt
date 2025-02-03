@@ -15,10 +15,11 @@ docker --version                                  show docker information
 docker images                                     list all Docker images
 docker pull <image_name>                          Pull an image for a Docker Hub
 docker build .                                    buil an image from a dockerfile
+docker create
 docker build -t <name>:<tag> <path>                
 docker tag <image> <new_name>:<tag>               tag an image with a new name and/or tag
 docker rmi <image_id>                             remvove a docker image
-docker push <name>:<tag>                          Push a image to a Docker registry                        
+docker push <name>:<tag>                          Push a image to a Docker registry                     
 
 ----------------------------------------------------
             Container Aktionen
@@ -26,8 +27,10 @@ docker push <name>:<tag>                          Push a image to a Docker regis
 
 docker ps                                          list running containers
 docker ps -a                                       list all containers (running and stopped)
+docker commit
 docker run <image>                                 run a container form an image                           
 docker run --name <name> <image>                   run a container with a custom name
+docker rename
 docker run -it bash                                run a container in a iteractions mode                        
 docker run -d <image>                              run a conatainer in detached mode ( in the background)
 docker exec -it
@@ -38,7 +41,16 @@ docker restart <container_id>                      restart a container
 docker rm <container_id>                           remove a stopped container
 docker logs <container_id>                         view logs of a container
 docker logs -f <container_id>                      follow logs of acontainer (real-time output)
-docker stat
+docker stat                                        display resource usage statistics for containers
+docker diff
+docker export
+docker kill
+docker service
+docker top
+docker update 
+
+
+
 ----------------------------------------------------
             Docker Networks
 ----------------------------------------------------
@@ -49,6 +61,7 @@ docker network inspect <network>                    display deteils about a Dock
 docker network connest <network> <container>        Connect a container to a network
 docker network disonnect <network> <ontainer>       disconnest a cotainer from a network
 docker network rm <network>                         remove a a Docker network
+docker port
 
 
 ----------------------------------------------------
@@ -63,41 +76,37 @@ docker volume rm <volume>                           remove a Docker volume
 
 
 
+----------------------------------------------------
+            Docker compose
+----------------------------------------------------
 
-docker start -a
-docker stop
-docker kill
-docker rm
-docker system prune --all 
+docker-compose --version                            show docker-compose version
+docker-compose up                                   Start all servides defined in docker.compose.yml
+docker-compose down                                 Stop and remove containers, networks, images and Volumes
+docker-compose logs                                 View logs of all servides defined in docker-compose.yml
+docker-compose ps                                   list containers managed be docker compose
 
-docker build .
-docker network ls 
-network prune
-docker exec -it
-docker inspect
+docker system prune                                 Remove all unused units (containers, images, networks and volumes)
+docker container prune                              remove all stopped container
+docker image prune                                  remove unused docker images
+docker volume prune                                 remove unused Docker volumes
+docker network prune                                remove unsused docker networks
+do
 
+----------------------------------------------------
+            Dockerfile Syntax
+----------------------------------------------------
 
+ADD 
+CMD 
+COPY 
+ENTRYPOINT 
+ENV
+EXPOSE
+FROM
+LABEL
+RUN 
+USER 
+VOLUME 
+WORKDIR
 
-Docker pull
-Docker run
-Docker images
-Docker run -it bash
-Docker run -d 
-Docker ps
-Docker logs
-Docker run -d —name
-Docker start -a
-Docker stop
-Docker kill
-Docker rm
-Docker rmi
-Docker system prune —all —volume
--p
--e
--v
-Docker exec -it
-
-
-Docker build . 
-Docker network ls
-Network prune
