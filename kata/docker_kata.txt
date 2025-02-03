@@ -31,11 +31,14 @@ docker run --name <name> <image>                   run a container with a custom
 docker run -it bash                                run a container in a iteractions mode                        
 docker run -d <image>                              run a conatainer in detached mode ( in the background)
 docker exec -it
+docker instpect <container>
 docker start <container_id>                        start a stopped container
 docker stop <container_id>                         stop a running container
 docker restart <container_id>                      restart a container
 docker rm <container_id>                           remove a stopped container
-
+docker logs <container_id>                         view logs of a container
+docker logs -f <container_id>                      follow logs of acontainer (real-time output)
+docker stat
 ----------------------------------------------------
             Docker Networks
 ----------------------------------------------------
@@ -48,7 +51,15 @@ docker network disonnect <network> <ontainer>       disconnest a cotainer from a
 docker network rm <network>                         remove a a Docker network
 
 
+----------------------------------------------------
+            Docker Volumes
+----------------------------------------------------
 
+docker volume ls                                    List all Docker Volumes
+docker volume create <name>                         create a new Docker volume
+docker volume inspect <volume>                      display details  about a docker volume
+docker run -var <volume>:/path <image>              attach a volume to a container
+docker volume rm <volume>                           remove a Docker volume                               
 
 
 

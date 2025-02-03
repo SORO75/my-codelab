@@ -354,3 +354,8 @@ cut								Text ausschneiden
 split							Datei in mehrere Dateien aufteilen
 csplit							Datei anhand von Mustern aufteilen
 
+
+
+
+
+ 

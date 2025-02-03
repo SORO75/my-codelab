@@ -103,3 +103,5 @@ sudo inotifywait -m /home/<username>/important_file.txt -e modify
 Alee geräte im Netzwerk
 
 Netzwerk anzeigenwofür /etc/host
+
+automatisch
