@@ -1,0 +1,103 @@
+docker Hub
+
+
+
+
+Allgemeine Information
+
+docker info                                       show system-wide informaton about Docker
+
+docker --version                                  show docker information
+
+----------------------------------------------------
+            Managing Imagess
+----------------------------------------------------
+docker images                                     list all Docker images
+docker pull <image_name>                          Pull an image for a Docker Hub
+docker build .                                    buil an image from a dockerfile
+docker build -t <name>:<tag> <path>                
+docker tag <image> <new_name>:<tag>               tag an image with a new name and/or tag
+docker rmi <image_id>                             remvove a docker image
+docker push <name>:<tag>                          Push a image to a Docker registry                        
+
+----------------------------------------------------
+            Container Aktionen
+----------------------------------------------------
+
+docker ps                                          list running containers
+docker ps -a                                       list all containers (running and stopped)
+docker run <image>                                 run a container form an image                           
+docker run --name <name> <image>                   run a container with a custom name
+docker run -it bash                                run a container in a iteractions mode                        
+docker run -d <image>                              run a conatainer in detached mode ( in the background)
+docker exec -it
+docker instpect <container>
+docker start <container_id>                        start a stopped container
+docker stop <container_id>                         stop a running container
+docker restart <container_id>                      restart a container
+docker rm <container_id>                           remove a stopped container
+docker logs <container_id>                         view logs of a container
+docker logs -f <container_id>                      follow logs of acontainer (real-time output)
+docker stat
+----------------------------------------------------
+            Docker Networks
+----------------------------------------------------
+
+docker network ls                                   list all Docker Networks
+docker network create <name>                        create a new Docker network
+docker network inspect <network>                    display deteils about a Docker network
+docker network connest <network> <container>        Connect a container to a network
+docker network disonnect <network> <ontainer>       disconnest a cotainer from a network
+docker network rm <network>                         remove a a Docker network
+
+
+----------------------------------------------------
+            Docker Volumes
+----------------------------------------------------
+
+docker volume ls                                    List all Docker Volumes
+docker volume create <name>                         create a new Docker volume
+docker volume inspect <volume>                      display details  about a docker volume
+docker run -var <volume>:/path <image>              attach a volume to a container
+docker volume rm <volume>                           remove a Docker volume                               
+
+
+
+
+docker start -a
+docker stop
+docker kill
+docker rm
+docker system prune --all 
+
+docker build .
+docker network ls 
+network prune
+docker exec -it
+docker inspect
+
+
+
+Docker pull
+Docker run
+Docker images
+Docker run -it bash
+Docker run -d 
+Docker ps
+Docker logs
+Docker run -d —name
+Docker start -a
+Docker stop
+Docker kill
+Docker rm
+Docker rmi
+Docker system prune —all —volume
+-p
+-e
+-v
+Docker exec -it
+
+
+Docker build . 
+Docker network ls
+Network prune
