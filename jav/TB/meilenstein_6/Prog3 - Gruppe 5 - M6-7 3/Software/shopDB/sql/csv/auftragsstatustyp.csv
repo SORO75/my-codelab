@@ -1,9 +1,0 @@
-status_id;version;bezeichnung
-1;0;bezahlt
-2;0;eingegangen
-3;0;in Bearbeitung
-4;0;zur Auslieferung bereitgestellt
-5;0;Versand
-6;0;Teillieferung
-7;0;Rechnung gestellt
-8;0;Mahnung

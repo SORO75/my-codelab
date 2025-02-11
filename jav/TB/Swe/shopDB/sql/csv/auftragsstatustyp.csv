@@ -1,9 +1,0 @@
-status_id;version;bezeichnung
-1;0;payed
-2;0;received
-3;0;inprocess
-4;0;readyfordelivery
-5;0;delivery
-6;0;partialdelivery
-7;0;invoicesent
-8;0;reminder

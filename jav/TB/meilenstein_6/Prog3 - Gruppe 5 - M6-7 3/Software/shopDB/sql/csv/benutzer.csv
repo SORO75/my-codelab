@@ -1,9 +1,0 @@
-benutzername;version;regdatum;passwort;gesperrt;vorname;nachname;geschlecht;strasse;plz;ort;geburtsdatum;email;newsletter
-tobi;0;01.10.2006 00:00:00;zW8zq4adOUYBRwZNXFpy8YL3u5UC7XP44jmlpi/2nUI=;false;Tobias;Pfeifer;m;Schlossallee 1;76133;Karlsruhe;16.02.1967;pfto0011@hs-karlsruhe.de;false
-jens;0;01.10.2006 00:00:00;/zjSVnuBI9EUShXqd9lp8edCqL3NfzHEinz99MQDdmM=;false;Jens;Kirchner;m;Parkstraße 7;76133;Karlsruhe;26.07.1975;kije0011@hs-karlsruhe.de;true
-xhugendubel;0;10.10.2006 00:00:00;ULSRhFaYrEs4r92obxR0fYpd6s5jZYLgvBEP8Bq2wDM=;false;Xaver;Hugendubel;m;Badstraße 12;76433;Eggenstein;11.04.1956;xaver@hotmail.com;true
-susi;0;11.10.2006 00:00:00;t3zumZxy8a/Kynl0NFI4+S4ibY9K/hn5ztPNcvafBfI=;false;Susi;Sorglos;w;Bahnhofstraße 1;20095;Hamburg;03.12.1985;susis@t-online.de;true
-homer;0;29.10.2006 06:00:00;Kqq3lbODaQT4LvxsoihdknrtdSBiFOHaODQY65DJBS8=;true;Homer;Simpson;m;Turmstraße 35;73098;Rechberghausen;23.09.1964;homer@simpson.us;true
-sachbearbeiter;0;29.10.2006 06:00:00;PSRBJJa/JHj2JB+PD3ebjpvnafvTld4hTrFqfb057Gk=;true;Ned;Flanders;m;Turmstraße 36;73098;Rechberghausen;23.08.1964;ned@flanders.us;false
-admin;0;29.10.2006 06:00:00;jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=;true;Ned;Flanders;m;Turmstraße 36;73098;Rechberghausen;23.08.1964;ned@flanders.us;false
-user;0;29.10.2006 06:00:00;BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=;true;Ned;Flanders;m;Turmstraße 36;73098;Rechberghausen;23.08.1964;ned@flanders.us;false
