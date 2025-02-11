@@ -1,0 +1,81 @@
+# Initialize a new Git repository
+git init
+
+# Set configuration values for you username and email
+git config --global user.name <your-name>
+git config --global user.email <your-email>
+
+# CLone an existing repository
+git clone <repository-url>
+
+# Check teh status of your working directory
+git status
+
+# Add files to the staging area
+git add <file>
+
+# Add all changes in the working directory to the staging area
+git add.
+
+# Commit changes in the staging area with a message
+git commit -m "Commit message"
+
+# View commit history
+git log
+
+# Show changes between commits, commit and working tree, etc.
+git diff
+
+# Lists all local branches
+git branch
+
+# Create a new branch
+git branch <branch-name>
+
+# Rename the current branches
+git branch -m <new-branch-name>
+
+# Switch to a different branch
+git checkout <branch-name>
+
+# Create and switch to a new branch
+git checkout -b <branch-name>
+
+# Merge a branch into the current branch
+git merge <branch-name>
+
+# Delete a branch
+git branch -d <branch-name>
+
+# Set up a new remote repository
+git remote add origin <repository-url>
+
+# Fetch remote changes and merge into local repository
+git pull <remote-repository>
+
+# Fetch remote changes and merge into local repository
+git fetch <remote-repository>
+
+# Push local branch to remote repository
+git push <remote-repository><branch>
+
+# List all configured remote repositories
+git remote -v
+
+# Remote a file from the staging area
+git reset <file>
+
+# Unstage everything (keep changes)
+git reset
+
+# Revert changes in a file to the last committed state
+git checkout -- <file>
+
+# Delete a branch
+git branch -d <branch-name>
+
+# Remove a file from the index and working directory
+git rm <file>
+
+# Temporarily remove uncommitted changes and save them for later use
+git stash
