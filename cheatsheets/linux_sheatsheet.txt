@@ -19,11 +19,11 @@ scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/v
 								Hilfe
 =====================================================================
 
-man								die Handbuchseite vom Befehlä	
-help							kurze beschreiubnt		
-apropos							zeigt zusammenhängende Befehle
-info							zeit detalierte Info über einn Befehl
-whatis							gibt eine kurze Beschreibung des Befehls
+man								die Handbuchseite von Befehlen	
+help							kurze Beschreibung		
+apropos	<Schlüsselwort>			zeigt zusammenhängende Befehle
+info							zeigt detalierte Info über einen Befehl
+whatis	<Befehl>				gibt eine kurze Beschreibung des Befehls
 tldr							kurze Beispiele für die Verwendung des Befehls
 
 =====================================================================
@@ -44,7 +44,7 @@ sudo halt						stopp alle Prozesse und shaltet das System aus
 		--no-reboot				Neustart vermeiden
 date							Systemzeit
 runlevel						aktuelle Runlevel des Systems
-init							änder Runlelel des Systems		
+init <runlevel>					änder Runlelel des Systems		
 
 ======================================================================
 								HARDWARE
@@ -110,7 +110,7 @@ lastlog							Zeigt die letten Logins aller Benutzer
 finger <username>				Informationen über einen Benutzer
 history							Kommandohistory des Benutzers
 lsof -u <username>				geöffnete Dateine eines Benutzers
-watch -n 1 who					aktualisiert die Liste der eingeloggten Benutzer jede Secunde
+watch -n 1 who					aktualisiert die Liste der eingeloggten Benutzer jede Sekunde
 pgrep -u <username>				listet PIDs eines Users
 groupadd <groupname>			neue Gruppe erstellen
 groupmod -n						Gruppe umbenennen
@@ -120,7 +120,7 @@ newgrp <groupname>				in neu Gruppe wechseln ohne Abmeldung
 gpasswd -a <username> <group>	Benutzer zu einer Gruppe hinzufügen
 gpasswd -d <username> <group>	Benutzer aus einer Gruppe entfernen
 
-adduder <username>				Neuen Benutzer erstellen
+adduser <username>				Neuen Benutzer erstellen
 passwd <username>				Passwort für einen Benutzer setzen/ändern
 usermod -aG <group> <user>		Benuter zu einer Gruppe hinzufügen
 usermod -l						Benutzer umbenennen
@@ -145,7 +145,7 @@ chgrp <neue_gruppe> datei		änder die Gruppe einer Datei
 chattr +i						Setz die Datei auf unveränderlich
 chattr +a						Entfernt die unveränderlichkeit
 lsattr							zeigt aktuelle Datei-Atribute an
-umask							Standardrechte fpr neue DAteien setzen
+umask							Standardrechte für neue Dateien setzen
 touch							erstelle ien leere Datei
 touch -c datei					ändert den Zeitstempel, wenn die Datei existiert
 touch -d <time> datei			Setzt ein bestimmtes Änderungsdatum
@@ -157,9 +157,9 @@ start							detaillirte Datei Informationen anzeigen
 
 fdisk -la						listet alle Festplatten mit Details auf
 fdiski							interaktive Tool zur Partitionierung von Festplatten
-df								zeigt den belegten und freien Speicherplatz
+df	-h							zeigt den belegten und freien Speicherplatz
 mount							hängt ein Dateisystem in Dateisystembaum ein
-unmount							hängt ein Daeinsystem aus
+umount							hängt ein Daeinsystem aus
 /etc/fstab						Konfigurationsdatei für Laufwerkemounting
 parted							modernes Partitionierungwerzeug
 dd 								klont ein gesamtes Laufwerk oder eine Partition
@@ -221,8 +221,8 @@ netstat		(veralttet)			Zeigt offene Ports, Verbindungen und Routing-Tabellen
 ss -a 							alle offenen TCP/UDP Verbindungen anzeigen	
 traceroute						zeigt den Weg der Datenpakete zum Zielserver
 ftp								verbindung mit einem FTP Server
-wget							lädt Datei über HTTP/FTP herunter
-ssh								ssh Verbindzun zu einem SErver
+wget (curl)						lädt Datei über HTTP/FTP herunter
+ssh								ssh Verbindzun zu einem Server
 scp								kopiert dateien über SSH
 
 ufw								Einfache Firewall-Verwaltung fpr Iptables
@@ -296,7 +296,7 @@ ps								Info über Prozesse anzeigen
 pstree							Prozesshierarchie anzeigen
 ps aux | grep <name>			Prozess suchen
 top								Prozesse sortierend anzeigen
-kill	PID						Prozess beenden mit einem bestimmten PID
+kill -HUP	PID					Prozess beenden mit einem bestimmten PID
 	-15							sanfes Beenden
 	-1							restart einen Prozess 
 	-9							sofortiges Beenden eines Prozesses
@@ -307,7 +307,7 @@ nice							Prozess mit niedrigerer Priorität starten
 jobs							Alle hintergrundprozesse anzeigenbg
 
 cron							geplante aufgaben verwalten
-crontab 						Cron-TAbellen verwalten
+crontab 						Cron-Tabellen verwalten
 watch							Befehle regelmäsig ausführen
 at								einmalige Aufgaben planen
 batch							Aufgaben bei niedriger Systemlast ausführen
@@ -322,7 +322,7 @@ sleep							Verzögerung einfügen
 cat								Datei anzeigen						
 tail							letze Zeilen einer Datei enazeigen
 tail -n 20						die letzten 20 zeilen anzeigen
-tila -f 						Echtzeit-Überwachung der Datei
+tail -f 						Echtzeit-Überwachung der Datei
 head -n 5						Erste 5 Zeilen einer Datei anzeigen
 less                            eine Datei skrollen	
 more							Datei seitenweise anzeigen
@@ -353,9 +353,3 @@ uniq							Doppelte Zeilen entfernen
 cut								Text ausschneiden
 split							Datei in mehrere Dateien aufteilen
 csplit							Datei anhand von Mustern aufteilen
-
-
-
-
-
- 
