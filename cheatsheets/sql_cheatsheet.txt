@@ -27,11 +27,13 @@ SELECT c1, c2 FROM table_name
 
 
 
+TCL  (Transaction Control Language)
 
-COMMIT
-SAVEPOINT
-ROLLBACK
-
+COMMIT;     									Save all changes made in transaction
+SAVEPOINT savepoint;						Create a rollback point within a transaction						
+ROLLBACK;									Undoes all changes made in the current transaction
+ROLLBACK TO SAVEPOINT;						Rolls back the transaction to a specific savepoint
+SET TRANSACTION								Set transaction properties
 
 Datenbankdateien *. dbf  im Verzeichniss oradata. 
 
