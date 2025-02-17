@@ -9,6 +9,42 @@ TCL  (Transaction Control Language)			COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTI
 
 DDL (Data Definition Language)
 
+CREATE DATABASE my_database;							Create a new database
+
+CREATE TABLE employees (								Create a new table employees
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    age INT,
+    department VARCHAR(50)
+);
+
+CREATE VIEW employee_view AS							Create a view
+SELECT first_name, last_name 
+FROM employees WHERE department = 'HR';
+
+CREATE INDEX idx_employee_lastname						Create an index for faster query
+ON employees (last_name);
+
+DROP DATABASE
+DROP TABLE
+DROP INDEX
+DROP VIEW
+
+ALTER DATABASE my_database SET READ_ONLY;				Modifies a database
+ALTER TABLE table_name ADD column VARCHAR(100);			Add a new column
+ALTER TABLE table_name DROP COLUMN column;				Drop a column
+ALTER TABLE employes ALTER COLUMN age SMALLINT;			Change a column data type
+ALTER TABLE table_name ADD CONSTRAINT constraint;		Add a constraint;
+ALTER TABLE table_name DROP CONSTRAINT constraint;		Drop a constraint;
+ALTER TABLE t1 RENAME TO t2;							Rename a table from t1 t t2
+ALTER TABLE t1 RENAME c1 TO c2;							Rename column c1 to c2
+
+TRUNCATE TABLE table_name;
+
+UPDATE 
+
+DELETE FROM table_name;
 
 
 
@@ -29,11 +65,39 @@ SELECT c1, c2 FROM table_name
 
 TCL  (Transaction Control Language)
 
-COMMIT;     									Save all changes made in transaction
+COMMIT;     								Save all changes made in transaction
 SAVEPOINT savepoint;						Create a rollback point within a transaction						
 ROLLBACK;									Undoes all changes made in the current transaction
 ROLLBACK TO SAVEPOINT;						Rolls back the transaction to a specific savepoint
 SET TRANSACTION								Set transaction properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Datenbankdateien *. dbf  im Verzeichniss oradata. 
 
@@ -56,9 +120,6 @@ user kopieren mit allen Tabellen
 
 Sysdate abfragen
 
-
-trancate
-commit
 
 
 
