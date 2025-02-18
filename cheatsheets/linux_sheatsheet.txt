@@ -30,28 +30,28 @@ tldr							kurze Beispiele für die Verwendung des Befehls
 								System
 =====================================================================
 
-hostname 						hostname
+hostname 						Hostname
 lsb_release -a 					Distribution und Version
 cat /etc/os-release				Distribution und Version
 uname -r 						Kernel-Version
 uname -m						Systemarchitektur
-uptime							uptime
+uptime							Uptime
 sudo shutdown now				Sofort herunterfahren
 			+10					herunterfahren in 10 min
 			-r					mit neustart
 sudo reboot						Neustart des Systems
-sudo halt						stopp alle Prozesse und shaltet das System aus
+sudo halt						Stopp alle Prozesse und shaltet das System aus
 		--no-reboot				Neustart vermeiden
 date							Systemzeit
-runlevel						aktuelle Runlevel des Systems
-init <runlevel>					änder Runlelel des Systems		
+runlevel						Aktuelle Runlevel des Systems
+init <runlevel>						Ändert das Runlelel des Systems		
 
 ======================================================================
-								HARDWARE
+							HARDWARE
 ======================================================================					
 
 lscpu							CPU Info
-cat /proc/cpuinfo 				CPU Info
+cat /proc/cpuinfo 					CPU Info
 free -h							RAM Information
 lsblk							HD Information
 df -h							Filesystem
@@ -64,9 +64,9 @@ lsblk							Blockgeräte
 =====================================================================
 tree 							Verzeichnisstruktur
 tree -h							Zeigt Grosse von Verzeichnisse und Dateien
-tree -d							zeigt nur Verzeichnisse
-pwd								das aktuelle Verzeichnis
-cd								wechselt Verzeichnis
+tree -d							Zeigt nur Verzeichnisse
+pwd							das aktuelle Verzeichnis
+cd							wechselt Verzeichnis
 cd ..							ein Verzeichnis nach oben
 cd -							zum vorherigen Verzeichnis
 cd ~							zu Home Verzeichnis
