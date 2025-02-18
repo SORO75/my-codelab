@@ -6,8 +6,9 @@ TCL  (Transaction Control Language)			COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTI
 
 
 
-
+--------------------------------
 DDL (Data Definition Language)
+--------------------------------
 
 CREATE DATABASE my_database;							Create a new database
 
@@ -23,13 +24,13 @@ CREATE VIEW employee_view AS							Create a view
 SELECT first_name, last_name 
 FROM employees WHERE department = 'HR';
 
-CREATE INDEX idx_employee_lastname						Create an index for faster query
+CREATE INDEX idx_employee_lastname; 					Create an index for faster query
 ON employees (last_name);
 
-DROP DATABASE
-DROP TABLE
-DROP INDEX
-DROP VIEW
+DROP DATABASE my_database;								Delete 						
+DROP TABLE tablename;									Delete the table from the database
+DROP INDEX idx_name;									Delete an Index			
+DROP VIEW view_name;									Deete a view
 
 ALTER DATABASE my_database SET READ_ONLY;				Modifies a database
 ALTER TABLE table_name ADD column VARCHAR(100);			Add a new column
@@ -48,8 +49,9 @@ DELETE FROM table_name;
 
 
 
-
+---------------------------------
 DML (Data Manipulation Language)
+---------------------------------
 
 # SELECT 
 SELECT * FROM table_name					Query all rows and colums from a table
@@ -62,13 +64,13 @@ SELECT c1, c2 FROM table_name
 
 
 
-
+-----------------------------------
 TCL  (Transaction Control Language)
-
+-----------------------------------
 COMMIT;     								Save all changes made in transaction
 SAVEPOINT savepoint;						Create a rollback point within a transaction						
 ROLLBACK;									Undoes all changes made in the current transaction
-ROLLBACK TO SAVEPOINT;						Rolls back the transaction to a specific savepoint
+ROLLBACK TO SAVEPOINT savepoint;			Rolls back the transaction to a specific savepoint
 SET TRANSACTION								Set transaction properties
 
 
