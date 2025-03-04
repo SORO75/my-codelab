@@ -19,11 +19,11 @@ scp -r loginname@zielserver:/zielpfad/zum/remote/verzeichnis /pfad/zum/lokalem/v
 				Hilfe
 =====================================================================
 
-man							die Handbuchseite von Befehlen	
+man								die Handbuchseite von Befehlen	
 help							kurze Beschreibung		
-apropos	<Schlüsselwort>					zeigt zusammenhängende Befehle
+apropos	<Schlüsselwort>			zeigt zusammenhängende Befehle
 info							zeigt detalierte Info über einen Befehl
-whatis	<Befehl>					gibt eine kurze Beschreibung des Befehls
+whatis	<Befehl>				gibt eine kurze Beschreibung des Befehls
 tldr							kurze Beispiele für die Verwendung des Befehls
 
 =====================================================================
@@ -31,27 +31,27 @@ tldr							kurze Beispiele für die Verwendung des Befehls
 =====================================================================
 
 hostname 						Hostname
-lsb_release -a 						Distribution und Version
-cat /etc/os-release					Distribution und Version
+lsb_release -a 					Distribution und Version
+cat /etc/os-release				Distribution und Version
 uname -r 						Kernel-Version
 uname -m						Systemarchitektur
 uptime							Uptime
-sudo shutdown now					Sofort herunterfahren
-			+10				herunterfahren in 10 min
-			-r				mit neustart
+sudo shutdown now				Sofort herunterfahren
+			+10					herunterfahren in 10 min
+			-r					mit neustart
 sudo reboot						Neustart des Systems
 sudo halt						Stopt alle Prozesse und shaltet das System aus
 		--no-reboot				Neustart vermeiden
 date							Systemzeit
 runlevel						Aktuelle Runlevel des Systems
-init <runlevel>						Ändert das Runlelel des Systems		
+init <runlevel>					Ändert das Runlelel des Systems		
 
 ======================================================================
 				HARDWARE
 ======================================================================					
 
 lscpu							CPU Info
-cat /proc/cpuinfo 					CPU Info
+cat /proc/cpuinfo 				CPU Info
 free -h							RAM Information
 lsblk							HD Information
 df -h							Filesystem
@@ -65,34 +65,34 @@ lsblk							Blockgeräte
 tree 							Verzeichnisstruktur
 tree -h							Zeigt Grosse von Verzeichnisse und Dateien
 tree -d							Zeigt nur Verzeichnisse
-pwd							das aktuelle Verzeichnis
-cd							wechselt Verzeichnis
+pwd								das aktuelle Verzeichnis
+cd								wechselt Verzeichnis
 cd ..							ein Verzeichnis nach oben
 cd -							zum vorherigen Verzeichnis
 cd ~							zu Home Verzeichnis
 mkdir							neus Verzeichnis
 mkdir -p						Verchachtelte Verzeichnisse erstellen
 rmdir							leeres Verzeichnis löschen
-rm dateiname						löscht Datei
+rm dateiname					löscht Datei
 rm -r 							löscht Verzeichnis und Inhalte rekrusiv
 rm -ri 							mit Bestätigung		
 rm -rf							alles löschen ohne Rückfragen
 rm -R							Verzeichnisse löschen
-ls							listet ein Verzeichnis auf 
+ls								listet ein Verzeichnis auf 
 ls -la							auch versteckte Dateien 
-du -sh /pfad						Speicherplatz des Verzeichnis analisieren
+du -sh /pfad					Speicherplatz des Verzeichnis analisieren
 basename						Dateiname aus einem Pfad extrahieren
 dirname							Verzeichnis aus einem Pfad extrahieren
-cp							Datei kopieren
+cp								Datei kopieren
 cp -r 							Verzeichnis mit Dateien kopieren
 cp -i 							mit Bestätigung
 cp -v 							Details anzeigen
 cp -p							Bewährt Berechtigung
-mv							verschiebt oder benennt ein Verzeichnis oder Datei um
+mv								verschiebt oder benennt ein Verzeichnis oder Datei um
 mv -i							mit Nachfrage
 mv -n							überschreibt die Dateien nicht
 diff							Vergleicht Dateien oder Verzeichnisse
-diff -a -c -d						Ausgabe mit Änderungen ( add, change, delete)
+diff -a -c -d					Ausgabe mit Änderungen ( add, change, delete)
 diff -y							nur Unterschiede anzeigen
 dirr -r 						Vergliecht Ihnhalte zweier Verzeichnisse
 ln -s							erstellt einen symbolischen Link
@@ -104,51 +104,51 @@ ln -s							erstellt einen symbolischen Link
 	
 whoami 							Aktuellen Benutzernamen
 w oder who						angemeldete Bunutzer
-id <username>						zeit Benutzer und Gruppen-IDs
+id <username>					zeit Benutzer und Gruppen-IDs
 last							die Anmeldehistorie der Benutzer
 lastlog							Zeigt die letten Logins aller Benutzer
-finger <username>					Informationen über einen Benutzer
+finger <username>				Informationen über einen Benutzer
 history							Kommandohistory des Benutzers
-lsof -u <username>					geöffnete Dateine eines Benutzers
-watch -n 1 who						aktualisiert die Liste der eingeloggten Benutzer jede Sekunde
-pgrep -u <username>					listet PIDs eines Users
-groupadd <groupname>					neue Gruppe erstellen
+lsof -u <username>				geöffnete Dateine eines Benutzers
+watch -n 1 who					aktualisiert die Liste der eingeloggten Benutzer jede Sekunde
+pgrep -u <username>				listet PIDs eines Users
+groupadd <groupname>			neue Gruppe erstellen
 groupmod -n						Gruppe umbenennen
-groupdel <groupname>					Gruppe löschen
-groups <username>					Zeigt die Gruppen eines Benutzer
-newgrp <groupname>					in neu Gruppe wechseln ohne Abmeldung
-gpasswd -a <username> <group>				Benutzer zu einer Gruppe hinzufügen
-gpasswd -d <username> <group>				Benutzer aus einer Gruppe entfernen
+groupdel <groupname>			Gruppe löschen
+groups <username>				Zeigt die Gruppen eines Benutzer
+newgrp <groupname>				in neu Gruppe wechseln ohne Abmeldung
+gpasswd -a <username> <group>	Benutzer zu einer Gruppe hinzufügen
+gpasswd -d <username> <group>	Benutzer aus einer Gruppe entfernen
 	
-adduser <username>					Neuen Benutzer erstellen
-passwd <username>					Passwort für einen Benutzer setzen/ändern
-usermod -aG <group> <user>				Benuter zu einer Gruppe hinzufügen
+adduser <username>				Neuen Benutzer erstellen
+passwd <username>				Passwort für einen Benutzer setzen/ändern
+usermod -aG <group> <user>		Benuter zu einer Gruppe hinzufügen
 usermod -l						Benutzer umbenennen
-userdel -r <user>					Benutzer und dessen Home-Verzeichnis löschen
+userdel -r <user>				Benutzer und dessen Home-Verzeichnis löschen
 
 
 =====================================================================
 				Berechtigung
 =====================================================================
-su 							wechselt zu roo-Benutzer
-su <username>						wechselt zu einem bestimmten Bunutzer
-su - <username>						vollständige Anmeldung als neuer User
-sudo <befehl>						führt Befehl mit Superuser-Rechten aus
+su 								wechselt zu roo-Benutzer
+su <username>					wechselt zu einem bestimmten Bunutzer
+su - <username>					vollständige Anmeldung als neuer User
+sudo <befehl>					führt Befehl mit Superuser-Rechten aus
 sudo -i							ähnlich wie su
 sudo !!							führt den letzten Befehl mit sudo aus
-usermod -aG sudo <user>					einem Benutzer sudo Befehle zu geben
-chmod u+rwx, g+rx, o+r Datei				Zugriffsrechte ändern
+usermod -aG sudo <user>			einem Benutzer sudo Befehle zu geben
+chmod u+rwx, g+rx, o+r Datei	Zugriffsrechte ändern
 chmod 755 Datei					
-chown <user> <datei>					ändert den Besitzer der Datei		
+chown <user> <datei>			ändert den Besitzer der Datei		
 chown -R 						ändert den Besitzer für alle Datein im Verzeichnis							
-chgrp <neue_gruppe> datei				ändert die Gruppe einer Datei
+chgrp <neue_gruppe> datei		ändert die Gruppe einer Datei
 chattr +i						Setz die Datei auf unveränderlich
 chattr +a						Entfernt die unveränderlichkeit
 lsattr							zeigt aktuelle Datei-Atribute an
 umask							Standardrechte für neue Dateien setzen
 touch							erstelle ien leere Datei
-touch -c datei						ändert den Zeitstempel, wenn die Datei existiert
-touch -d <time> datei					Setzt ein bestimmtes Änderungsdatum
+touch -c datei					ändert den Zeitstempel, wenn die Datei existiert
+touch -d <time> datei			Setzt ein bestimmtes Änderungsdatum
 start							detaillirte Datei Informationen anzeigen
 
 ===================================================================
@@ -157,12 +157,12 @@ start							detaillirte Datei Informationen anzeigen
 
 fdisk -la						listet alle Festplatten mit Details auf
 fdiski							interaktive Tool zur Partitionierung von Festplatten
-df	-h						zeigt den belegten und freien Speicherplatz
+df	-h							zeigt den belegten und freien Speicherplatz
 mount							hängt ein Dateisystem in Dateisystembaum ein
 umount							hängt ein Daeinsystem aus
 /etc/fstab						Konfigurationsdatei für Laufwerkemounting
 parted							modernes Partitionierungwerzeug
-dd 							klont ein gesamtes Laufwerk oder eine Partition
+dd 								klont ein gesamtes Laufwerk oder eine Partition
 rsync							Synchronisiert Dateien oder Verzeichnissen
 smartctl						Überprüft den Zustand von Festplatten mit SMART 
 fsck							prüft und reparieert ein beschädigtes Dateisystem
@@ -186,11 +186,11 @@ find							Such Datein nach Name, Typ, Großee, Datum
 locate							Schnelle Dateisuche
 slocate							suche mit ZUgriffrechtschutz
 updatedb
-grep "String" datei.txt					Such nach Zeichenketten in Dateien
-grep -r "String" /etc					Rekursive Suche
+grep "String" datei.txt			Such nach Zeichenketten in Dateien
+grep -r "String" /etc			Rekursive Suche
 grep -i							ohne klein/Großschreibung
-rg 							schnellere Alternative zu grep
-fgrep (grep -F)						sucht ohne reguläre Ausdrücke
+rg 								schnellere Alternative zu grep
+fgrep (grep -F)					sucht ohne reguläre Ausdrücke
 egrep							mit regulären Ausdrücken
 which							zeigt den vollständigen Pfad einer ausführbaren Datei
 whereis							Zeigt Standorte eines Programms
