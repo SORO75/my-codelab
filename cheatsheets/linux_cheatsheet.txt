@@ -57,7 +57,6 @@ lsblk							HD Information
 df -h							Filesystem
 lspci							PCI Geräte
 lsusb							USB-Geräte
-lsblk							Blockgeräte
 
 =====================================================================
 				Verzeichnisse
