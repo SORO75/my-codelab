@@ -1,3 +1,19 @@
+
+--------------------------------
+RDBMS DATABASES
+--------------------------------
+Oracle DB 
+IBM DB2
+INFORMIX
+Microsoft SQL Server
+PostgreSQL
+MySQL
+MariaDB
+SQLite
+
+
+
+
 DDL  (Data Definition Language)				CREATE, ALTER, DROP, TRANCATE, RENAME
 DML  (Data Manipulation Language)			SELECT, INSERT, UPDATE, DELETE, MERGE, LOCKT TABLE
 DCL  (Data Control Language)				GRANT, REVOKE
@@ -6,9 +22,6 @@ TCL  (Transaction Control Language)			COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTI
 
 
 
---------------------------------
-DDL (Data Definition Language)
---------------------------------
 
 CREATE DATABASE my_database;							Create a new database
 
@@ -27,7 +40,7 @@ FROM employees WHERE department = 'HR';
 CREATE INDEX idx_employee_lastname; 					Create an index for faster query
 ON employees (last_name);
 
-DROP DATABASE my_database;								Delete 						
+DROP DATABASE my_database;								Delete a database				
 DROP TABLE tablename;									Delete the table from the database
 DROP INDEX idx_name;									Delete an Index			
 DROP VIEW view_name;									Deete a view

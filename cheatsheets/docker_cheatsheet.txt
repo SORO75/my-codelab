@@ -5,43 +5,43 @@ docker Hub
 
 Allgemeine Information
 
-docker info                                       show system-wide informaton about Docker
+docker info                                              show system-wide informaton about Docker
 
-docker --version                                  show docker information
+docker --version                                         show docker information
 
-----------------------------------------------------
-            Managing Imagess
-----------------------------------------------------
-docker images                                     list all Docker images
-docker pull <image_name>                          Pull an image for a Docker Hub
-docker build .                                    buil an image from a dockerfile
+--------------------------------------------------------------
+                    Managing Imagess
+--------------------------------------------------------------
+docker images                                            list all Docker images
+docker pull <image_name>                                 Pull an image for a Docker Hub
+docker build .                                           buil an image from a dockerfile
 docker create
-docker build -t <name>:<tag> <path_to_dockerfile> Build an imgage               
-docker tag <image> <new_name>:<tag>               tag an image with a new name and/or tag
-docker rmi <image_id>                             remvove a docker image
-docker push <name>:<tag>                          Push a image to a Docker registry                   
+docker build -t <name>:<tag> <path_to_dockerfile>        Build an imgage               
+docker tag <image> <new_name>:<tag>                      tag an image with a new name and/or tag
+docker rmi <image_id>                                    remvove a docker image
+docker push <name>:<tag>                                 Push a image to a Docker registry                   
 
-----------------------------------------------------
-            Container Aktionen
-----------------------------------------------------
+-------------------------------------------------------------
+                     Container Aktionen
+-------------------------------------------------------------
 
-docker ps                                          list running containers
-docker ps -a                                       list all containers (running and stopped)
+docker ps                                                list running containers
+docker ps -a                                             list all containers (running and stopped)
 docker commit
-docker run <image>                                 run a container form an image                           
-docker run --name <name> <image>                   run a container with a custom name
+docker run <image>                                       run a container form an image                           
+docker run --name <name> <image>                         run a container with a custom name
 docker rename
-docker run -it bash                                run a container in a iteractions mode                        
-docker run -d <image>                              run a conatainer in detached mode ( in the background)
-docker exec -it                                    run a container interactively
+docker run -it bash                                      run a container in a iteractions mode                        
+docker run -d <image>                                    run a conatainer in detached mode ( in the background)
+docker exec -it                                          run a container interactively
 docker instpect <container_name_or_id>
-docker start <container_name_or_id>                        start a stopped container
-docker stop <container_name_or_id>                         stop a running container
-docker restart <container_name_or_id>                      restart a container
-docker rm <container_name_or_id>                           remove a stopped container
-docker logs <container_name_or_id>                         view logs of a container
-docker logs -f <container_name_or_id>                      follow logs of acontainer (real-time output)
-docker stat                                        display resource usage statistics for containers
+docker start <container_name_or_id>                      start a stopped container
+docker stop <container_name_or_id>                       stop a running container
+docker restart <container_name_or_id>                    restart a container
+docker rm <container_name_or_id>                         remove a stopped container
+docker logs <container_name_or_id>                       view logs of a container
+docker logs -f <container_name_or_id>                    follow logs of acontainer (real-time output)
+docker stat                                              display resource usage statistics for containers
 docker diff
 docker export
 docker kill
@@ -51,67 +51,70 @@ docker update
 
 
 
-----------------------------------------------------
-            Docker Networks
-----------------------------------------------------
+-------------------------------------------------------------
+                     Docker Networks
+-------------------------------------------------------------
 
-docker network ls                                   list all Docker Networks
-docker network create <name>                        create a new Docker network
-docker network inspect <network>                    display deteils about a Docker network
-docker network connest <network> <container>        Connect a container to a network
-docker network disonnect <network> <ontainer>       disconnest a cotainer from a network
-docker network rm <network>                         remove a a Docker network
+docker network ls                                       list all Docker Networks
+docker network create <name>                            create a new Docker network
+docker network inspect <network>                        display deteils about a Docker network
+docker network connest <network> <container>            Connect a container to a network
+docker network disonnect <network> <ontainer>           disconnest a cotainer from a network
+docker network rm <network>                             remove a a Docker network
 docker port
 
 
-----------------------------------------------------
-            Docker Volumes
-----------------------------------------------------
+------------------------------------------------------------
+                     Docker Volumes
+------------------------------------------------------------
 
-docker volume ls                                    List all Docker Volumes
-docker volume create <name>                         create a new Docker volume
-docker volume inspect <volume>                      display details  about a docker volume
-docker run -v <volume>:/path <image>              attach a volume to a container
-docker volume rm <volume>                           remove a Docker volume                               
+docker volume ls                                        List all Docker Volumes
+docker volume create <name>                             create a new Docker volume
+docker volume inspect <volume>                          display details  about a docker volume
+docker run -v <volume>:/path <image>                    attach a volume to a container
+docker volume rm <volume>                               remove a Docker volume                               
 
 
 
-----------------------------------------------------
-            Docker compose
-----------------------------------------------------
+------------------------------------------------------------
+                    Docker compose
+------------------------------------------------------------
 
-docker-compose --version                            show docker-compose version
-docker-compose up                                   Start all servides defined in docker.compose.yml
-docker-compose down                                 Stop and remove containers, networks, images and Volumes
-docker-compose logs                                 View logs of all servides defined in docker-compose.yml
-docker-compose ps                                   list containers managed be docker compose
-docker compose build                                Build or rebuild images
-docker system prune                                 Remove all unused units (containers, images, networks and volumes)
-docker container prune                              remove all stopped container
-docker image prune                                  remove unused docker images
-docker volume prune                                 remove unused Docker volumes
-docker network prune                                remove unsused docker networks
+docker-compose --version                                show docker-compose version
+docker-compose up                                       Start all servides defined in docker.compose.yml
+docker-compose down                                     Stop and remove containers, networks, images and Volumes
+docker-compose logs                                     View logs of all servides defined in docker-compose.yml
+docker-compose ps                                       list containers managed be docker compose
+docker compose build                                    Build or rebuild images
+docker system prune                                     Remove all unused units (containers, images, networks and volumes)
+docker container prune                                  remove all stopped container
+docker image prune                                      remove unused docker images
+docker volume prune                                     remove unused Docker volumes
+docker network prune                                    remove unsused docker networks
 do
 
-----------------------------------------------------
-            Dockerfile Instructions
-----------------------------------------------------
+------------------------------------------------------------
+                     Dockerfile Instructions
+------------------------------------------------------------
 
-ADD	                                                Add local or remote files and directories.
-ARG	                                                Use build-time variables.
-CMD	                                                Specify default commands.
-COPY	                                            Copy files and directories.
-ENTRYPOINT	                                        Specify default executable.
-ENV	                                                Set environment variables.
-EXPOSE	                                            Describe which ports your application is listening on.
-FROM	                                            Create a new build stage from a base image.
-HEALTHCHECK	                                        Check a container's health on startup.
-LABEL	                                            Add metadata to an image.
-MAINTAINER	                                        Specify the author of an image.
-ONBUILD	                                            Specify instructions for when the image is used in a build.
-RUN	                                                Execute build commands.
-SHELL	                                            Set the default shell of an image.
-STOPSIGNAL	                                        Specify the system call signal for exiting a container.
-USER	                                            Set user and group ID.
-VOLUME	                                            Create volume mounts.
-WORKDIR	                                            Change working directory.
+ADD	                                                    Add local or remote files and directories.
+ARG	                                                    Use build-time variables.
+CMD	                                                    Specify default commands.
+COPY	                                                Copy files and directories.
+ENTRYPOINT	                                            Specify default executable.
+ENV	                                                    Set environment variables.
+EXPOSE	                                                Describe which ports your application is listening on.
+FROM	                                                Create a new build stage from a base image.
+HEALTHCHECK	                                            Check a container's health on startup.
+LABEL	                                                Add metadata to an image.
+MAINTAINER	                                            Specify the author of an image.
+ONBUILD	                                                Specify instructions for when the image is used in a build.
+RUN	                                                    Execute build commands.
+SHELL	                                                Set the default shell of an image.
+STOPSIGNAL	                                            Specify the system call signal for exiting a container.
+USER	                                                Set user and group ID.
+VOLUME	                                                Create volume mounts.
+WORKDIR	                                                Change working directory
+
+
+
