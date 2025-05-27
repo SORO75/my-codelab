@@ -1,6 +1,7 @@
 # 🧪 my-codelab
 
-**my-codelab** Personal code lab for experiments, tools, and learning 
+**my-codelab** is a Personal code lab for experiments, tools, and learning 
+
 This repository serves as a space to explore ideas, build small projects, document learnings, and experiment with different concepts.
 
 It is intended as a creative and technical sandbox—open-ended, evolving, and not limited to any specific technology or use case.
