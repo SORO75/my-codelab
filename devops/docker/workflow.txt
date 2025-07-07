@@ -33,7 +33,20 @@ sudo apt-get update
 # Optional: Add your user to the Docker group:
     sudo usermod -aG docker $USER
     # Then log out and log back in
-
+    # This allows you to run Docker commands without using sudo.
+# Verify Docker installation:
+    docker run hello-world
+    # This command runs a test container to verify that Docker is installed correctly.
+# Uninstall Docker (if needed):
+    sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    # This command removes Docker packages but leaves images, containers, volumes, or customized configuration  files.
+# To remove all images, containers, and volumes, you can use:
+    sudo rm -rf /var/lib/docker
+   
 More info: https://docs.docker.com/engine/install/ubuntu/
 
 
+####################################
+MariaDB Dockder Installation
+=================================
+docker run --detach --name mariadb-test1 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest
