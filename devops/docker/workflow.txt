@@ -46,7 +46,58 @@ sudo apt-get update
 More info: https://docs.docker.com/engine/install/ubuntu/
 
 
+
+bash script to automate the installation of Docker on Ubuntu:
+#!/bin/bash
+# This script installs Docker on a Debian-based system (like Ubuntu).   
+# Update the package database
+sudo apt-get update 
+# Install prerequisites
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+# Add Docker's official GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc 
+# Add the Docker repository to Apt sources
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null  
+# Update the package database with the Docker packages from the newly added repo
+sudo apt-get update
+# Install Docker Engine
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# Check Docker version
+docker --version    
+# Optional: Add your user to the Docker group
+sudo usermod -aG docker $USER
+# Then log out and log back in
+# This allows you to run Docker commands without using sudo.
+# Verify Docker installation
+docker run hello-world
+# This command runs a test container to verify that Docker is installed correctly.
+# Uninstall Docker (if needed)
+sudo apt-get purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# This command removes Docker packages but leaves images, containers, volumes, or customized configuration files.
+# To remove all images, containers, and volumes, you can use:
+sudo rm -rf /var/lib/docker     
+# This command removes all Docker data, including images, containers, and volumes.
+# More info: https://docs.docker.com/engine/install/ubuntu/
+# This script installs Docker on a Debian-based system (like Ubuntu).
+# Check Docker version
+docker --version
+# Optional: Add your user to the Docker group
+sudo usermod -aG docker $USER
+# Then log out and log back in
+# This allows you to run Docker commands without using sudo.
+# Verify Docker installation
+docker run hello-world
+# This command runs a test container to verify that Docker is installed correctly.
+
+
+
+
 ####################################
-MariaDB Dockder Installation
+MariaDB Docker Installation
 =================================
 docker run --detach --name mariadb-test1 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest
