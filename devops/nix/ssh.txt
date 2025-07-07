@@ -1,0 +1,60 @@
+# SSH Server Installation Instructions (Linux)
+
+1. Update package lists:
+    sudo apt update
+
+2. Install OpenSSH server:
+    sudo apt install openssh-server
+
+3. Check SSH service status:
+    sudo systemctl status ssh
+
+4. Enable SSH to start on boot:
+    sudo systemctl enable ssh
+
+5. (Optional) Configure SSH settings:
+    sudo nano /etc/ssh/sshd_config
+
+6. Restart SSH service after changes:
+    sudo systemctl restart ssh
+
+7. Check firewall settings (if applicable):
+    sudo ufw status
+
+8. Allow SSH through the firewall:  
+    sudo ufw allow ssh
+
+# To connect from another machine:
+# ssh username@server_ip_address
+
+
+bash script to automate the installation and configuration of SSH server:
+#!/bin/bash
+# This script installs and configures OpenSSH server on a Debian-based system.
+
+# Update package lists
+sudo apt update
+
+# Install OpenSSH server
+sudo apt install -y openssh-server
+
+# Enable SSH service
+sudo systemctl enable ssh
+
+# Start SSH service
+sudo systemctl start ssh
+
+# Check SSH service status
+sudo systemctl status ssh
+
+# (Optional) Configure SSH settings
+sudo nano /etc/ssh/sshd_config
+
+# Restart SSH service after changes
+sudo systemctl restart ssh
+
+# Check firewall settings (if applicable)
+sudo ufw status
+
+# Allow SSH through the firewall:
+sudo ufw allow ssh
