@@ -101,3 +101,14 @@ docker run hello-world
 MariaDB Docker Installation
 =================================
 docker run --detach --name mariadb-test1 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest
+
+docker stop
+docker rm mariadb-test1
+docker rm mariadb-test1
+docker volume prune
+
+docker run --detach --name mariadb-test2 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest \
+-v /home/test/varlibmysql/:/var/lib/mysql mariadb
+
+
+/var/run/docker
