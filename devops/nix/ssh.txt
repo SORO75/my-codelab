@@ -58,3 +58,5 @@ sudo ufw status
 
 # Allow SSH through the firewall:
 sudo ufw allow ssh
+
+
