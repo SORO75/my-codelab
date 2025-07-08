@@ -80,14 +80,58 @@ df['column'].str.extract(r'(\d+)')  # Extract digits from string
 ==========================================
 # Data Selection
 ==========================================
+df['column']  # Select a single column
+df[['column1', 'column2']]  # Select multiple columns
+df.iloc[0]  # Select first row by index
+df.loc[0]  # Select first row by label
+df.iloc[0:5]  # Select first 5 rows by index
+df.loc[0:5]  # Select rows by label (inclusive)
+df[df['column'] > 10]  # Filter rows based on condition
+df.query('column > 10')  # Filter rows using query method
+df[df['column'].isin(['value1', 'value2'])]  # Filter rows based on multiple values
+df[df['column'].str.contains('substring')]  # Filter rows based on substring in string column
+df[df['column'].isnull()]  # Filter rows with missing values
+df[df['column'].notnull()]  # Filter rows without missing values
+df.sample(n=5)  # Randomly select 5 rows
+df.sample(frac=0.1)  # Randomly select 10% of rows
 
 ==========================================
 # Statistics
 ==========================================
 
+df.describe()  # Summary statistics for numerical columns
+df['column'].mean()  # Mean of a column
+df['column'].median()  # Median of a column
+df['column'].std()  # Standard deviation of a column
+df['column'].var()  # Variance of a column
+df['column'].min()  # Minimum value of a column
+df['column'].max()  # Maximum value of a column
+df['column'].sum()  # Sum of a column
+df['column'].count()  # Count of non-null values in a column
+df['column'].value_counts()  # Count of unique values in a column
+df['column'].aggregate(['mean', 'sum', 'min', 'max'])  # Aggregate multiple statistics
+df.corr(method='pearson')  # Correlation matrix for numerical columns
+df.cov()  # Covariance matrix for numerical columns
+df.quantile([0.25, 0.5, 0.75])  # Quantiles of numerical columns
+df['column'].skew()  # Skewness of a column
+df['column'].kurtosis()  # Kurtosis of a column 
+
 ==========================================
 # Time Series
 ==========================================
+df['date'] = pd.to_datetime(df['date'])  # Convert column to datetime
+df.set_index('date', inplace=True)  # Set date column as index
+df.resample('D').mean()  # Resample time series data to daily frequency and calculate mean
+df.resample('M').sum()  # Resample time series data to monthly frequency and calculate sum
+df['column'].rolling(window=7).mean()  # Calculate rolling mean over a 7-day window
+df['column'].expanding().mean()  # Calculate expanding mean
+df['column'].ewm(span=30).mean()  # Calculate exponentially weighted moving average
+df.rolling(window=7).std()  # Calculate rolling standard deviation over a 7-day window
+df.shift(periods=1)  # Shift time series data by 1 period
+pd.date_range(start='2023-01-01', end='2023-01-10', freq='D')  # Create a date range
+pd.to_datetime(['2023-01-01', '2023-01-02'])  # Convert list of strings to datetime
+df.asfreq('D', method='ffill')  # Change frequency of time series data to daily and forward fill missing values
+df['date'].dt.strftime('%Y-%m-%d')  # Format datetime column as string
 
 ==========================================
 # Grouping and Aggregation
@@ -145,9 +189,39 @@ df['column'].str.extract(r'(\d+)')  # Extract digits from string
 # DataFrame vs Excel File
 # DataFrame vs Parquet File
 # DataFrame vs Feather File
-# Tips & Best Practices
+
 # Common Errors and Solutions
 # Debugging Techniques
 # Performance Tips
 # Working with Large Datasets
 # Memory Management
+
+=========================================
+# Tips & Best Practices
+=========================================
+
+# Use .copy() when creating a new DataFrame from an existing one to avoid SettingWithCopyWarning
+df = df.copy()  # Create a copy of the DataFrame
+
+# Chain operations with method chaining
+df = (df.dropna()
+        .rename(columns={'old_name': 'new_name'})
+        .sort_values(by='column', ascending=False))  # Chain operations
+
+# Use .loc[] for label-based indexing and .iloc[] for position-based indexing
+df.loc[0, 'column']  # Access value by label
+
+# Set dtype='category' for categorical data to save memory and improve performance
+df['column'] = df['column'].astype('category')  # Convert column to categorical
+
+# Use inplace=True to modify the DataFrame in place without creating a new object
+df.dropna(inplace=True)  # Remove missing values in place
+
+# Use .query() for complex filtering conditions
+df.query('column > 10 and column < 20')  # Filter rows using query
+
+# Use .groupby() for grouping data and performing aggregations
+df.groupby('column').agg({'column2': 'mean'})  # Group by and aggregate
+
+# Use .assign() to add new columns or modify existing ones
+df = df.assign(new_column=df['column'] * 2)  # Add new column
