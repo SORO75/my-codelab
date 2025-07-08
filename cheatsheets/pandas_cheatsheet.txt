@@ -1,22 +1,129 @@
+# Installation und import of pandas
+pip install pandas  # Install pandas
+import pandas as pd  # Import pandas
+
+======================================
 # Data Import
-# Data Manipulation
-# Data Cleaning
-# String Operations
+======================================
+
+pd.read_csv('file.csv')  # CSV file
+pd.read_excel('file.xlsx')  # Excel file
+pd.read_json('file.json')  # JSON file
+pd.read_sql(query, connection)  # SQL database
+pd.read_parquet('file.parquet')  # Parquet file
+pd.read_html('file.html')  # HTML table
+pd.read_feather('file.feather')  # Feather file
+
+=======================================
 # Data Export
+=======================================
+
+pd.DataFrame(data).to_csv('output.csv')  # Export to CSV
+pd.DataFrame(data).to_excel('output.xlsx')  # Export to Excel
+pd.DataFrame(data).to_json('output.json')  # Export to JSON
+pd.DataFrame(data).to_sql('table', connection)  # Export to SQL database
+pd.DataFrame(data).to_parquet('output.parquet')  # Export to Parquet
+pd.DataFrame(data).to_feather('output.feather')  # Export to Feather file
+pd.to_csv('output.csv')  # CSV file
+pd.to_excel('output.xlsx')  # Excel file
+pd.to_json('output.json')  # JSON file
+pd.to_sql('table', connection)  # SQL database
+pd.to_parquet('output.parquet')  # Parquet file
+pd.to_feather('output.feather')  # Feather file
+
+==========================================
+# Data Manipulation
+==========================================
+
+df.groupby('column').agg({'column2':['mean','sum']})  # Group by and aggregate
+df.sort_values(by='column', ascending=False)  # Sort DataFrame
+df.sort_values(by=['column1', 'column2'], ascending=[True, False])  # Sort by multiple columns
+df.merge(df2, on='key', how='inner')  # Merge DataFrames
+df.join(df2, on='key', how='left')  # Join DataFrames
+df.append(df2)  # Append DataFrames
+df.concat([df1, df2], axis=0)  # Concatenate DataFrames
+df.pivot_table(index='column1', columns='column2', values='column3', aggfunc='mean')  # Create pivot table
+df.melt(id_vars=['column1'], value_vars=['column2', 'column3'])  # Reshape DataFrame from wide to long
+df.stack()  # Stack DataFrame (convert columns to rows)
+df.unstack()  # Unstack DataFrame (convert rows to columns)
+df.apply(lambda x: x + 1)  # Apply function to DataFrame
+df.applymap(lambda x: x * 2)  # Apply function element-wise
+df.transform(lambda x: x - x.mean())  # Transform DataFrame
+
+==========================================
+# Data Cleaning
+==========================================
+
+df.dropna()  # Remove missing values
+df.dropna(subset=['column'], how ='any')  # Remove rows with missing values in specific column
+df.fillna(method='ffill')  # Forward fill missing values
+df.drop_duplicates(subset=['column'], keep='first')  # Remove duplicate rows based on a column
+df.replace({'old_value': 'new_value'})  # Replace values in DataFrame
+df.rename(columns={'old_name': 'new_name'})  # Rename columns
+df.astype({'column': 'int'})  # Change data type of a column
+df.convert_dtypes()  # Convert columns to best possible dtypes
+df.interpolate(method='linear', inplace=True) # Interpolate missing values
+
+==========================================
+# String Operations
+==========================================
+
+df['column'].str.lower()  # Convert to lowercase
+df['column'].str.upper()  # Convert to uppercase
+df['column'].str.strip()  # Remove leading/trailing whitespace
+df['column'].str.replace('old', 'new')  # Replace substring
+df['column'].str.contains('substring')  # Check if substring exists
+df['column'].str.split(',')  # Split string by delimiter
+df['column'].str.join(',')  # Join list of strings with delimiter
+df['column'].str.extract(r'(\d+)')  # Extract digits from string
+
+==========================================
 # Data Selection
+==========================================
+
+==========================================
 # Statistics
+==========================================
+
+==========================================
 # Time Series
+==========================================
+
+==========================================
 # Grouping and Aggregation
+==========================================
+
+==========================================
 # Merging and Joining
+==========================================
+==========================================
 # Pivot Tables
+==========================================
+==========================================
 # Reshaping Data
+==========================================
+==========================================
 # Visualization
+==========================================
+==========================================
 # Advanced Topics
+==========================================
+==========================================
 # Performance Optimization
+==========================================
+==========================================
 # Common Functions
+==========================================
+==========================================
 # DataFrame Operations
+==========================================
+==========================================
 # Series Operations
+==========================================
+==========================================
 # Indexing and Slicing
+==========================================
+
 # Handling Missing Data
 # Working with Dates and Times
 # Categorical Data
