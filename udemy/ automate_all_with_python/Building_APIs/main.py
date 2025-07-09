@@ -14,8 +14,8 @@ print(type(articles))
 '''
 
 
-def get_news(topic, from_date, to_date, language='en', api_key='890603a55bfa47048e4490069ebee18c'):
-    url =f'https://newsapi.org/v2/everything?qInTitle={topic}&from={from_date}&to={to_date}8&sortBy=popularity&language={language}&apiKey={api_key}'
+def get_news(country, api_key='890603a55bfa47048e4490069ebee18c'):
+    url =f'https://newsapi.org/v2/top-headlines?country={country}everything?&apiKey={api_key}'
     r =requests.get(url)
     content = r.json()
     articles = content['articles']
@@ -25,4 +25,4 @@ def get_news(topic, from_date, to_date, language='en', api_key='890603a55bfa4704
     return results
 
 
-print(get_news(topic='space', from_date='2025-7-07', to_date='2025-7-08'))
+print(get_news(country='us'))
