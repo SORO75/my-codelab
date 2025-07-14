@@ -1,0 +1,26 @@
+# Ubuntu Docker-Image holen
+docker pull ubuntu
+
+# Ubuntu-Container starten (interaktiv mit Bash)
+docker run -it ubuntu bash  
+
+eigene dockerfile erstellen mit ubuntu als Basis:
+# Erstelle eine Datei namens Dockerfile mit folgendem Inhalt:
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y python3 python3-pip    
+# Speichere die Datei und baue das Docker-Image:
+docker build -t my-ubuntu-image .
+
+Postgres dockerfile erstellen:
+# Erstelle eine Datei namens Dockerfile mit folgendem Inhalt:
+FROM postgres:latest
+ENV POSTGRES_USER myuser
+ENV POSTGRES_PASSWORD mypassword
+ENV POSTGRES_DB mydatabase
+EXPOSE 5432
+
+# Speichere die Datei und baue das Docker-Image:
+docker build -t my-postgres-db . 
+
+docker run -d --name my-postgres-container -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -v postgres_data:/var/lib/postgresql/data my-postgres-db
+
