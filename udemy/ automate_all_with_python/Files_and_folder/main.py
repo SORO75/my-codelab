@@ -57,3 +57,9 @@ for path in root_dir.glob("**/*"):
     new_filepath = path.with_name(new_filename)
     path.rename(new_filepath)
 
+# change file extensions
+for path in root_dir.rglob("*.csv"):
+    if path.is_file():
+        new_filepath = path.with_suffix(".txt")
+        path.rename(new_filepath)
+
