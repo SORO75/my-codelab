@@ -81,6 +81,14 @@ with zipfile.ZipFile(archive_path, 'w') as zf:
 
 
 # extract all zip files
+root_dir = Path('.')
+destionation_path = Path('destination')
+
+for path in root_dir.glob("*.zip"):
+    with zipfile.ZipFile(path, 'r') as zf:
+        final_path =destionation_path / Path(path.stem)
+        zf.extactall(path= final_path)
+
 #seach file in computer
 # destroy files forever
 
