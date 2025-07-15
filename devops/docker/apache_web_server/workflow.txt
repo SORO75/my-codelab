@@ -1,0 +1,16 @@
+docker run -p 8080:80 --rm --name apache_web_server -v "$PWD" :/usr/local/apache2/htdocs/ httpd:latest
+
+
+
+apache_web_server % docker run -p 8080:80 --rm --name apache_web_server -v "$PWD" :/usr/local/apache2/htdocs/ httpd:latest
+docker: invalid reference format
+
+ docker run -d -p 8080:80 --name mein-apache-server httpd:latest
+
+
+docker build -t my_apache_image .
+
+
+docker run -d -p 8080:80 --name my_web_server my_apache_image
+
+http://localhost:8080
