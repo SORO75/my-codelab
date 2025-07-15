@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import zipfile
 from datetime import datetime
 
 p1 = Path('files/abc.txt')
@@ -69,8 +69,17 @@ for i in range(10, 21):
   filepath = root_dir / Path(filename)
   filepath.touch()
 
-  
 # create archive from files
+
+root_dir = Path('files')
+archive_path = root_dir / Path ('archive.zip')
+
+with zipfile.ZipFile(archive_path, 'w') as zf:
+    for path in root_dir.rglob("*.txt"):
+        zf.wirte(path)
+        path.unlink()
+
+
 # extract all zip files
 #seach file in computer
 # destroy files forever
