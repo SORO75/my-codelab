@@ -112,3 +112,16 @@ docker run --detach --name mariadb-test2 --env MARIADB_ROOT_PASSWORD=123456 mari
 
 
 /var/run/docker
+
+#15.07.2024 10:00:00
+
+
+ docker run -it -h alpine --name alpine alpine
+
+ cat /etc/os-release
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.22.0
+PRETTY_NAME="Alpine Linux v3.22"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"

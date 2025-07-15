@@ -1,0 +1,21 @@
+docker pull redis/redis-stack-server:latest
+docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
+docker exec -it redis-stack-server redis-cli
+# To stop the Redis server
+docker stop redis-stack-server
+# To remove the Redis container
+docker rm redis-stack-server
+# To remove the Redis image
+docker rmi redis/redis-stack-server:latest
+# To view logs of the Redis server
+docker logs redis-stack-server
+# To restart the Redis server
+docker restart redis-stack-server
+# To check if the Redis server is running
+docker ps -a | grep redis-stack-server
+# To access Redis CLI from the host machine
+redis-cli -h localhost -p 6379
+# To run Redis in the background
+docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
+# To run Redis with a custom configuration file
+docker run -d --name redis-stack-server -p 6379:6379 -v /path/to/redis.conf:/usr/local/etc/redis/redis.conf redis/redis-stack-server:latest redis-server /usr/local/etc/redis/redis.conf
