@@ -63,3 +63,16 @@ for path in root_dir.rglob("*.csv"):
         new_filepath = path.with_suffix(".txt")
         path.rename(new_filepath)
 
+# create empty files
+for i in range(10, 21):
+  filename = str(i) + '.txt'
+  filepath = root_dir / Path(filename)
+  filepath.touch()
+
+  
+# create archive from files
+# extract all zip files
+#seach file in computer
+# destroy files forever
+
+
