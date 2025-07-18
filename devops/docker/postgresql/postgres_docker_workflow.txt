@@ -1,0 +1,33 @@
+Docker image for PostgreSQL
+docker pull postgres:latest
+docker run -d --name postgres-server -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 postgres:latest
+docker exec -it postgres-server psql -U postgres
+# To stop the PostgreSQL server
+docker stop postgres-server
+# To remove the PostgreSQL container
+docker rm postgres-server
+# To remove the PostgreSQL image
+docker rmi postgres:latest
+# To view logs of the PostgreSQL server
+docker logs postgres-server
+# To restart the PostgreSQL server
+docker restart postgres-server
+# To check if the PostgreSQL server is running
+docker ps -a | grep postgres-server
+# To access PostgreSQL CLI from the host machine
+psql -h localhost -U postgres -p 5432
+# To run PostgreSQL in the background
+docker run -d --name postgres-server -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 postgres:latest
+# To run PostgreSQL with a custom configuration file
+docker run -d --name postgres-server -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -v /path/to/postgresql.conf:/var/lib/postgresql/data/postgresql.conf postgres:latest
+# To create a new database
+docker exec -it postgres-server psql -U postgres -c "CREATE DATABASE mydatabase;"
+# To create a new user
+docker exec -it postgres-server psql -U postgres -c "CREATE USER myuser WITH PASSWORD 'mypassword';"
+# To grant privileges to a user on a database
+docker exec -it postgres-server psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;"
+# To list all databases
+docker exec -it postgres-server psql -U postgres -c "\l"
+# To list all users
+docker exec -it postgres-server psql -U postgres -c "\du"
+# To connect to a specific database
