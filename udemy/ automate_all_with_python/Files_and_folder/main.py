@@ -99,6 +99,5 @@ for path in root_dir.rglob("*"):
             print(path.absolute())
 
 
-# destroy files forever
 
 
