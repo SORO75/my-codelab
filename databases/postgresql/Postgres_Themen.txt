@@ -1,0 +1,137 @@
+==================================
+    Datenbank (RDBMS) Lernpfad
+==================================
+
+Datenbanken:
+(RDBMS) Oracle, Postgres, MySQL, SQLite, Derby MSSQL
+(NOSQL) Mongo, CouchDB, Redis, HBase, Riak, Neo4J, Snowflake
+
+
+
+
+---------------------------------
+    +Installation
+---------------------------------
+    - Windows
+    - Linux
+    - MacOS
+    - Installationsordner
+    - Systempfad
+    - Datenordner
+    - Clusteraufbau
+    - Using in the Cloud
+    - Anbindung an der Cloud Instanzen
+    - Docker Instanz
+    - Kubernetes
+    - Connection (SSL)
+
+    
+---------------------------------
+    + DBA
+---------------------------------    
+    - root user
+    - Listner
+    - Port
+    - Prozesstree
+    - Start, Stopp, DB_Information
+    - Konfiguration
+    - Monitoring
+    - Clustersteuerung
+    - Shared Memory
+    - User CRUD
+    - Rollen CRUD
+    - Berechtigung, Rollen
+    - Replication
+    - DB Dump
+    - Logging
+    - Sessionanalyse
+    - Performance optiemierung
+    - Kopie
+    - Migration
+    - Multi-version Concurrency Control
+    - Backup
+    - Admintools
+    - Updating, Upgrating
+    
++DML
+    Select
+    Insert
+    Update
+    Delete
++DDL
+    Create
+    Alter
+    Drop
+    Truncate
++DCL
+    - Grant
+    - Revoke
++TCL
+    -savepoint
+    - rollback
+    - commit
++Datenbankdesign
+    ACID
+    1,2,3 N-Norm
+    Snowflakeschema
+
++ SQL Programmierung 
+    -SQL Version
+    - Prozedurale SQL
+    - Pakete
+
+----------------------------
++Datenbankfunktionalität
+----------------------------
+    - DD
+    - Tablespace
+    - Schema
+    - Views
+    - Indizis
+    - Prozeduren
+    - Funktionen
+    - Trigger
+    - Queues
+    - Queuetabellen
+    - Datentypen
+    - Typen
+    - Sequencen
+    - Materialized Views
+    - Datenbanklinks
+    - XML
+    - JSON
+    - REST API 
+    - Scheduler
+    - DBMS Jobs
+    - Export, Import
+    - File observer
+    - Sprach APIs
+    - OLAP
+    - Berichte
+    - Stream
+    - Transaktionsteuerung (optimistisch, pessimistisch)
+    - Table Partionierung
+    - Operatoren
+    - CTID
+    - Parallel Query
+    - Columnstory DB
+    - Binary Daty
+    - BLOB
+    - Thread
+    - Free space mapping (FSM)
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
