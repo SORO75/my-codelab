@@ -124,7 +124,57 @@ Datenbanken:
 
 
 
+#####-----------------------------------
+    +SQL-----------------------------------
+    - SQL Dialekte
+    - ANSI SQL
+    - SQL Standards
+    - SQL Syntax
 
+
+-----------------------------------    +SQL Statements
+-----------------------------------
+    create a new database
+    create a new table
+    insert data into a table
+    insert multiple rows into a table
+    insert data from another table
+    insert data with a subquery
+
+    update data in a table
+    delete data from a table
+    select data from a table
+    select specific columns from a table
+    select distinct values from a table
+    select with conditions (WHERE)
+    select with multiple conditions (AND, OR)
+    select with pattern matching (LIKE)
+    select with range conditions (BETWEEN)
+    select with NULL values (IS NULL, IS NOT NULL)
+    select with ordering (ORDER BY)
+    select with grouping (GROUP BY)
+    select with aggregation functions (COUNT, SUM, AVG, MAX, MIN)
+    select with having clause (HAVING)
+    select with joins (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN)
+    select with subqueries (nested queries)
+    select with set operations (UNION, INTERSECT, EXCEPT)
+    select with window functions (ROW_NUMBER, RANK, DENSE_RANK)
+    select with common table expressions (CTE)
+    select with recursive queries
+    select with pivoting (if supported)
+    select with lateral joins (if supported)
+    select with JSON functions (if supported)
+    select with XML functions (if supported)
+    select with full-text search (if supported)
+    select with spatial queries (if supported)
+    select with temporal queries (if supported)
+    select with materialized views (if supported)
+    select with partitioned tables (if supported)
+    select with foreign data wrappers (if supported)    
+    join tables
+
+
+eine DHW erstellen
 
 
 
