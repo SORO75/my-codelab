@@ -98,3 +98,22 @@ git rm <file>
 
 # Temporarily remove uncommitted changes and save them for later use
 git stash
+
+#Merge strategies
+#resolve: Use the default merge strategy
+#recursive: Use the recursive merge strategy (default for merging)
+#ours: Keep the current branch's changes
+#theirs: Keep the changes from the branch being merged
+#subtree: Use the subtree merge strategy
+#octupus: Use the octopus merge strategy (for merging multiple branches)
+
+# Show the differences between the working directory and the index
+git diff --cached
+
+# Show the differences between the working directory and the last commit
+git diff HEAD
+# Show the differences between the last two commits
+git diff HEAD~1 HEAD
+
+# Show the differences between two branches
+git diff <branch1> <branch2>
