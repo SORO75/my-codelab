@@ -5,11 +5,24 @@ git init
 git config --global user.name <your-name>
 git config --global user.email <your-email>
 
+# Check the current configuration
+git config --list   
+
+# Show the current configuration for a specific key
+git config user.name    
+
+# Check the current Git version
+git --version   
+
+
 # CLone an existing repository
 git clone <repository-url>
 
-# Check teh status of your working directory
+# Check the status of your working directory
 git status
+
+# Show changes in the working directory
+git diff
 
 # Add files to the staging area
 git add <file>
@@ -41,6 +54,9 @@ git checkout <branch-name>
 # Create and switch to a new branch
 git checkout -b <branch-name>
 
+# Move or rename a file in the repository
+git mv <old-file> <new-file> 
+
 # Merge a branch into the current branch
 git merge <branch-name>
 
@@ -61,6 +77,9 @@ git push <remote-repository><branch>
 
 # List all configured remote repositories
 git remote -v
+
+# Revert a commit by creating a new commit that undoes the changes
+git revert <commit-id>   
 
 # Remote a file from the staging area
 git reset <file>
