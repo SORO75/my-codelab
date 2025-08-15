@@ -48,6 +48,12 @@ git branch <branch-name>
 # Rename the current branches
 git branch -m <new-branch-name>
 
+# Delete the old branch
+git branch -d <old-branch-name> 
+
+# Show the current branch
+git branch --show-current
+
 # Switch to a different branch
 git checkout <branch-name>
 
@@ -123,5 +129,40 @@ git stash push -m "Stash message"
 # Apply the most recent stash
 git stash apply     
 
-git clean -f    # Remove untracked files from the working directory
-git clean -fd   # Remove untracked files and directories        
+# Remove untracked files from the working directory
+git clean -f    
+
+# Remove untracked files and directories        
+git clean -fd   
+
+# Show information about the remote repository
+git remote show origin
+
+
+
+
+##############################################
+    git Workflows
+##############################################
+
+# interactive rebasing
+# pseudo-saving branches
+# edit the last commit
+git commit --amend
+# rebase branches
+
+# edit multiple commits
+git rebase -i HEAD~n
+# rebase to change commit history
+
+# change commit messages
+
+# change the order of commits
+
+# squash commits
+git commit --squash <commit-id> <new-commit-message>    
+# auto-squash commits
+# drop commits
+# split commits
+# combine commits
+
