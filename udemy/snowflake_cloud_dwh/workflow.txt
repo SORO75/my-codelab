@@ -1,0 +1,167 @@
+
+
+snowflake trial 30 days
+
+snowflake edition:
+    - standard
+    - enterprise
+    - business critical(* US East) & AWS
+
+email activation
+login <your_email>:<your_password>
+
+snowflake web interface
+    https://<account_name>.snowflakecomputing.com
+    
+
+snowflake interface
+    Projects -> create worksheet -> sql worksheet
+    script ausführen (create database):
+
+------------SQL-------------------
+
+-- Create a database from the share.
+create database snowflake_sample_data from share sfc_samples.sample_data;
+
+-- Grant the PUBLIC role access to the database.
+-- Optionally change the role name to restrict access to a subset of users.
+grant imported privileges on database snowflake_sample_data to role public;
+
+
+
+SELECT * FROM snowflake_sample_data.tpch_sf1.customer;
+SELECT * FROM snowflake_sample_data.tpch_sf1.orders;
+
+-----------------------------------
+
+share worksheet
+User roles and permissions
+
+
+-----------------------------------
+
+create a new folder - first_folder -> move a first_worksheet to first_folder
+
+snowflake architecture
+snowflake architecture:
+    - cloud services (authentication, security, metadata management, managing infrastructure, optimization)
+    - virtual warehouses (query processing) Performs MMP(Massively Parallel Processing)
+    - storage (hybrid columnar storage, data is stored in blobs)
+
+
+Warehouse Sizes
+    - X-Small
+    - Small
+    - Medium
+    - Large
+    - X-Large
+
+Multi-Cluster Warehouses
+
+Create a new Warehouse (enterprise Edition) in ui
+
+1. Navigate to the "Warehouses" tab in the Snowflake web interface.
+2. Click on the "Create" button to start the warehouse creation process.
+3. Fill in the necessary details for the new warehouse, including:
+   - Name: Enter a name for the warehouse (e.g., "MyEnterpriseWarehouse").
+   - Size: Select the desired size for the warehouse (e.g., "X-Large").
+   - Auto Suspend: Set the auto-suspend time (e.g., 10 minutes).
+   - Auto Resume: Enable auto-resume if desired.
+4. Click "Create" to create the new warehouse.
+
+"First_dwh"
+
+
+create  a new warehouse with sql:   
+
+    create or replace warehouse Second_dwh
+    with
+    warehouse_size = XSMALL
+    MIN_CLUSTER_COUNT = 1
+    MAX_CLUSTER_COUNT = 3
+    auto_suspend = 5 auto_resume = true;
+
+
+manage warehouses:
+    ALTER WAREHOUSE Second_dwh
+    SET
+    warehouse_size = XLARGE
+    MIN_CLUSTER_COUNT = 1
+    MAX_CLUSTER_COUNT = 3
+    auto_suspend = 10 auto_resume = false;
+
+
+ -- Scaling Policies
+    - STANDARD
+    - ECONOMY
+    - MAXIMIZE
+    - CONSERVATIVE
+    - OFF
+    - CUSTOM
+
+-- Exporting tables & database
+-- create a new database
+create database first_database;
+
+
+-- Creating the table / Meta data
+
+CREATE TABLE "OUR_FIRST_DB"."PUBLIC"."LOAN_PAYMENT" (
+  "Loan_ID" STRING,
+  "loan_status" STRING,
+  "Principal" STRING,
+  "terms" STRING,
+  "effective_date" STRING,
+  "due_date" STRING,
+  "paid_off_time" STRING,
+  "past_due_days" STRING,
+  "age" STRING,
+  "education" STRING,
+  "Gender" STRING);
+  
+ //Check that table is empy
+ USE DATABASE OUR_FIRST_DB;
+
+ SELECT * FROM LOAN_PAYMENT;
+
+ 
+ //Loading the data from S3 bucket
+  
+ COPY INTO LOAN_PAYMENT
+    FROM s3://bucketsnowflakes3/Loan_payments_data.csv
+    file_format = (type = csv 
+                   field_delimiter = ',' 
+                   skip_header=1);
+    
+
+//Validate
+ SELECT * FROM LOAN_PAYMENT;
+
+ ==============================================
+            Exercise
+ ==============================================
+
+
+  -- Create database
+create database EXERCISE_DB;
+---- Assignment - Getting started ----
+
+-- Create table
+create or replace table customers(
+  customer_id int,
+  first_name varchar,
+  last_name varchar,
+  email varchar,
+  age int,
+  city varchar)
+ 
+-- Load data
+copy into customers
+  from s3://snowflake-assignments-mc/gettingstarted/customers.csv
+  file_format = (
+    type = csv 
+    field_delimiter = ',' 
+    skip_header = 1);
+
+
+SELECT * FROM customers;
