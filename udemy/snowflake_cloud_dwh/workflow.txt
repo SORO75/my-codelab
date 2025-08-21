@@ -165,3 +165,30 @@ copy into customers
 
 
 SELECT * FROM customers;
+
+===============================================
+            Section 3
+=============================================== 
+
+RAW Data(Staging area) -> Data integration( Data Transformation) -> Access layer (Visualization)
+
+Snowflake Editions:
+- Standard Edition
+- Enterprise Edition
+- Business Critical Edition
+- Virtual Private Snowflake (VPS)
+
+Roles in Snowflake:
+- Account Admin (Full access to all features and functions)
+- Security Admin (Manages security policies and user access)
+- User Admin (Manages user accounts and roles)
+- System Admin (Manages system-level settings and configurations)
+- Database Admin (Manages database objects and permissions)
+- Warehouse Admin (Manages virtual warehouses and resource allocation)
+- Role-based access control (RBAC)
+
+
+
+===============================================
+            Section 4
+=============================================== 
