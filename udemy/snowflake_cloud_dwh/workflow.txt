@@ -101,7 +101,15 @@ manage warehouses:
 
 -- Exporting tables & database
 -- create a new database
-create database first_database;
+CREATE DATABASE first_database;
+
+CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS(
+ORDER_ID VARCHAR(30),
+AMOUNT INT,
+PROFIT INT,
+QUATITY INT, 
+CATEGORY VARCHAR(30),
+SUBCATEGORY VARCHAR(30));
 
 
 -- Creating the table / Meta data
