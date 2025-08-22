@@ -213,13 +213,13 @@ Stages
         create a new stage
 -------------------------------------------------
 
-// Database to manage stage objects, fileformats etc.
+-- Database to manage stage objects, fileformats etc.
 
 CREATE OR REPLACE DATABASE MANAGE_DB;
 
 CREATE OR REPLACE SCHEMA external_stages;
 
-// Creating ORDERS table
+-- Creating ORDERS table
 
 CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS (
     ORDER_ID VARCHAR(30),
@@ -231,34 +231,34 @@ CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS (
     
 
 
-// Creating external stage
+-- Creating external stage
 
 CREATE OR REPLACE STAGE MANAGE_DB.external_stages.aws_stage
     url='s3://bucketsnowflakes3'
     credentials=(aws_key_id='ABCD_DUMMY_ID' aws_secret_key='1234abcd_key');
 
 
-// Description of external stage
+-- Description of external stage
 
-DESC STAGE MANAGE_DB.external_stages.aws_stage; 
-    
-    
-// Alter external stage   
+DESC STAGE MANAGE_DB.external_stages.aws_stage;
+
+
+-- Alter external stage
 
 ALTER STAGE aws_stage
     SET credentials=(aws_key_id='XYZ_DUMMY_ID' aws_secret_key='987xyz');
-    
-    
-// Publicly accessible staging area    
+
+
+-- Publicly accessible staging area
 
 CREATE OR REPLACE STAGE MANAGE_DB.external_stages.aws_stage
     url='s3://bucketsnowflakes3';
 
-// List files in stage
+-- List files in stage
 
 LIST @aws_stage;
 
-//Load data using copy command
+-- Load data using copy command
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
     FROM @aws_stage
@@ -269,7 +269,7 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
         COPY command
 -----------------------------------------
 
-// Creating ORDERS table
+-- Creating ORDERS table
 
 CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS (
     ORDER_ID VARCHAR(30),
@@ -281,7 +281,7 @@ CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS (
     
 SELECT * FROM OUR_FIRST_DB.PUBLIC.ORDERS;
    
-// First copy command
+-- First copy command
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
     FROM @aws_stage
@@ -290,7 +290,7 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
 
 
 
-// Copy command with fully qualified stage object
+-- Copy command with fully qualified stage object
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
     FROM @MANAGE_DB.external_stages.aws_stage
@@ -298,13 +298,13 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
 
 
 
-// List files contained in stage
+-- List files contained in stage
 
 LIST @MANAGE_DB.external_stages.aws_stage;    
 
 
 
-// Copy command with specified file(s)
+-- Copy command with specified file(s)
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
     FROM @MANAGE_DB.external_stages.aws_stage
@@ -314,7 +314,7 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
 
 
 
-// Copy command with pattern for file names
+-- Copy command with pattern for file names
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS
     FROM @MANAGE_DB.external_stages.aws_stage
@@ -352,7 +352,7 @@ COPY INTO EXERCISE_DB.PUBLIC.CUSTOMERS
 -----------------------------------------
       Transforming Data
 -----------------------------------------
-// Example 1 - Table
+-- Example 1 - Table
 
 CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     ORDER_ID VARCHAR(30),
@@ -360,7 +360,7 @@ CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     );
 
 
-// Transforming using the SELECT statement
+-- Transforming using the SELECT statement
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS_EX
     FROM (select s.$1, s.$2 from @MANAGE_DB.external_stages.aws_stage s)
@@ -372,7 +372,7 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS_EX
    
 SELECT * FROM OUR_FIRST_DB.PUBLIC.ORDERS_EX;
    
-// Example 2 - Table    
+-- Example 2 - Table    
 
 CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     ORDER_ID VARCHAR(30),
@@ -382,7 +382,7 @@ CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     );
 
 
-// Example 2 - Copy Command using a SQL function (subset of functions available)
+-- Example 2 - Copy Command using a SQL function (subset of functions available)
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS_EX
     FROM (select 
@@ -398,7 +398,7 @@ COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS_EX
 SELECT * FROM OUR_FIRST_DB.PUBLIC.ORDERS_EX;
 
 
-// Example 3 - Table
+-- Example 3 - Table
 
 CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     ORDER_ID VARCHAR(30),
@@ -408,7 +408,7 @@ CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.ORDERS_EX (
     );
 
 
-// Example 3 - Copy Command using a SQL function (subset of functions available)
+-- Example 3 - Copy Command using a SQL function (subset of functions available)
 
 COPY INTO OUR_FIRST_DB.PUBLIC.ORDERS_EX
     FROM (select 
