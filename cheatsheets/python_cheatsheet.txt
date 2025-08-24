@@ -53,3 +53,27 @@ pip list
 ## Install virtualenv
 pip3 install virtualenv     
 
+some of the important modules are:
+- numpy (for numerical computations)
+- pandas (for data manipulation and analysis)
+- matplotlib (for data visualization)
+- seaborn (for statistical data visualization)
+- plotly (for interactive data visualization)
+- random (for generating random numbers)
+- statistics (for statistical operations)
+- scikit-learn (for machine learning)
+- math (for mathematical operations)
+- re (for regular expressions)
+- os (for operating system interactions)
+- sys (for system-specific parameters and functions)
+- json (for working with JSON data)
+- urllib (for working with URLs)
+- datetime (for working with dates and times)
+- pytz (for timezone handling)
+- sqlite3 (for working with SQLite databases)
+- sqlalchemy (for database operations)
+- requests (for making HTTP requests)
+- beautifulsoup4 (for web scraping)
+- flask (for web development)
+- fastapi (for web development)
+- django (for web development)
