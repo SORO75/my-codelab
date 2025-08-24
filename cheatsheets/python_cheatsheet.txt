@@ -77,3 +77,23 @@ some of the important modules are:
 - flask (for web development)
 - fastapi (for web development)
 - django (for web development)
+
+
+the PEP8 Python style guide can be found at: https://www.python.org/dev/peps/pep-0008/
+important points:
+- Follow naming conventions (e.g., use lowercase with underscores for variable names)
+- Keep line length to a maximum of 79 characters
+- Use 4 spaces per indentation level
+- Include docstrings for all public modules, functions, and classes
+- Python files should be encoded in UTF-8
+- Use absolute imports for clarity
+- Avoid using wildcard imports (e.g., from module import *)
+- Use parentheses for multi-line statements
+- Write each statement on a new line
+- Function, variable and file names should be lowercase,
+     with words separated by underscores as necessary to improve readability
+- Variable names should be descriptive and not overly abbreviated
+- Constants should be defined at the top of the file and written in all capital letters
+- Class names should use the CapWords convention (e.g., MyClass)
+
+
