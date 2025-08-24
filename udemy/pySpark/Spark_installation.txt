@@ -1,0 +1,66 @@
+Spark installation on MacOS
+1. Install Homebrew if not already installed:
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+2. Install Java (OpenJDK):
+   brew install openjdk@21
+
+3.   Install Scala:
+   brew install scala
+
+4. Install Apache Spark:
+   brew install apache-spark
+
+5. Create a log4j.properties file via
+    cd /opt/homebrew/Cellar/apache-spark/3.5.2/libexec/conf  (substitute 3.5.2 for the version actually installed – the path may be slightly different on your system.)
+    cp log4j2.properties.template log4j2.properties
+6. Edit the log4j2.properties file and change the log level from “info” to “error” on log4j.rootCategory.
+
+8. Install anaconda:
+   brew install --cask anaconda
+
+   Update your shell configuration:
+   echo 'export PATH="/usr/local/anaconda3/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   
+   conda init zsh (conda integration in zsh)
+   exec zsh
+   conda --version
+   conda info --envs
+
+9. Create a new conda environment for PySpark:
+   conda create -n py310 python=3.10
+   conda activate py310
+   pip install py4j
+   conda install pandas
+   conda install pyarrow
+   conda install findspark
+
+10. Set environment variables for Spark (optional):
+   echo 'export SPARK_HOME="/usr/local/opt/apache-spark/libexec"' >> ~/.zshrc
+   echo 'export PATH="$SPARK_HOME/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+
+11. Verify installation:
+   spark-shell (starts Scala shell)
+   pyspark (starts PySpark shell)
+
+
+
+Spark installation on Linux
+1. Install Java (OpenJDK):
+   sudo apt update
+   sudo apt install openjdk-21-jdk -y
+
+2. Install Apache Spark:
+   wget https://downloads.apache.org/spark/spark-4.0.0/spark-4.0.0-bin-hadoop3.tgz
+   tar -xvzf spark-4.0.0-bin-hadoop3.tgz
+   sudo mv spark-4.0.0-bin-hadoop3 /opt/spark
+
+3. Set environment variables:
+   echo 'export SPARK_HOME="/opt/spark"' >> ~/.bashrc
+   echo 'export PATH="$SPARK_HOME/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+
+4. Verify installation:
+   spark-shell
