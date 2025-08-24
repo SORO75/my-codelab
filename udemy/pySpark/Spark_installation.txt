@@ -55,12 +55,43 @@ Spark installation on Linux
 2. Install Apache Spark:
    wget https://downloads.apache.org/spark/spark-4.0.0/spark-4.0.0-bin-hadoop3.tgz
    tar -xvzf spark-4.0.0-bin-hadoop3.tgz
-   sudo mv spark-4.0.0-bin-hadoop3 /opt/spark
+   sudo mv spark-4.0.0-bin-hadoop3 /opt/spark (move to /opt directory)
 
 3. Set environment variables:
    echo 'export SPARK_HOME="/opt/spark"' >> ~/.bashrc
    echo 'export PATH="$SPARK_HOME/bin:$PATH"' >> ~/.bashrc
+   echo 'export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"' >> ~/.bashrc
+   echo 'export HADOOP_HOME="/opt/spark"' >> ~/.bashrc
+   echo 'export PYTHONPATH="$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip:$PYTHONPATH"' >> ~/.bashrc
+   echo 'export PYSPARK_PYTHON="/usr/bin/python3"' >> ~/.bashrc
    source ~/.bashrc
 
 4. Verify installation:
    spark-shell
+
+5. Install latest Anaconda (optional):
+ wget https://repo.anaconda.com/archive/Anaconda3-2025.06-0-Linux-x86_64.sh
+bash Anaconda3-2025.06-0-Linux-x86_64.sh
+source ~/.bashrc
+
+
+# Add Anaconda to PATH and initialize conda if available
+if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "$HOME/anaconda3/etc/profile.d/conda.sh"
+# Fallback: only set PATH if conda.sh is missing
+elif [ -d "$HOME/anaconda3/bin" ]; then
+    export PATH="$HOME/anaconda3/bin:$PATH"
+fi
+
+# Test
+conda --version || "$HOME/anaconda3/bin/conda" --version
+
+# Conda initialization)
+"$HOME/anaconda3/bin/conda" init bash && source ~/.bashrc
+
+conda create -n py310 python=3.10
+conda activate py310
+conda install pyarrow
+pip install py4j
+conda install pandas
+conda install findspark
