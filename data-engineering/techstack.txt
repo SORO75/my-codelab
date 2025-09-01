@@ -16,6 +16,7 @@ druid
 minio
 clickhouse
 postgresql
+duckDB
 mysql
 redis
 neo4j
