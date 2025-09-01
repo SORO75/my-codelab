@@ -6,6 +6,9 @@ kafka
 airflow
 dbt
 spark
+hadoop
+databricks
+snowflake
 iceberg
 openmetadata
 rook
@@ -17,7 +20,8 @@ mysql
 redis
 neo4j
 pydantic
-
+prefect
+dagster
 trino
 flask
 fastapi
