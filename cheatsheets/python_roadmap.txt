@@ -1,0 +1,154 @@
+Basis syntax (print, input)
+variables
+data types (int, float, str, list, dict, set, tuple, bool, None)
+type change (int to float, float to int, str to int, str to float)
+control flow (if, else, for, while, break, continue)
+functions (def, return, lambda)
+built-in functions (print, len, range, type, str, int, float, enumerate)
+modules (import, from ... import)
+exceptions (try, except, raise, finally)
+exception types (ValueError, TypeError, KeyError, IndexError, AttributeError)
+
+package managers (PyPi, pip, conda, poetry)
+virtual environments (venv, virtualenv, conda, pipenv)
+
+file handling (open, read, write, with)
+
+modules (creating, importing, __init__.py, package structure)
+    creating: __init__.py, module files
+    importing: import, from ... import, as
+    package structure: __init__.py, submodules, relative imports
+    best practices: absolute imports, relative imports, module organization
+
+lambda functions
+    syntax: lambda arguments: expression
+    usage: single-expression functions, higher-order functions
+    examples: sorting, filtering, mapping
+
+decorators
+    syntax: @decorator
+    usage: modifying functions or methods
+    examples: logging, access control, memoization
+    chaining decorators
+    multiple decorators
+    parameterized decorators
+    decorator factories
+
+iterators
+    creating iterators
+    using iterators
+    generator functions
+    generator expressions
+    yield statement
+    coroutines
+    async/await
+    event loops
+    asyncio
+    async generators
+    context managers
+    with statement
+    __enter__ and __exit__ methods
+
+Regular expressions:
+    syntax: re.compile(pattern)
+    usage: searching, matching, replacing
+    examples: email validation, log parsing
+
+Static typing:
+    type hints
+    type checking
+    mypy
+    pyright
+    pytypes
+    pyre
+    pydantic
+
+Algorithms:
+    sorting (quick sort, merge sort, bubble sort)
+    searching (binary search, linear search)
+    string algorithms (KMP, Rabin-Karp)
+    mathematical algorithms (GCD, LCM, prime factorization)
+    combinatorial algorithms (permutations, combinations)
+    hashing (hash functions, hash tables)
+    recursive algorithms (factorial, Fibonacci)
+    queues (FIFO, circular queues)
+    graph algorithms (BFS, DFS, Dijkstra's)
+    dynamic programming (knapsack, Fibonacci)
+    backtracking (N-Queens, Sudoku)
+    greedy algorithms (coin change, activity selection)
+
+Data Structures:
+    arrays
+    linked lists
+    stacks
+    queues
+    trees (binary trees, binary search trees, AVL trees)
+    graphs (directed, undirected, weighted, unweighted)
+    hash tables
+    sets
+    heaps
+    tries
+
+OOP:
+    classes (constructor, methods, attributes, class variables, instance variables, destructor)
+    objects (instantiation, attributes, methods)
+    inheritance (base class, derived class, method overriding)
+    polymorphism (method overloading, method overriding)
+    encapsulation (private variables, protected variables, getter/setter methods)
+    abstraction (abstract classes, interfaces)
+    composition (has-a relationship, using objects as attributes)
+    magic methods (dunder methods, operator overloading)
+    decorators (function decorators, class decorators, built-in decorators)
+    metaclasses (class decorators, modifying class behavior)
+    context managers (with statement, __enter__, __exit__)
+    property (getter, setter, deleter)
+    descriptors (__get__, __set__, __delete__)
+
+Concurrency:
+    threading
+    multiprocessing
+    GIL (Global Interpreter Lock)
+    asyncio
+    concurrent.futures
+
+
+Frameworks:
+    Synchronous (plotly, Dash, Streamlit)
+    Asynchronous (aiohttp, gevent, Tornado, Sanic)
+    Synchronous+Asynchronous (FastAPI, Django, Pyramid, Flask)
+    Other (Bottle, CherryPy, Falcon)
+
+Testing:
+    unittest
+    pytest
+    doctest
+    tox
+    mock
+    nose
+
+Documentation:
+    Sphinx
+    MkDocs
+    pdoc
+
+Code Quality:
+    flake8
+    black
+    isort
+    mypy
+    yapf
+    pylint
+
+Functional Programming in Python:
+    map
+    filter
+    reduce
+    list comprehensions
+    generator expressions
+    itertools
+    functools
+    operator
+    typing
+    dataclasses
+    pydantic
+
