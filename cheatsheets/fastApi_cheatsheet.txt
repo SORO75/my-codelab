@@ -135,3 +135,89 @@ Deployment:
     - Cloud platforms (e.g., AWS, Google Cloud, Azure)
 
 
+Best practices:
+    - Use Pydantic models for data validation and serialization
+    - Leverage FastAPI's dependency injection system
+    - Organize code using routers
+    - Write tests for your API endpoints
+    - Use async/await for I/O-bound operations
+    - Document your API using OpenAPI and JSON Schema
+    - Handle exceptions gracefully
+    - Optimize performance with caching and background tasks
+    - Secure your API with authentication and authorization
+    - Monitor and log API usage and errors
+
+
+Project structure:
+ .
+ ├── app                  # "app" is a Python package
+ │   ├── __init__.py      # this file makes "app" a "Python package"
+ │   ├── main.py          # "main" module, e.g. import app.main
+ │   ├── dependencies.py  # "dependencies" module, e.g. import app.dependencies
+ │   └── routers          # "routers" is a "Python subpackage"
+ │   │   ├── __init__.py  # makes "routers" a "Python subpackage"
+ │   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
+ │   │   └── users.py     # "users" submodule, e.g. import app.routers.users
+ │   └── internal         # "internal" is a "Python subpackage"
+ │       ├── __init__.py  # makes "internal" a "Python subpackage"
+ │       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
+ │   └── docker           # "docker" is a "Python subpackage"
+ │       ├── __init__.py  # makes "docker" a "Python subpackage"
+ │       └── compose.py   # "compose" submodule, e.g. import app.docker.compose
+
+
+
+Projects patterns:
+    - Modular structure with routers and dependencies
+    - Use of Pydantic models for data validation
+    - Asynchronous programming with async/await
+    - Integration with databases using ORM libraries
+    - Implementation of authentication and authorization mechanisms
+    - Comprehensive testing using pytest
+    - Deployment using Docker and ASGI servers
+    - Monitoring and logging for performance and error tracking
+    - Documentation using OpenAPI and JSON Schema
+    - Caching and background tasks for performance optimization
+    - Security best practices for API protection
+    - Versioning strategies for API evolution
+    - Client libraries for API consumption
+    - Rate limiting and throttling
+    - API gateways and management
+    - GraphQL vs REST considerations
+    - Microservices architecture
+    - Event-driven architecture
+    - Service mesh implementations
+    - API composition and aggregation
+    - GraphQL subscriptions
+    - Real-time data processing
+    - Serverless architecture
+    - API monetization strategies
+    - API documentation and developer portals
+
+    - API design and best practices
+    - RESTful API design principles
+    - GraphQL API design principles
+    - Versioning strategies for APIs
+    - Error handling and response formats
+    - Security best practices for APIs
+    - Performance optimization techniques
+    - Documentation and developer experience
+    - Testing strategies for APIs
+    - Monitoring and analytics for APIs
+    - API versioning and backward compatibility
+    - API security and authentication
+    - API performance and scalability
+    - API documentation and developer experience
+
+Settings and Environment Variables:
+    - Use environment variables for configuration
+    - Load environment variables from .env files
+    - Use libraries like Pydantic or Dynaconf for settings management
+    - Validate and document settings using Pydantic models
+    - Provide default values for settings
+    - Support different environments (development, testing, production)
+    - Use type annotations for settings
+    - Document settings using docstrings or comments
+    - Group related settings using classes or namespaces
+    - Use a consistent naming convention for settings
+
