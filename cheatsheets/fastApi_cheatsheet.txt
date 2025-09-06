@@ -1,0 +1,137 @@
+FastAPI Basis
+    FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints
+
+Endpoints:
+    GET     - Read data
+    POST    - Create data
+    PUT     - Update data
+    DELETE  - Delete data
+    PATCH   - Partially update data
+    OPTIONS - Describe the communication options for the target resource
+    HEAD    - Retrieve the headers for a specific resource
+    TRACE   - Perform a message loop-back test along the path to the target resource
+    CONNECT - Establish a tunnel to the server identified by the target resource
+
+Query parameters:
+    Optional parameters that are appended to the URL of a request, typically used to filter or sort data
+    Example: /items?sort=price&order=asc
+    FastAPI automatically validates and converts query parameters to the specified data type
+
+
+Path parameters:
+    Required parameters that are included in the URL path, typically used to identify a specific resource
+    Example: /items/{item_id}
+    FastAPI automatically validates and converts path parameters to the specified data type
+    Example: /items/42
+    FastAPI will convert the path parameter item_id to an integer
+
+routers = APIRouter()
+    Used to organize and group related endpoints in a FastAPI application
+    Allows for modular and reusable code
+    Example:
+        from fastapi import APIRouter
+
+        router = APIRouter()
+
+        @router.get("/items/")
+        async def read_items():
+            return [{"item_id": "Foo"}]
+
+        app.include_router(router, prefix="/api/v1")    
+
+
+Data validation and serialization:
+    FastAPI uses Pydantic models to define the structure and data types of request and response bodies
+    Example:
+        from pydantic import BaseModel
+
+        class Item(BaseModel):
+            name: str
+            description: str = None
+            price: float
+            tax: float = None
+
+        @app.post("/items/")
+        async def create_item(item: Item):
+            return item
+
+Working with files:
+    from fastapi import FastAPI, File, UploadFile
+
+    app = FastAPI()
+
+    @app.post("/uploadfile/")
+    async def create_upload_file(file: UploadFile = File(...)):
+        return {"filename": file.filename}
+
+
+Exception handling:
+    FastAPI provides built-in exception handling for common HTTP errors
+    You can also create custom exception handlers
+    Example:
+        from fastapi import FastAPI, HTTPException
+
+        app = FastAPI()
+
+        @app.get("/items/{item_id}")
+        async def read_item(item_id: int):
+            if item_id not in items:
+                raise HTTPException(status_code=404, detail="Item not found")
+            return items[item_id]
+
+
+Advanced features:
+    background tasks
+    dependency injection
+    lifespan
+    websocket
+    middleware
+    CORS (Cross-Origin Resource Sharing)
+    HTML Templates
+    Authentication and Authorization
+    Rate Limiting
+    Request Logging
+    Security Features
+    API Versioning
+    OpenAPI and JSON Schema
+
+
+integration with other libraries:
+    SQLAlchemy
+    Tortoise ORM
+    Motor
+    Alembic
+    Jinja2
+    refresh tokens
+    OAuth2
+    OpenID Connect
+    AuthX
+    FastAPI Users
+    JSON Schema
+    JWT (JSON Web Tokens)
+    StarletteAdmin
+    SQLAdmin
+    Celery
+    GraphQL (using libraries like Graphene or Ariadne)
+    WebSockets (using libraries like WebSockets or Starlette)
+    Testing (using libraries like pytest and httpx)
+    Mocking (using libraries like unittest.mock)
+    Monitoring (using libraries like Prometheus or Sentry)
+    Caching (using libraries like Redis or Memcached)
+    Administration (using libraries like FastAPI Admin or Flask Admin)
+
+
+
+Testing and Debugging:
+HTTPException
+pytest
+
+
+Deployment:
+    FastAPI applications can be deployed using various methods, including:
+    - ASGI servers (e.g., Uvicorn, Daphne)
+    - WSGI servers (e.g., Gunicorn with an ASGI wrapper)
+    - Docker containers
+    - Cloud platforms (e.g., AWS, Google Cloud, Azure)
+
+
