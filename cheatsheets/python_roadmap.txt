@@ -90,19 +90,25 @@ Data Structures:
     tries
 
 OOP:
-    classes (constructor, methods, attributes, class variables, instance variables, destructor)
-    objects (instantiation, attributes, methods)
+    classes (constructor, methods, attributes, class variables, instance variables, destructor, self, __init__   objects (instantiation, attributes, methods)
     inheritance (base class, derived class, method overriding)
     polymorphism (method overloading, method overriding)
     encapsulation (private variables, protected variables, getter/setter methods)
-    abstraction (abstract classes, interfaces)
+    abstraction (abstract classes, interfaces, abstract methods)
     composition (has-a relationship, using objects as attributes)
+    aggregation (whole-part relationship, using objects as attributes)
     magic methods (dunder methods, operator overloading)
     decorators (function decorators, class decorators, built-in decorators)
     metaclasses (class decorators, modifying class behavior)
     context managers (with statement, __enter__, __exit__)
     property (getter, setter, deleter)
     descriptors (__get__, __set__, __delete__)
+    MRO (Method Resolution Order)
+    super()
+    classmethod
+    staticmethod
+    property
+
 
 Concurrency:
     threading
@@ -110,6 +116,8 @@ Concurrency:
     GIL (Global Interpreter Lock)
     asyncio
     concurrent.futures
+    Race conditions
+    Deadlocks
 
 
 Frameworks:
@@ -152,3 +160,10 @@ Functional Programming in Python:
     dataclasses
     pydantic
 
+
+SOLID Principles:
+    Single Responsibility Principle
+    Open/Closed Principle
+    Liskov Substitution Principle
+    Interface Segregation Principle
+    Dependency Inversion Principle
