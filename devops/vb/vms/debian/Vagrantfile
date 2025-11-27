@@ -14,6 +14,60 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "debian/bullseye64"
 
+  # --- Definition of the first VM (VM 2 - App/FastAPI) ---
+  # We name it "dev-box" for now, later this will become "vm2-app"
+  config.vm.define "dev-box" do |dev|
+    dev.vm.hostname = "dev-box"
+    
+    # Private Network: Allows VMs to communicate with each other later
+    dev.vm.network "private_network", ip: "192.168.56.20"
+    
+    # Port Forwarding: Allows you to access FastAPI (8000) in your host browser
+    dev.vm.network "forwarded_port", guest: 8000, host: 8000
+
+    dev.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+      vb.name = "Data_Lab_Dev_Box"
+    end
+
+    # Folder Synchronization (Your Code <-> VM)
+    # We mount the current directory to /vagrant
+    dev.vm.synced_folder ".", "/vagrant"
+
+    # --- Shell Provisioner: Install Docker ---
+    # This is the part we will replace with Ansible later
+    dev.vm.provision "shell", inline: <<-SHELL
+      echo "Start Installing Docker..."
+      
+      # 1. Updates & Dependencies
+      apt-get update
+      apt-get install -y ca-certificates curl gnupg
+
+      # 2. Use official Docker script (safest method for Debian)
+      curl -fsSL https://get.docker.com -o get-docker.sh
+      sh get-docker.sh
+
+      # 3. Permissions (Important!)
+      # Adds the user 'vagrant' to the 'docker' group.
+      # Prevents having to type 'sudo docker' every time.
+      usermod -aG docker vagrant
+
+      # 4. Test Docker Compose
+      echo "Docker Version:"
+      docker --version
+      echo "Compose Version:"
+      docker compose version
+      
+      echo "Installation complete! Please use 'vagrant ssh'."
+    SHELL
+  end
+
+  # We comment out the other VMs (vm1, vm3) for now or
+  # add them later.
+
+end
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -74,4 +128,4 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-end
+  

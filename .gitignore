@@ -51,3 +51,14 @@ devops/vb/vms/suse/.vagrant/machines/default/virtualbox/vagrant_cwd
 devops/vb/vms/suse/.vagrant/rgloader/loader.rb
 .DS_Store
 .DS_Store
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/action_cloud_init
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/action_provision
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/action_set_name
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/box_meta
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/creator_uid
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/disk_meta
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/id
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/index_uuid
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/private_key
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/synced_folders
+devops/vb/vms/debian/.vagrant/machines/dev-box/virtualbox/vagrant_cwd
