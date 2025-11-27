@@ -49,3 +49,4 @@ devops/vb/vms/suse/.vagrant/machines/default/virtualbox/private_key
 devops/vb/vms/suse/.vagrant/machines/default/virtualbox/synced_folders
 devops/vb/vms/suse/.vagrant/machines/default/virtualbox/vagrant_cwd
 devops/vb/vms/suse/.vagrant/rgloader/loader.rb
+.DS_Store

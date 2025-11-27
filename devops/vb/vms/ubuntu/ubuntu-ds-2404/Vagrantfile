@@ -12,8 +12,48 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
+
+  # 1. Define the Box (OS)
+  # Using Ubuntu 22.04 LTS (Jammy Jellyfish) from Bento
   config.vm.box = "bento/ubuntu-24.04"
   config.vm.box_version = "202510.26.0"
+
+  # 2. Network Configuration
+  # Forward the PostgreSQL port (5432) from the VM to your host machine.
+  # You can access the DB via localhost:5432 on your computer.
+  config.vm.network "forwarded_port", guest: 5432, host: 5433
+
+  # 3. Provisioning Script (Installation Logic)
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "Updating package list..."
+    apt-get update
+
+    echo "Installing PostgreSQL and contrib packages..."
+    apt-get install -y postgresql postgresql-contrib
+
+    # --- Configuration for external access (Optional but recommended for Vagrant) ---
+    
+    # By default, Postgres listens only on 'localhost'. We change this to all IPs (*).
+    echo "Configuring listen_addresses in postgresql.conf..."
+    sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/*/main/postgresql.conf
+
+    # Allow password authentication for all users from any IP (safe for local dev only)
+    echo "Modifying pg_hba.conf to allow remote connections..."
+    echo "host    all             all             0.0.0.0/0               scram-sha-256" >> /etc/postgresql/*/main/pg_hba.conf
+
+    # Restart the service to apply changes
+    echo "Restarting PostgreSQL service..."
+    systemctl restart postgresql
+
+    # --- Set User and Password ---
+    
+    # Set the password for the default user 'postgres' to 'vagrant'
+    echo "Setting password for user 'postgres'..."
+    sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'vagrant';"
+    
+    echo "Done! PostgreSQL is running and ready."
+  SHELL
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -75,4 +115,11 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
+
+
+
+
+
+
 end
