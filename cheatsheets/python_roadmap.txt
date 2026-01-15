@@ -1,4 +1,5 @@
-Basis syntax (print, input)
+Basis syntax 
+(print, input)
 variables
 data types (int, float, str, list, dict, set, tuple, bool, None)
 type change (int to float, float to int, str to int, str to float)
@@ -9,7 +10,7 @@ modules (import, from ... import)
 exceptions (try, except, raise, finally)
 exception types (ValueError, TypeError, KeyError, IndexError, AttributeError)
 
-package managers (PyPi, pip, conda, poetry)
+package managers (PyPi, pip, conda, poetry, uv)
 virtual environments (venv, virtualenv, conda, pipenv)
 
 file handling (open, read, write, with)
@@ -63,20 +64,6 @@ Static typing:
     pyre
     pydantic
 
-Algorithms:
-    sorting (quick sort, merge sort, bubble sort)
-    searching (binary search, linear search)
-    string algorithms (KMP, Rabin-Karp)
-    mathematical algorithms (GCD, LCM, prime factorization)
-    combinatorial algorithms (permutations, combinations)
-    hashing (hash functions, hash tables)
-    recursive algorithms (factorial, Fibonacci)
-    queues (FIFO, circular queues)
-    graph algorithms (BFS, DFS, Dijkstra's)
-    dynamic programming (knapsack, Fibonacci)
-    backtracking (N-Queens, Sudoku)
-    greedy algorithms (coin change, activity selection)
-
 Data Structures:
     arrays
     linked lists
@@ -89,10 +76,26 @@ Data Structures:
     heaps
     tries
 
+Algorithms:
+    sorting (quick sort, merge sort, bubble sort)*
+    searching (binary search, linear search)*
+    string algorithms (KMP, Rabin-Karp)*
+    mathematical algorithms (GCD, LCM, prime factorization)
+    combinatorial algorithms (permutations, combinations)
+    hashing (hash functions, hash tables)*
+    recursive algorithms (factorial, Fibonacci)
+    queues (FIFO, circular queues)*
+    graph algorithms (BFS, DFS, Dijkstra's)
+    dynamic programming (knapsack, Fibonacci)
+    backtracking (N-Queens, Sudoku)
+    greedy algorithms (coin change, activity selection)
+
+
 OOP:
-    classes (constructor, methods, attributes, class variables, instance variables, destructor, self, __init__   objects (instantiation, attributes, methods)
-    inheritance (base class, derived class, method overriding)
-    polymorphism (method overloading, method overriding)
+    classes (constructor, methods, attributes, class variables, instance variables, destructor, self, __init__ )*
+    objects (instantiation, attributes, methods)*
+    inheritance (base class, derived class, method overriding)*
+    polymorphism (method overloading, method overriding)*
     encapsulation (private variables, protected variables, getter/setter methods)
     abstraction (abstract classes, interfaces, abstract methods)
     composition (has-a relationship, using objects as attributes)
@@ -125,9 +128,18 @@ Frameworks:
     Asynchronous (aiohttp, gevent, Tornado, Sanic)
     Synchronous+Asynchronous (FastAPI, Django, Pyramid, Flask)
     Other (Bottle, CherryPy, Falcon)
+    Network Automation (Paramiko, Netmiko, NAPALM, Ansible)
+    GUI Automation (PyAutoGUI, Pywinauto, Tkinter, Kivy)
+    Web Scraping (BeautifulSoup, Scrapy, Selenium, Requests-HTML)
+
 
 Testing:
-    unittest
+    unit testing
+    integration testing
+    end-to-end testing
+    load testing
+    performance testing
+    regression testing
     pytest
     doctest
     tox
@@ -160,10 +172,49 @@ Functional Programming in Python:
     dataclasses
     pydantic
 
+Data Science and Machine Learning Libraries:
+    NumPy
+    pandas
+    Matplotlib
+    Seaborn
+    SciPy
+    Scikit-learn
+    TensorFlow
+    Keras
+    PyTorch
+    Statsmodels
+    LightGBM
+    XGBoost
+    CatBoost
+    OpenCV
+    PIL/Pillow
+    NLTK
+    SpaCy
+    Gensim
+    Hugging Face Transformers
 
+Design Patterns:
+    Singleton
+    Factory
+    Observer
+    Strategy
+    Decorator
+    Adapter
+    Command
+    Proxy
+    Facade
+    Builder
+    Template Method
+    MVC (Model-View-Controller)
+    MVVM (Model-View-ViewModel)
+    CQRS (Command Query Responsibility Segregation)
+    
 SOLID Principles:
     Single Responsibility Principle
     Open/Closed Principle
     Liskov Substitution Principle
     Interface Segregation Principle
     Dependency Inversion Principle
+
+   Closures
+   Iterators vs Lambdas
