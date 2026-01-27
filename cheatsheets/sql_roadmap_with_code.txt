@@ -151,9 +151,72 @@ DROP CONSTRAINT chk_SalaryPositive;
 ---------------------------------------------------------------------------------------------------------------
 DROP OPERATIONS (DROP TABLE, DROP DATABASE, DROP INDEX, DROP VIEW, DROP PROCEDURE)
 ---------------------------------------------------------------------------------------------------------------
+-- Delete the entire database and all its contents
+-- Using IF EXISTS prevents an error if the database was already deleted
+DROP DATABASE IF EXISTS CompanyDB;
+
+-- Remove the 'Employees' table and all its data
+DROP TABLE IF EXISTS Employees;
+
+---------------------------------------------------------------------------------------------------------------
 TRUNCATE OPERATIONS (TRUNCATE TABLE)
+---------------------------------------------------------------------------------------------------------------
+/* PostgreSQL Syntax */
+
+-- 1. Simple Truncate: Clears data, keeps space allocated vaguely similar to before
+TRUNCATE TABLE Logs;
+
+-- 2. Reset Identity: Deletes data AND resets the auto-increment counter to 1
+TRUNCATE TABLE Products RESTART IDENTITY;
+
+-- 3. Cascade: The "Nuclear Option"
+-- Deletes data in this table AND automatically deletes data in all tables 
+-- that reference this table via Foreign Keys. Use with extreme caution!
+TRUNCATE TABLE Departments CASCADE;
+
+/* Oracle Syntax */
+
+-- 1. Standard Truncate (implicitly performs DROP STORAGE)
+-- Frees up the disk space for other tables to use
+TRUNCATE TABLE Logs;
+
+-- 2. Keep Space Allocated (Performance optimization)
+-- Deletes rows but keeps the storage block reserved for this table.
+-- Faster for subsequent INSERTs because no new space allocation is needed.
+TRUNCATE TABLE Logs REUSE STORAGE;
+
+-- 3. Cascade (Since Oracle 12c)
+-- Recursively truncates child tables connected via Foreign Keys (ON DELETE CASCADE must be set)
+TRUNCATE TABLE Departments CASCADE;
+
+---------------------------------------------------------------------------------------------------------------
 RENAME OPERATIONS (RENAME TABLE, RENAME COLUMN)
+---------------------------------------------------------------------------------------------------------------
+/* PostgreSQL */
+-- Syntax: ALTER TABLE [OldName] RENAME TO [NewName];
+ALTER TABLE Products RENAME TO Inventory;
+
+
+/* Oracle (Shortcut) */
+-- Simple shorthand specifically for Oracle
+RENAME Products TO Inventory;
+
+/* Oracle (Standard Alternative) */
+-- This works too and is compatible with standard SQL concepts
+ALTER TABLE Products RENAME TO Inventory;
+
+/* PostgreSQL */
+-- Syntax: ALTER TABLE [TableName] RENAME COLUMN [OldColumn] TO [NewColumn];
+ALTER TABLE Inventory 
+RENAME COLUMN Price TO UnitCost;
+
+/* Oracle */
+-- Requires Oracle 9i Release 2 or higher (standard now)
+ALTER TABLE Inventory 
+RENAME COLUMN Price TO UnitCost;
+
 SELECT STATEMENT (SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, JOINS, SUBQUERIES, SET OPERATIONS)
+
 INSERT STATEMENT (INSERT INTO, INSERT SELECT, BULK INSERT)
 UPDATE STATEMENT (UPDATE, SET, WHERE, JOINED UPDATE)
 DELETE STATEMENT (DELETE FROM, WHERE, JOINED DELETE)
