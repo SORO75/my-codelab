@@ -12,8 +12,29 @@ MariaDB
 SQLite
 
 --------------------------------
-RDBMS DATABASES
+Installations
 --------------------------------
+# --- PostgreSQL Installation on Ubuntu ---
+# --- 1. Update Package Lists ---
+# Ensure the system has the latest list of available software packages
+sudo apt update
+
+# --- 2. Install PostgreSQL ---
+# Install the core server and useful additional modules (contrib)
+sudo apt install postgresql postgresql-contrib
+
+# --- 3. Manage the Service ---
+# Start the database server immediately
+sudo systemctl start postgresql
+
+# Enable the server to start automatically on system boot
+sudo systemctl enable postgresql
+
+# Check the current status (should be "active/running")
+sudo systemctl status postgresql
+
+
+
 
 
 DDL  (Data Definition Language)				CREATE, ALTER, DROP, TRANCATE, RENAME
@@ -23,7 +44,91 @@ TCL  (Transaction Control Language)			COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTI
 ---------------------------------
 
 
+CREATE, READ, UPDATE, DELETE (CRUD OPERATIONS)
+
+CREATE STATEMENT (CREATE TABLE, CREATE DATABASE, CREATE INDEX, CREATE VIEW, CREATE PROCEDURE)
+
+-- Create a new database named 'CompanyDB'
+CREATE DATABASE CompanyDB
+WITH 
+    OWNER = db_admin,          -- Specifies the owner of the database
+    ENCODING = 'UTF8',         -- Sets the character encoding to UTF-8
+    CONNECTION LIMIT = 25;     -- Limits the number of concurrent connections to 25;
+
+CREATE TABLE Employees (
+    EmployeeID INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier, auto-generated
+    FirstName VARCHAR(50) NOT NULL,            -- This field cannot be empty
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,                 -- Ensures no duplicate email addresses
+    BirthDate DATE,
+    Salary DECIMAL(10, 2),                     -- Format for currency (e.g., 50000.00)
+    Department VARCHAR(50) DEFAULT 'General'   -- Default value if none is provided
+);
+
+-- Create an index on the 'LastName' column to speed up search queries
+CREATE INDEX idx_lastname 
+ON Employees (LastName);
+
+-- Create a view that shows only contact info (hides sensitive data like salary)
+CREATE VIEW EmployeeContactList AS
+SELECT FirstName, LastName, Email
+FROM Employees;
+
+-- Create or replace the procedure if it already exists to avoid errors (PostgreSQL syntax)
+CREATE OR REPLACE PROCEDURE IncreaseSalary(
+    p_EmployeeID INT, 
+    p_Percentage DECIMAL
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Update the salary for the specific employee
+    -- The calculation increases the current salary by the given percentage
+    UPDATE Employees
+    SET Salary = Salary * (1 + (p_Percentage / 100))
+    WHERE EmployeeID = p_EmployeeID;
+
+    -- Optional: Commit the transaction immediately (unique to Procedures in Postgres)
+    COMMIT;
+END;
+$$;
+
+-- Create or replace the procedure to allow overwriting without dropping it first (Oracle syntax)
+CREATE OR REPLACE PROCEDURE IncreaseSalary (
+    p_EmployeeID IN NUMBER,    -- Oracle prefers NUMBER instead of INT/DECIMAL
+    p_Percentage IN NUMBER
+)
+AS
+BEGIN
+    -- Update the salary calculation
+    -- Logic remains the same: Current Salary * (1 + Percentage/100)
+    UPDATE Employees
+    SET Salary = Salary * (1 + (p_Percentage / 100))
+    WHERE EmployeeID = p_EmployeeID;
+
+    -- In Oracle, you often commit explicitly to make changes permanent
+    COMMIT;
+END IncreaseSalary;
+/
+
+
+
+ALTER TABLE OPERATIONS (ADD COLUMN, DROP COLUMN, MODIFY COLUMN, RENAME COLUMN, ADD CONSTRAINT, DROP CONSTRAINT)
+DROP OPERATIONS (DROP TABLE, DROP DATABASE, DROP INDEX, DROP VIEW, DROP PROCEDURE)
+TRUNCATE OPERATIONS (TRUNCATE TABLE)
+RENAME OPERATIONS (RENAME TABLE, RENAME COLUMN)
 SELECT STATEMENT (SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, JOINS, SUBQUERIES, SET OPERATIONS)
+INSERT STATEMENT (INSERT INTO, INSERT SELECT, BULK INSERT)
+UPDATE STATEMENT (UPDATE, SET, WHERE, JOINED UPDATE)
+DELETE STATEMENT (DELETE FROM, WHERE, JOINED DELETE)
+MERGE STATEMENT (MERGE INTO, USING, ON, WHEN MATCHED, WHEN NOT MATCHED)
+LOCK TABLE STATEMENT (LOCK TABLE, LOCK MODE)
+GRANT STATEMENT (GRANT PRIVILEGES, ON OBJECT, TO USER/ROLE)
+REVOKE STATEMENT (REVOKE PRIVILEGES, ON OBJECT, FROM USER/ROLE)
+COMMIT STATEMENT (COMMIT TRANSACTION)
+ROLLBACK STATEMENT (ROLLBACK TRANSACTION)
+SAVEPOINT STATEMENT (SAVEPOINT NAME)
+SET TRANSACTION STATEMENT (SET TRANSACTION ISOLATION LEVEL, READ WRITE/ONLY)
 AGGREGATE QUERIES (COUNT, SUM, AVG, MIN, MAX, GROUP_CONCAT, DISTINCT, GROUP BY, HAVING)
 JOINS (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN, SELF JOIN)
 SUBQUERIES (CORRELATED, NON-CORRELATED)
@@ -50,7 +155,7 @@ ADVANCED TOPICS (PARTITIONING, SHARDING, REPLICATION, CLUSTERING, PERFORMANCE TU
 QUERY OPTIMIZATION (INDEX USAGE, QUERY PLANS, STATISTICS, HINTS, CACHING)
 QUERY ANALYSIS TOOLS (EXPLAIN PLAN, PROFILING TOOLS, PERFORMANCE MONITORING)
 WINDOW FUNCTIONS (ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD)
-Volltextsuche (FULL-TEXT INDEXING, FULL-TEXT SEARCH QUERIES, RELEVANCY RANKING, BOOLEAN MODE SEARCHES)
+FULL-TEXT SEARCH (FULL-TEXT INDEXING, FULL-TEXT SEARCH QUERIES, RELEVANCY RANKING, BOOLEAN MODE SEARCHES)
 SEQEUNCEs (CREATE SEQUENCE, NEXTVAL, CURRVAL, SEQUENCE OPTIONS)
 
 DATA WAREHOUSING CONCEPTS (ETL PROCESSES, STAR SCHEMA, SNOWFLAKE SCHEMA, FACT AND DIMENSION TABLES)
@@ -69,3 +174,4 @@ SCHEMA DESIGN BEST PRACTICES (NAMING CONVENTIONS, DATA MODELING, DOCUMENTATION, 
 TABLE PARTITIONING (PARTITION KEY SELECTION, PARTITION MAINTENANCE, QUERY PERFORMANCE)
 INDEX OPTIMIZATION (INDEX TYPES, INDEX MAINTENANCE, STATISTICS UPDATE, FRAGMENTATION MANAGEMENT)
 TABLESPACE MANAGEMENT (CREATION, ALLOCATION, MONITORING, MAINTENANCE)
+CASHING STRATEGIES (RESULT SET CACHING, QUERY CACHING, APPLICATION LEVEL CACHING, CACHE INVALIDATION)
