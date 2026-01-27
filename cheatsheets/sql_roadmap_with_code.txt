@@ -45,9 +45,11 @@ TCL  (Transaction Control Language)			COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTI
 
 
 CREATE, READ, UPDATE, DELETE (CRUD OPERATIONS)
-
+----------------------------------------------------------------------------------------------
 CREATE STATEMENT (CREATE TABLE, CREATE DATABASE, CREATE INDEX, CREATE VIEW, CREATE PROCEDURE)
+----------------------------------------------------------------------------------------------
 
+-- Example SQL Code Snippets --
 -- Create a new database named 'CompanyDB'
 CREATE DATABASE CompanyDB
 WITH 
@@ -111,10 +113,44 @@ BEGIN
 END IncreaseSalary;
 /
 
-
-
+---------------------------------------------------------------------------------------------------------------
 ALTER TABLE OPERATIONS (ADD COLUMN, DROP COLUMN, MODIFY COLUMN, RENAME COLUMN, ADD CONSTRAINT, DROP CONSTRAINT)
+---------------------------------------------------------------------------------------------------------------
+-- Add a new column named 'PhoneNumber' to the table
+ALTER TABLE Employees
+ADD PhoneNumber VARCHAR(20);
+
+-- Remove the 'PhoneNumber' column from the table
+ALTER TABLE Employees
+DROP COLUMN PhoneNumber;
+
+-- MySQL & Oracle syntax: Modify the column type
+ALTER TABLE Employees
+MODIFY Email VARCHAR(150);
+
+-- PostgreSQL syntax: Change the data type
+ALTER TABLE Employees
+ALTER COLUMN Email TYPE VARCHAR(150);
+
+-- SQL Server syntax
+ALTER TABLE Employees
+ALTER COLUMN Email VARCHAR(150);
+
+-- Rename column 'Department' to 'DeptName'
+ALTER TABLE Employees
+RENAME COLUMN Department TO DeptName;
+
+-- Add a constraint to ensure Salary is always greater than 0
+ALTER TABLE Employees
+ADD CONSTRAINT chk_SalaryPositive CHECK (Salary > 0);
+
+-- Remove the constraint named 'chk_SalaryPositive'
+ALTER TABLE Employees
+DROP CONSTRAINT chk_SalaryPositive;
+
+---------------------------------------------------------------------------------------------------------------
 DROP OPERATIONS (DROP TABLE, DROP DATABASE, DROP INDEX, DROP VIEW, DROP PROCEDURE)
+---------------------------------------------------------------------------------------------------------------
 TRUNCATE OPERATIONS (TRUNCATE TABLE)
 RENAME OPERATIONS (RENAME TABLE, RENAME COLUMN)
 SELECT STATEMENT (SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, JOINS, SUBQUERIES, SET OPERATIONS)
