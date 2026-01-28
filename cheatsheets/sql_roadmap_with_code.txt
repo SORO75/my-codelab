@@ -215,13 +215,170 @@ RENAME COLUMN Price TO UnitCost;
 ALTER TABLE Inventory 
 RENAME COLUMN Price TO UnitCost;
 
+------------------------------------------------------------------------------------------------------
 SELECT STATEMENT (SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, JOINS, SUBQUERIES, SET OPERATIONS)
+------------------------------------------------------------------------------------------------------
+SELECT FirstName, LastName, Salary, Department
+FROM Employees
+WHERE Department = 'IT' 
+  AND Salary > 50000
+ORDER BY Salary DESC; -- Sorts from highest to lowest
+
+SELECT Department, AVG(Salary) as AvgSalary, COUNT(*) as EmployeeCount
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) > 60000; -- Filters groups with average salary over 60,000
+
+SELECT 
+    e.FirstName, 
+    e.LastName, 
+    d.DepartmentName
+FROM Employees e                  -- 'e' is an alias for Employees
+INNER JOIN Departments d          -- 'd' is an alias for Departments
+    ON e.DepartmentID = d.DepartmentID;
+
+ SELECT FirstName, Salary
+FROM Employees
+WHERE Salary > (
+    SELECT AVG(Salary) FROM Employees
+); -- Finds employees earning above average salary
+
+-- Returns a list of ALL names from both tables
+-- UNION removes duplicates, UNION ALL keeps them (and is faster)
+SELECT LastName FROM Current_Employees
+UNION ALL
+SELECT LastName FROM Archived_Employees;
+
+-- Who is in the archive BUT somehow still listed as active?
+SELECT EmployeeID FROM Current_Employees
+INTERSECT
+SELECT EmployeeID FROM Archived_Employees;
+
+/* Oracle specific */
+SELECT ProductID FROM Inventory
+MINUS
+SELECT ProductID FROM Sales; -- Items that have never been sold
+
+/* PostgreSQL specific */
+SELECT ProductID FROM Inventory
+EXCEPT
+SELECT ProductID FROM Sales; -- Items that have never been sold
+
+
+---------------------------------------------------------------------------------------------------------------
+JOINS (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN, SELF JOIN)
+---------------------------------------------------------------------------------------------------------------
+
+/* Type: INNER JOIN
+   Logic: Returns only rows when there is a match in BOTH tables.
+   Result: Employees without a department are excluded. 
+           Departments with no employees are excluded.
+*/
+SELECT e.LastName, d.DepartmentName
+FROM Employees e
+INNER JOIN Departments d 
+    ON e.DepartmentID = d.DepartmentID;
+
+/* Type: LEFT OUTER JOIN
+   Logic: Returns ALL records from the LEFT table (Employees), and the matched records from the right table.
+   Result: If an employee has no department, they are still listed, but DepartmentName will be NULL.
+*/
+SELECT e.LastName, d.DepartmentName
+FROM Employees e
+LEFT JOIN Departments d 
+    ON e.DepartmentID = d.DepartmentID;  
+
+/* Type: RIGHT OUTER JOIN
+   Logic: Returns ALL records from the RIGHT table (Departments), and the matched records from the left table.
+   Result: If a department exists (e.g., 'Innovation Lab') but has no employees, it is listed.
+           The employee columns (LastName) will be NULL for that row.
+*/
+SELECT e.LastName, d.DepartmentName
+FROM Employees e
+RIGHT JOIN Departments d 
+    ON e.DepartmentID = d.DepartmentID;
+
+/* Type: FULL OUTER JOIN
+   Logic: Returns all records when there is a match in EITHER left or right table.
+   Result: Combines the results of both LEFT and RIGHT joins.
+           - You see employees without departments.
+           - You see departments without employees.
+           - NULLs appear wherever data is missing on the other side.
+*/
+SELECT e.LastName, d.DepartmentName
+FROM Employees e
+FULL OUTER JOIN Departments d 
+    ON e.DepartmentID = d.DepartmentID;
+
+/* Type: CROSS JOIN (Cartesian Product)
+   Logic: Returns the combination of EVERY row from the first table with EVERY row from the second table.
+   Result: If Employees has 100 rows and Departments has 10 rows, the result is 1,000 rows.
+   Warning: Can be very slow on large tables!
+*/
+SELECT e.LastName, d.DepartmentName
+FROM Employees e
+CROSS JOIN Departments d;
+
+/* Type: SELF JOIN
+   Logic: The table is joined with itself to compare rows within the same table.
+   Context: We treat 'Employees' as two separate entities: 
+            1. 'emp' (the worker)
+            2. 'mgr' (the boss)
+   Result: Lists the employee's name next to their manager's name.
+*/
+SELECT 
+    emp.LastName AS Employee, 
+    mgr.LastName AS Manager
+FROM Employees emp
+LEFT JOIN Employees mgr 
+    ON emp.ManagerID = mgr.EmployeeID;
+
+
+/* Type: NATURAL JOIN
+   Logic: Automatically joins tables based on columns with the SAME NAME and compatible types.
+   Risk: Highly risky in production! If a new common column is added later, the query logic changes silently.
+*/
+
+-- Notice: No 'ON' clause is needed here
+SELECT LastName, DepartmentName
+FROM Employees
+NATURAL JOIN Departments;
+
+/* Scenario: Analytics per Department
+   Logic: 
+   1. Use LEFT JOIN to include departments even if they have NO employees.
+   2. Group the results by the Department Name.
+   3. Calculate count and average salary.
+*/
+
+SELECT 
+    d.DepartmentName,
+    -- Count specific ID to avoid counting NULLs from the Left Join as 1
+    COUNT(e.EmployeeID) AS TotalEmployees, 
+    -- Calculate average, rounding to 2 decimal places
+    ROUND(AVG(e.Salary), 2) AS AverageSalary
+FROM Departments d
+LEFT JOIN Employees e 
+    ON d.DepartmentID = e.DepartmentID
+GROUP BY d.DepartmentName
+ORDER BY TotalEmployees DESC;
+
+
+
+
+
+
+
+
 
 INSERT STATEMENT (INSERT INTO, INSERT SELECT, BULK INSERT)
 UPDATE STATEMENT (UPDATE, SET, WHERE, JOINED UPDATE)
 DELETE STATEMENT (DELETE FROM, WHERE, JOINED DELETE)
 MERGE STATEMENT (MERGE INTO, USING, ON, WHEN MATCHED, WHEN NOT MATCHED)
 LOCK TABLE STATEMENT (LOCK TABLE, LOCK MODE)
+
+
+
 GRANT STATEMENT (GRANT PRIVILEGES, ON OBJECT, TO USER/ROLE)
 REVOKE STATEMENT (REVOKE PRIVILEGES, ON OBJECT, FROM USER/ROLE)
 COMMIT STATEMENT (COMMIT TRANSACTION)
