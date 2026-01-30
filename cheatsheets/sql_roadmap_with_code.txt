@@ -363,23 +363,180 @@ LEFT JOIN Employees e
 GROUP BY d.DepartmentName
 ORDER BY TotalEmployees DESC;
 
-
-
-
-
-
-
-
-
+---------------------------------------------------------------------------------------------------------------
 INSERT STATEMENT (INSERT INTO, INSERT SELECT, BULK INSERT)
+---------------------------------------------------------------------------------------------------------------
+
+/* Standard SQL (Works in Postgres & Oracle)
+   Logic: Adds a single new record to the Employees table.
+   Note: If columns are omitted (like EmployeeID), the DB tries to use auto-increment or default values.
+*/
+INSERT INTO Employees (FirstName, LastName, Email, Salary, DepartmentID)
+VALUES ('Alice', 'Wonderland', 'alice@example.com', 55000.00, 10);
+
+-- Oracle Requirement:
+COMMIT; -- Don't forget this in Oracle!
+
+/* PostgreSQL Syntax
+   Logic: Insert multiple rows in a single command. Very efficient.
+*/
+INSERT INTO Employees (FirstName, LastName, Salary)
+VALUES 
+    ('Bob', 'Builder', 45000.00),
+    ('Charlie', 'Chocolate', 62000.00),
+    ('Dora', 'Explorer', 48000.00);
+
+
+/* Oracle Syntax (Classic)
+   Logic: Insert into multiple rows at once. Requires a dummy select at the end.
+*/
+INSERT ALL
+    INTO Employees (FirstName, LastName, Salary) VALUES ('Bob', 'Builder', 45000)
+    INTO Employees (FirstName, LastName, Salary) VALUES ('Charlie', 'Choc', 62000)
+SELECT * FROM dual;   
+
+/* Type: INSERT INTO ... SELECT
+   Logic: Selects data from one table and inserts it directly into another.
+   Prerequisite: The target table (Project_Team) must already exist.
+*/
+INSERT INTO Project_Team (MemberName, MemberRole)
+SELECT LastName, 'Developer'
+FROM Employees
+WHERE DepartmentID = (SELECT DepartmentID FROM Departments WHERE DepartmentName = 'IT');
+
+/* PostgreSQL Specific: COPY
+   Logic: Reads a CSV file from the server's disk and fills the table.
+   Note: Requires superuser privileges or specific file access.
+*/
+COPY Employees(FirstName, LastName, Email, Salary)
+FROM '/path/to/new_hires.csv'
+DELIMITER ','
+CSV HEADER;
+
+/* Oracle Approach: INSERT from External Table
+   Logic: 1. Create a link to the CSV file (External Table).
+          2. Use INSERT SELECT to load it.
+*/
+INSERT INTO Employees (FirstName, LastName, Salary)
+SELECT col1, col2, col3
+FROM My_CSV_External_Table;
+
+---------------------------------------------------------------------------------------------------------------
 UPDATE STATEMENT (UPDATE, SET, WHERE, JOINED UPDATE)
+---------------------------------------------------------------------------------------------------------------
+/* Standard UPDATE
+   Logic: Increases the salary by 5000 for a specific employee.
+   Safety: Always use a WHERE clause! Without it, EVERY row gets updated.
+*/
+UPDATE Employees
+SET Salary = Salary + 5000
+WHERE EmployeeID = 101;
+
+/* PostgreSQL: Update with Join
+   Logic: Uses the 'FROM' clause to join the source of the data.
+*/
+UPDATE Employees e
+SET Salary = e.Salary + b.BonusAmount
+FROM Bonuses b
+WHERE e.EmployeeID = b.EmployeeID;
+
+/* Oracle: Update with Correlated Subquery
+   Logic: We look up the value for each row individually.
+*/
+UPDATE Employees e
+SET Salary = e.Salary + (
+    SELECT b.BonusAmount 
+    FROM Bonuses b 
+    WHERE b.EmployeeID = e.EmployeeID
+)
+WHERE EXISTS ( -- Critical: Only update rows that actually have a bonus!
+    SELECT 1 
+    FROM Bonuses b 
+    WHERE b.EmployeeID = e.EmployeeID
+);
+
+-----------------------------------------------------------------------------------------------
 DELETE STATEMENT (DELETE FROM, WHERE, JOINED DELETE)
+-----------------------------------------------------------------------------------------------
+/* PostgreSQL: Delete using another table
+   Logic: The 'USING' keyword allows referencing other tables for the condition.
+*/
+DELETE FROM Employees
+USING ClosedDepartments
+WHERE Employees.DepartmentID = ClosedDepartments.DepartmentID;
+
+/* Oracle: Delete with Subquery
+   Logic: Delete rows where the ID is found in the list of closed departments.
+*/
+DELETE FROM Employees
+WHERE DepartmentID IN (
+    SELECT DepartmentID 
+    FROM ClosedDepartments
+);
+
+
+---------------------------------------------------------------------------------------------
 MERGE STATEMENT (MERGE INTO, USING, ON, WHEN MATCHED, WHEN NOT MATCHED)
+---------------------------------------------------------------------------------------------
+/* MERGE Statement (Works in Oracle & PostgreSQL 15+)
+   Target: The table receiving changes (Target_Products)
+   Source: The incoming data (Source_Products)
+*/
+MERGE INTO Target_Products t
+USING Source_Products s
+ON (t.ProductID = s.ProductID) -- The matching condition (Primary Key)
+
+-- 1. If the ID exists -> Update the price and name
+WHEN MATCHED THEN
+    UPDATE SET 
+        t.ProductName = s.ProductName,
+        t.Price = s.Price
+
+-- 2. If the ID does NOT exist -> Insert a new row
+WHEN NOT MATCHED THEN
+    INSERT (ProductID, ProductName, Price)
+    VALUES (s.ProductID, s.ProductName, s.Price);
+
+
+-------------------------------------------------------------------------------------------------
 LOCK TABLE STATEMENT (LOCK TABLE, LOCK MODE)
+-------------------------------------------------------------------------------------------------
+
+ /* PostgreSQL Locking
+   Mode: ACCESS EXCLUSIVE (Most restrictive lock in Postgres).
+   Effect: Nobody can read or write to the table until transaction ends.
+*/
+BEGIN; -- Start transaction
+    LOCK TABLE Employees IN ACCESS EXCLUSIVE MODE;
+    
+    -- Do critical maintenance here...
+    
+COMMIT; -- Release lock
+
+/* Oracle Locking
+   Mode: EXCLUSIVE.
+   Effect: Allows queries (SELECT) from others, but blocks any INSERT/UPDATE/DELETE/LOCK.
+   Option: NOWAIT (Returns error immediately if table is already locked by someone else).
+*/
+LOCK TABLE Employees IN EXCLUSIVE MODE NOWAIT;
+
+-- Lock is released automatically on COMMIT or ROLLBACK
 
 
 
+
+
+-------------------------------------------------------------------------------------------------
 GRANT STATEMENT (GRANT PRIVILEGES, ON OBJECT, TO USER/ROLE)
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 REVOKE STATEMENT (REVOKE PRIVILEGES, ON OBJECT, FROM USER/ROLE)
 COMMIT STATEMENT (COMMIT TRANSACTION)
 ROLLBACK STATEMENT (ROLLBACK TRANSACTION)
