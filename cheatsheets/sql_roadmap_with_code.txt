@@ -522,28 +522,198 @@ LOCK TABLE Employees IN EXCLUSIVE MODE NOWAIT;
 
 -- Lock is released automatically on COMMIT or ROLLBACK
 
-
-
-
-
 -------------------------------------------------------------------------------------------------
 GRANT STATEMENT (GRANT PRIVILEGES, ON OBJECT, TO USER/ROLE)
 -------------------------------------------------------------------------------------------------
+/* Standard SQL (Postgres & Oracle)
+   Object: The 'Employees' table.
+   Privileges: User can READ (Select) and ADD (Insert) data, but NOT delete or update.
+   User: 'junior_dev'
+*/
+GRANT SELECT, INSERT 
+ON Employees 
+TO junior_dev;
+
+/* Oracle: Granting execution rights on a procedure */
+GRANT EXECUTE ON IncreaseSalary TO manager_role;
+
+/* PostgreSQL Specifics */
+
+-- 1. Allow running the procedure
+GRANT EXECUTE ON PROCEDURE IncreaseSalary TO manager_role;
+
+-- 2. CRITICAL: If inserting data, user needs rights on the sequence too!
+-- Otherwise they get "Permission denied for sequence..." errors.
+GRANT USAGE, SELECT ON SEQUENCE employees_id_seq TO junior_dev;
+
+/* Oracle System Privileges
+   CREATE SESSION: Allows the user to connect to the DB.
+   CREATE TABLE: Allows user to create their own tables.
+*/
+GRANT CREATE SESSION TO new_user;
+GRANT CREATE TABLE TO new_user;
+
+/* RBAC */
+
+-- Create a generic role (container for privileges)
+CREATE ROLE read_only_staff;
+
+-- Give read access to the role
+GRANT SELECT ON Employees TO read_only_staff;
+GRANT SELECT ON Departments TO read_only_staff;
+
+/* Grant the role to the actual user
+   Now 'alice' inherits all permissions from 'read_only_staff'.
+*/
+GRANT read_only_staff TO alice;
 
 
 
+/* WITH GRANT OPTION
+   Logic: 'manager' gets SELECT rights AND the power to grant SELECT to others.
+   Warning: If you revoke rights from 'manager' later, it might cascade to others!
+*/
+GRANT SELECT, UPDATE 
+ON Employees 
+TO manager 
+WITH GRANT OPTION;
+
+/* PostgreSQL only: Bulk Grant
+   Logic: Grants SELECT on ALL tables currently in the schema.
+   Note: Does not automatically apply to tables created in the future 
+         (unless you use ALTER DEFAULT PRIVILEGES).
+*/
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO read_only_staff;
 
 
-
-
-
+--------------------------------------------------------------------------------------------------
 REVOKE STATEMENT (REVOKE PRIVILEGES, ON OBJECT, FROM USER/ROLE)
 COMMIT STATEMENT (COMMIT TRANSACTION)
 ROLLBACK STATEMENT (ROLLBACK TRANSACTION)
 SAVEPOINT STATEMENT (SAVEPOINT NAME)
+---------------------------------------------------------------------------------------------------
+/* Standard SQL (Postgres & Oracle)
+   Action: Remove the DELETE privilege on the Employees table.
+   Result: The user can still SELECT or INSERT (if previously granted), 
+           but gets a "permission denied" error when trying to delete.
+*/
+REVOKE DELETE 
+ON Employees 
+FROM junior_dev;
+
+/* Revoking a Role
+   Action: Alice loses all privileges associated with the 'manager_role'.
+*/
+REVOKE manager_role FROM alice;
+/* PostgreSQL Specific: CASCADE
+   Logic: Revoke rights from 'manager' AND automatically revoke rights 
+          from anyone the manager granted rights to.
+*/
+REVOKE SELECT ON Employees FROM manager CASCADE;
+
+/* Scenario: Successful Transfer */
+
+-- 1. Start Transaction (Essential in Postgres, implicit in Oracle)
+BEGIN; 
+
+-- 2. Deduct 500 from Account A
+UPDATE Accounts SET Balance = Balance - 500 WHERE AccountID = 'A';
+
+-- 3. Add 500 to Account B
+UPDATE Accounts SET Balance = Balance + 500 WHERE AccountID = 'B';
+
+-- 4. Save changes permanently
+/* If power fails before this line, NO money changes hands. */
+COMMIT;
+
+/* Scenario: Something goes wrong */
+
+BEGIN; 
+
+-- 1. Deduct money from A
+UPDATE Accounts SET Balance = Balance - 500 WHERE AccountID = 'A';
+
+-- 2. Simulate an error (e.g., Account B does not exist or server crash)
+-- Oops! We cannot credit Account B. We must not leave Account A with less money!
+
+-- 3. Undo everything in this transaction block
+ROLLBACK;
+
+/* Result: Account A has its original balance back. */
+
+/* Scenario: Partial Rollback using Savepoints */
+
+BEGIN;
+
+-- Step 1: Insert Product 1 (Safe)
+INSERT INTO Products (Name) VALUES ('Laptop');
+
+-- Step 2: Insert Product 2 (Safe)
+INSERT INTO Products (Name) VALUES ('Mouse');
+
+-- Set a marker here
+SAVEPOINT my_checkpoint;
+
+-- Step 3: Try to insert Product 3 (Risky - maybe duplicate ID?)
+INSERT INTO Products (Name) VALUES ('Keyboard');
+
+-- Let's assume Step 3 caused an error. 
+-- Instead of cancelling the Laptop and Mouse, we go back to the marker:
+ROLLBACK TO SAVEPOINT my_checkpoint;
+
+-- Step 4: Save the transaction
+COMMIT;
+
+/* Result: 
+   - Laptop: SAVED
+   - Mouse: SAVED
+   - Keyboard: NOT SAVED (Rolled back)
+*/
+
+-------------------------------------------------------------------------------------------------
 SET TRANSACTION STATEMENT (SET TRANSACTION ISOLATION LEVEL, READ WRITE/ONLY)
+-------------------------------------------------------------------------------------------------
+/* PostgreSQL & Oracle Syntax */
+SET TRANSACTION READ ONLY;
+
+-- Now, this is safe:
+SELECT * FROM Employees;
+
+-- BUT this will trigger an error immediately:
+DELETE FROM Employees; -- Error: cannot execute DELETE in a read-only transaction
+
+SET TRANSACTION READ WRITE;
+
+/* Standard Mode */
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+/* Consistent Reporting Mode */
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+/* Maximum Safety Mode */
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+/* Code for the Finance Report */
+BEGIN;
+
+-- Lock the view of the data to the moment this command runs
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SET TRANSACTION READ ONLY; -- Good practice for reports
+
+-- Run complex queries...
+SELECT SUM(Balance) FROM Accounts;
+-- ... take coffee break ...
+-- ... run more queries ...
+
+COMMIT; -- End the snapshot
+
+
+
+
+
+
 AGGREGATE QUERIES (COUNT, SUM, AVG, MIN, MAX, GROUP_CONCAT, DISTINCT, GROUP BY, HAVING)
-JOINS (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN, SELF JOIN)
+                                                                                                                        
 SUBQUERIES (CORRELATED, NON-CORRELATED)
 SET OPERATIONS (UNION, UNION ALL, INTERSECT, EXCEPT/MINUS
 DATA CONSTRAINTS (Primary Key, Foreign Key, Unique, Not Null, Check)
