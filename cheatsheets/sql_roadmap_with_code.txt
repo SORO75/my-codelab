@@ -707,19 +707,447 @@ SELECT SUM(Balance) FROM Accounts;
 
 COMMIT; -- End the snapshot
 
+-------------------------------------------------------------------------------------------------
+AGREGATE QUERIES (COUNT, SUM, AVG, MIN, MAX, GROUP_CONCAT, DISTINCT, GROUP BY, HAVING)
+-------------------------------------------------------------------------------------------------
+/* Basic Aggregation
+   Logic: Collapse all rows into a single summary row.
+*/
+SELECT 
+    -- 1. Count rows
+    COUNT(*) AS TotalTransactions,
+    
+    -- 2. Count only non-null values in a specific column
+    COUNT(CustomerID) AS KnownCustomers,
+    
+    -- 3. Summing up values
+    SUM(Amount) AS TotalRevenue,
+    
+    -- 4. Calculate Average (Precision matters!)
+    ROUND(AVG(Amount), 2) AS AverageOrderValue,
+    
+    -- 5. Find extremes
+    MIN(Amount) AS SmallestSale,
+    MAX(Amount) AS LargestSale
+FROM Sales;
 
+/* GROUP BY
+   Logic: "Split-Apply-Combine"
+   1. Split table into buckets based on 'Region'.
+   2. Apply the SUM function to each bucket.
+   3. Combine results into a list.
+*/
+SELECT 
+    Region, 
+    SUM(Amount) AS RegionalRevenue
+FROM Sales
+GROUP BY Region; -- Essential: Every non-aggregated column in SELECT must be here!
 
+SELECT 
+    Region, 
+    SUM(Amount) AS RegionalRevenue
+FROM Sales
+GROUP BY Region
+HAVING SUM(Amount) > 1000000; -- Filters the aggregate result
 
+/* PostgreSQL: String Aggregation
+   Logic: Concatenates strings from a group into a single cell.
+*/
+SELECT 
+    OrderID,
+    -- Combine product names separated by a comma and space
+    STRING_AGG(ProductName, ', ' ORDER BY ProductName) AS ProductList
+FROM OrderDetails
+GROUP BY OrderID;
+/* Oracle: String Aggregation
+   Logic: Similar to Postgres, but different syntax 'WITHIN GROUP'.
+*/
+SELECT 
+    OrderID,
+    LISTAGG(ProductName, ', ') WITHIN GROUP (ORDER BY ProductName) AS ProductList
+FROM OrderDetails
+GROUP BY OrderID;
 
+/* Complex Aggregate Query
+   Goal: Performance report for 2024 sales reps.
+*/
+SELECT 
+    SalesPerson,
+    COUNT(*) AS DealsClosed,
+    SUM(Amount) AS TotalRevenue,
+    MAX(Amount) AS BestDeal,
+    -- Postgres syntax for list of clients (use LISTAGG for Oracle)
+    STRING_AGG(ClientName, ', ') AS ClientsServed 
+FROM Sales
+WHERE SaleDate BETWEEN '2024-01-01' AND '2024-12-31' -- 1. Filter raw data first
+GROUP BY SalesPerson                                 -- 2. Group by person
+HAVING SUM(Amount) > 50000                           -- 3. Filter the groups (High performers only)
+ORDER BY TotalRevenue DESC;                          -- 4. Sort the final list
 
-AGGREGATE QUERIES (COUNT, SUM, AVG, MIN, MAX, GROUP_CONCAT, DISTINCT, GROUP BY, HAVING)
-                                                                                                                        
+-------------------------------------------------------------------------------------------------                                                                                                                        
 SUBQUERIES (CORRELATED, NON-CORRELATED)
-SET OPERATIONS (UNION, UNION ALL, INTERSECT, EXCEPT/MINUS
-DATA CONSTRAINTS (Primary Key, Foreign Key, Unique, Not Null, Check)
+-------------------------------------------------------------------------------------------------
 
+/* NON-CORRELATED SUBQUERY
+   Logic: 
+   1. The inner query (SELECT AVG...) runs FIRST and once.
+   2. It returns a single value (e.g., 50000).
+   3. The outer query effectively becomes: WHERE Salary > 50000.
+*/
+
+SELECT FirstName, LastName, Salary
+FROM Employees
+WHERE Salary > (
+    -- This inner part has NO connection to the outer table
+    SELECT AVG(Salary) 
+    FROM Employees
+);
+
+SELECT FirstName, LastName
+FROM Employees
+WHERE DepartmentID IN (
+    -- Runs once, returns a list like (10, 20, 50)
+    SELECT DepartmentID 
+    FROM Departments 
+    WHERE Location = 'New York'
+);
+
+/* CORRELATED SUBQUERY
+   Logic:
+   1. The outer query picks a row (Employee e1).
+   2. It passes e1.DepartmentID into the inner query.
+   3. The inner query calculates the average ONLY for that department.
+   4. The comparison happens.
+   5. Repeat for the next employee.
+*/
+
+SELECT e1.FirstName, e1.LastName, e1.Salary, e1.DepartmentID
+FROM Employees e1
+WHERE e1.Salary > (
+    SELECT AVG(e2.Salary)
+    FROM Employees e2
+    -- CRITICAL LINK: This connects the inner world to the outer world
+    WHERE e2.DepartmentID = e1.DepartmentID
+);
+
+/* EXISTS Operator
+   Logic:
+   Check if the subquery returns ANY row. 
+   It stops searching as soon as it finds one match (Short-circuit evaluation).
+*/
+
+SELECT d.DepartmentName
+FROM Departments d
+WHERE EXISTS (
+    SELECT 1            -- We don't care about the data, just that a row exists
+    FROM Employees e
+    WHERE e.DepartmentID = d.DepartmentID -- Correlation
+);
+
+
+
+-------------------------------------------------------------------------------------------------
+SET OPERATIONS (UNION, UNION ALL, INTERSECT, EXCEPT/MINUS)
+-------------------------------------------------------------------------------------------------
+/* UNION
+   Logic: Combines distinct rows from both queries.
+   Performance: Slower than UNION ALL because the DB must sort and remove duplicates.
+*/
+SELECT Name FROM Applicants_2023
+UNION
+SELECT Name FROM Applicants_2024;
+
+/* UNION ALL
+   Logic: Appends results of the second query to the first.
+   Performance: Very fast (no sorting/deduplication overhead).
+*/
+SELECT Name FROM Applicants_2023
+UNION ALL
+SELECT Name FROM Applicants_2024;
+
+/* INTERSECT
+   Logic: Returns only rows that exist in BOTH result sets.
+*/
+SELECT Name FROM Applicants_2023
+INTERSECT
+SELECT Name FROM Applicants_2024;
+
+/* PostgreSQL: EXCEPT
+   Logic: Returns rows from the first query that are NOT in the second.
+*/
+SELECT Name FROM Applicants_2023
+EXCEPT
+SELECT Name FROM Applicants_2024;
+
+/* Oracle: MINUS
+   Logic: Same logic as EXCEPT, just a different keyword.
+*/
+SELECT Name FROM Applicants_2023
+MINUS
+SELECT Name FROM Applicants_2024;
+
+-------------------------------------------------------------------------------------------------
+DATA CONSTRAINTS (Primary Key, Foreign Key, Unique, Not Null, Check)
+-------------------------------------------------------------------------------------------------
+CREATE TABLE Employees (
+    -- 1. NOT NULL (Must be defined inline)
+    EmployeeID INT GENERATED ALWAYS AS IDENTITY, -- Auto-ID (Postgres syntax)
+    FirstName VARCHAR(50) NOT NULL,              -- Constraint: Must have a name
+    LastName VARCHAR(50) NOT NULL,               -- Constraint: Must have a name
+    
+    Email VARCHAR(100),
+    DepartmentID INT,
+    Salary DECIMAL(10, 2),
+    Status VARCHAR(20),
+
+    -- 2. PRIMARY KEY (The unique ID card)
+    CONSTRAINT pk_employees PRIMARY KEY (EmployeeID),
+
+    -- 3. UNIQUE (No duplicates allowed)
+    CONSTRAINT uq_email_address UNIQUE (Email),
+
+    -- 4. FOREIGN KEY (The link to another table)
+    CONSTRAINT fk_department_id FOREIGN KEY (DepartmentID)
+        REFERENCES Departments(DepartmentID)
+        ON DELETE SET NULL,  -- If Dept is deleted, set this field to NULL
+
+    -- 5. CHECK (Custom Logic)
+    CONSTRAINT chk_positive_salary CHECK (Salary > 0),
+    CONSTRAINT chk_valid_status CHECK (Status IN ('Active', 'OnLeave', 'Retired'))
+);
+
+/* Add a UNIQUE constraint to an existing table */
+ALTER TABLE Employees
+ADD CONSTRAINT uq_phone_number UNIQUE (PhoneNumber);
+
+/* Add a CHECK constraint later */
+ALTER TABLE Employees
+ADD CONSTRAINT chk_max_salary CHECK (Salary <= 1000000);
+
+
+-------------------------------------------------------------------------------------------------
 DATA TYPES (INTEGER, FLOAT, CHAR, VARCHAR, TEXT, DATE, TIME, TIMESTAMP, BOOLEAN, BLOB, CLOB)
+-------------------------------------------------------------------------------------------------
+/* PostgreSQL */
+CREATE TABLE NumericDemo (
+    CountItems INTEGER,         -- Standard integer (e.g., 50)
+    ScientificValue FLOAT       -- Approximate value (e.g., 3.14159...)
+);
+
+/* Oracle */
+CREATE TABLE NumericDemo (
+    CountItems NUMBER(10),      -- Oracle prefers NUMBER for everything
+    ScientificValue FLOAT       -- Oracle supports FLOAT (subtype of NUMBER)
+);
+
+/* PostgreSQL */
+CREATE TABLE StringDemo (
+    CountryCode CHAR(2),        -- Always 2 chars (e.g., 'DE', 'US')
+    UserName VARCHAR(100)       -- Variable length up to 100
+);
+
+/* Oracle */
+CREATE TABLE StringDemo (
+    CountryCode CHAR(2),
+    UserName VARCHAR2(100)      -- Note the '2' at the end!
+);
+
+/* PostgreSQL */
+CREATE TABLE Article (
+    Content TEXT                -- Simple and powerful. Stores gigabytes if needed.
+);
+
+/* Oracle */
+CREATE TABLE Article (
+    Content CLOB                -- "Character Large Object" for huge text.
+);
+
+/* PostgreSQL (Standard Compliant) */
+CREATE TABLE Schedule (
+    EventDate DATE,             -- 2023-12-31 (No time)
+    StartTime TIME,             -- 14:30:00 (No date)
+    CreatedAt TIMESTAMP         -- 2023-12-31 14:30:00.123
+);
+
+/* Oracle */
+CREATE TABLE Schedule (
+    EventDate DATE,             -- Contains time! (e.g., 2023-12-31 00:00:00)
+    -- Oracle has no standalone TIME type usually. We use TIMESTAMP or DATE.
+    CreatedAt TIMESTAMP         -- Similar to Postgres
+);
+
+/* PostgreSQL */
+CREATE TABLE Settings (
+    IsActive BOOLEAN DEFAULT TRUE
+);
+
+/* Oracle (Traditional Approach) */
+CREATE TABLE Settings (
+    IsActive NUMBER(1) DEFAULT 1, -- 1 = True, 0 = False
+    CONSTRAINT chk_bool CHECK (IsActive IN (0, 1)) -- Force boolean behavior
+);
+
+/* PostgreSQL */
+CREATE TABLE Documents (
+    FileData BYTEA              -- Binary data storage
+);
+
+/* Oracle */
+CREATE TABLE Documents (
+    FileData BLOB               -- Binary Large Object
+);
+
+CREATE TABLE AllDataTypes_PG (
+    ID INT PRIMARY KEY,
+    Price FLOAT,                -- Or DECIMAL for money!
+    Code CHAR(3),
+    Name VARCHAR(50),
+    Description TEXT,           -- Specific to Postgres
+    IsActive BOOLEAN,           -- Native Boolean
+    Portrait BYTEA,             -- Binary
+    Created TIMESTAMP
+);
+
+CREATE TABLE AllDataTypes_ORA (
+    ID NUMBER PRIMARY KEY,
+    Price FLOAT,
+    Code CHAR(3),
+    Name VARCHAR2(50),          -- Specific to Oracle
+    Description CLOB,           -- Specific to Oracle
+    IsActive NUMBER(1),         -- Workaround (Check Constraint needed)
+    Portrait BLOB,              -- Binary
+    Created TIMESTAMP
+);
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
 ADVANCED SQL FUNCTIONS (STRING FUNCTIONS, DATE FUNCTIONS, NUMERIC FUNCTIONS, AGGREGATE FUNCTIONS, CONDITIONAL EXPRESSIONS)
+-------------------------------------------------------------------------------------------------------------------------------
+/* Scenario: Formatting user names */
+
+SELECT 
+    -- 1. Concatenation (Standard SQL)
+    FirstName || ' ' || LastName AS FullName,
+    
+    -- 2. Upper/Lower Case
+    UPPER(LastName) AS UpperName,
+    
+    -- 3. Length of string
+    LENGTH(FirstName) AS NameLen,
+    
+    -- 4. Substring (Extract parts)
+    -- Postgres: SUBSTRING(string, start, length)
+    -- Oracle:   SUBSTR(string, start, length)
+    -- Note: SQL indexes start at 1, not 0!
+    SUBSTR(FirstName, 1, 3) AS ShortName,
+    
+    -- 5. Trim (Remove spaces from start/end)
+    TRIM(Email) AS CleanEmail
+FROM Employees;
+
+/* PostgreSQL Date Logic */
+SELECT 
+    -- Current Date & Time
+    NOW() AS CurrentTimestamp,
+    CURRENT_DATE AS Today,
+    
+    -- Date Math (Adding/Subtracting)
+    -- Very readable syntax
+    OrderDate + INTERVAL '7 days' AS DueDate,
+    OrderDate + INTERVAL '1 month' AS NextMonth,
+    
+    -- Formatting (Date to String)
+    TO_CHAR(OrderDate, 'DD.MM.YYYY') AS GermanFormat,
+    
+    -- Difference (Age)
+    AGE(BirthDate) AS ExactAge -- Returns e.g., "25 years 2 mons"
+FROM Orders;
+
+/* Oracle Date Logic */
+SELECT 
+    -- Current Date & Time
+    SYSDATE AS CurrentTimestamp,
+    TRUNC(SYSDATE) AS Today, -- Removes the time part
+    
+    -- Date Math
+    OrderDate + 7 AS DueDate,           -- Add 7 days
+    ADD_MONTHS(OrderDate, 1) AS NextMonth, -- Special function for months
+    
+    -- Formatting (Date to String)
+    TO_CHAR(OrderDate, 'DD.MM.YYYY') AS GermanFormat,
+    
+    -- Difference (Days between dates)
+    ROUND(SYSDATE - OrderDate) AS DaysSinceOrder
+FROM Orders;
+
+/* Numeric Operations */
+SELECT 
+    Price,
+    
+    -- 1. Rounding (to 2 decimal places)
+    ROUND(Price, 2) AS RoundedPrice,
+    
+    -- 2. Floor & Ceil (Round down / Round up)
+    FLOOR(Price) AS PriceDown,
+    CEIL(Price)  AS PriceUp,
+    
+    -- 3. Modulo (Remainder of division)
+    -- Useful to find even/odd numbers (MOD(id, 2))
+    MOD(Quantity, 10) AS Remainder,
+    
+    -- 4. Power (e.g., Square root or squared)
+    POWER(Quantity, 2) AS QuantitySquared,
+    
+    -- 5. Absolute Value (Positive only)
+    ABS(Discount * -1) AS PositiveDiscount
+FROM Products;
+
+/* CASE Expression: The SQL "If-Else" */
+SELECT 
+    ProductName,
+    Price,
+    CASE 
+        WHEN Price < 10 THEN 'Cheap'
+        WHEN Price BETWEEN 10 AND 50 THEN 'Medium'
+        WHEN Price > 50 THEN 'Expensive'
+        ELSE 'Unknown' -- Fallback
+    END AS PriceCategory
+FROM Products;
+
+
+/* Handling NULLs */
+SELECT 
+    ProductName,
+    -- If Discount is NULL, use 0. Otherwise use Discount.
+    COALESCE(Discount, 0) AS FinalDiscount
+FROM Sales;
+
+/* Advanced Statistics */
+SELECT 
+    DepartmentID,
+    
+    -- Standard Aggregates
+    COUNT(*) AS TotalStaff,
+    AVG(Salary) AS AvgSalary,
+    
+    -- Statistical Aggregates (Volatility)
+    -- STDDEV: Standard Deviation (How much do salaries vary?)
+    -- A high number means huge gap between lowest and highest paid.
+    ROUND(STDDEV(Salary), 2) AS SalaryVolatility,
+    
+    -- Variance
+    VARIANCE(Salary) AS SalaryVariance
+FROM Employees
+GROUP BY DepartmentID;
+
+
+
+
+
+
 INDEXING (SINGLE-COLUMN INDEX, COMPOSITE INDEX, UNIQUE INDEX, FULL-TEXT INDEX, CLUSTERED INDEX, NON-CLUSTERED INDEX)
 VIEWS (CREATING VIEWS, UPDATING VIEWS, DELETING VIEWS, MATERIALIZED VIEWS)  
 STORED PROCEDURES AND FUNCTIONS (CREATING, UPDATING, DELETING, PARAMETERS, CONTROL FLOW)
@@ -734,7 +1162,7 @@ STRING FUNCTIONS (CONCAT, SUBSTRING, LENGTH, REPLACE, TRIM, UPPER, LOWER)
 DATE FUNCTIONS (NOW, CURDATE, DATEADD, DATEDIFF, EXTRACT, FORMAT)
 NUMERIC FUNCTIONS (ROUND, CEIL, FLOOR, ABS, MOD, POWER, SQRT)
 CONDITIONAL EXPRESSIONS (CASE, DECODE, IFNULL, COALESCE)
-ADVANCED TOPICS (PARTITIONING, SHARDING, REPLICATION, CLUSTERING, PERFORMANCE TUNING, QUERY OPTIMIZATION)
+
 QUERY OPTIMIZATION (INDEX USAGE, QUERY PLANS, STATISTICS, HINTS, CACHING)
 QUERY ANALYSIS TOOLS (EXPLAIN PLAN, PROFILING TOOLS, PERFORMANCE MONITORING)
 WINDOW FUNCTIONS (ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD)
