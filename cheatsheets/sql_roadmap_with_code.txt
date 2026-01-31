@@ -1146,10 +1146,111 @@ GROUP BY DepartmentID;
 
 
 
+-------------------------------------------------------------------------------------------------------
+VIEWS (CREATING VIEWS, UPDATING VIEWS, DELETING VIEWS, MATERIALIZED VIEWS) 
+-------------------------------------------------------------------------------------------------------
+/* Standard SQL (Postgres & Oracle) */
+CREATE VIEW View_Employee_Details AS
+SELECT 
+    e.FirstName, 
+    e.LastName, 
+    e.Email, 
+    d.DepartmentName
+FROM Employees e
+JOIN Departments d ON e.DepartmentID = d.DepartmentID;
+
+/* Standard SQL (Postgres & Oracle) */
+-- "OR REPLACE" overwrites the existing definition atomically
+CREATE OR REPLACE VIEW View_Employee_Details AS
+SELECT 
+    e.FirstName, 
+    e.LastName, 
+    e.Email, 
+    e.Salary,       -- New column added
+    d.DepartmentName
+FROM Employees e
+JOIN Departments d ON e.DepartmentID = d.DepartmentID;
+
+/* PostgreSQL */
+CREATE MATERIALIZED VIEW MView_Monthly_Sales AS
+SELECT Region, SUM(Amount) as TotalSales
+FROM Sales
+GROUP BY Region;
+
+/* Oracle */
+CREATE MATERIALIZED VIEW MView_Monthly_Sales
+BUILD IMMEDIATE       -- Calculate data right now
+REFRESH COMPLETE      -- When refreshing, recalculate everything
+ON DEMAND             -- Only refresh when I say so (manual)
+AS
+SELECT Region, SUM(Amount) as TotalSales
+FROM Sales
+GROUP BY Region;
+
+/* PostgreSQL Refresh */
+-- 1. Standard Refresh (Locks the view, nobody can read during update)
+REFRESH MATERIALIZED VIEW MView_Monthly_Sales;
+
+-- 2. Concurrent Refresh (Recommended for Production)
+-- Updates in background, users can still read old data. Requires a Unique Index!
+REFRESH MATERIALIZED VIEW CONCURRENTLY MView_Monthly_Sales;
+
+/* Oracle Refresh */
+BEGIN
+    DBMS_MVIEW.REFRESH('MView_Monthly_Sales');
+END;
+/
+
+
+--------------------------------------------------------------------------------------------------------
+MATERIALIZED VIEWS (CREATION, REFRESH STRATEGIES, USAGE SCENARIOS, PERFORMANCE CONSIDERATIONS)
+---------------------------------------------------------------------------------------------------------
+
+CREATE MATERIALIZED VIEW mv_sales_summary AS
+SELECT 
+    region_id, 
+    SUM(amount) as total_revenue,
+    COUNT(*) as transaction_count
+FROM sales
+GROUP BY region_id;
+
+-- Wichtig: Du kannst (und solltest) Indizes auf MVs erstellen!
+CREATE INDEX idx_mv_region ON mv_sales_summary(region_id);
+
+CREATE MATERIALIZED VIEW mv_sales_summary
+BUILD IMMEDIATE           -- Daten sofort berechnen (vs. DEFERRED)
+REFRESH COMPLETE          -- Strategie: Alles neu berechnen (dazu gleich mehr)
+ON DEMAND                 -- Nur aktualisieren, wenn ich es sage
+AS
+SELECT region_id, SUM(amount), COUNT(*) 
+FROM sales 
+GROUP BY region_id;
+
+
+ -- 1. Log erstellen
+CREATE MATERIALIZED VIEW LOG ON sales WITH ROWID, SEQUENCE (region_id, amount);
+
+-- 2. MV mit Fast Refresh erstellen
+CREATE MATERIALIZED VIEW mv_fast_sales
+REFRESH FAST ON DEMAND
+AS SELECT ...
+
+
+
+ADVANCED SQL FUNCTIONS (RECURSIVE QUERIES, WINDOW FUNCTIONS, PIVOT AND UNPIVOT, COMMON TABLE EXPRESSIONS (CTE) )
+WINDOW FUNCTIONS (ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD)
+PIVOT AND UNPIVOT (PIVOT TABLE CREATION, UNPIVOT TABLE CREATION, AGGREGATION WITH PIVOT)
+COMMON TABLE EXPRESSIONS (CTE) (SIMPLE CTE, RECURSIVE CTE, MULTI-LEVEL CTE)
+RECURSIVE QUERIES (HIERARCHICAL DATA, ADJACENCY LIST MODEL, NESTED SET MODEL, RECURSIVE CTE EXAMPLES)
+WITH CLAUSE (SIMPLE WITH, RECURSIVE WITH, MULTI-LEVEL WITH)
+
 
 
 INDEXING (SINGLE-COLUMN INDEX, COMPOSITE INDEX, UNIQUE INDEX, FULL-TEXT INDEX, CLUSTERED INDEX, NON-CLUSTERED INDEX)
-VIEWS (CREATING VIEWS, UPDATING VIEWS, DELETING VIEWS, MATERIALIZED VIEWS)  
+
+
+
+
 STORED PROCEDURES AND FUNCTIONS (CREATING, UPDATING, DELETING, PARAMETERS, CONTROL FLOW)
 TRIGGERS (BEFORE INSERT, AFTER INSERT, BEFORE UPDATE, AFTER UPDATE, BEFORE DELETE, AFTER DELETE)
 TRANSACTIONS (BEGIN TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT, ISOLATION LEVELS)
@@ -1157,15 +1258,31 @@ NORMALIZATION AND DENORMALIZATION (1NF, 2NF, 3NF, BCNF, 4NF, 5NF, DENORMALIZATIO
 BACKUP AND RECOVERY (FULL BACKUP, INCREMENTAL BACKUP, DIFFERENTIAL BACKUP, POINT-IN-TIME RECOVERY, RESTORE PROCEDURES)
 SECURITY AND USER MANAGEMENT (USER ROLES, PERMISSIONS, AUTHENTICATION, ENCRYPTION, AUDITING)    
 
-ADVANCED SQL FUNCTIONS (RECURSIVE QUERIES, WINDOW FUNCTIONS, PIVOT AND UNPIVOT, COMMON TABLE EXPRESSIONS (CTE) )
+-------------------------------------------------------------------------------------------------
 STRING FUNCTIONS (CONCAT, SUBSTRING, LENGTH, REPLACE, TRIM, UPPER, LOWER)
+-------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
 DATE FUNCTIONS (NOW, CURDATE, DATEADD, DATEDIFF, EXTRACT, FORMAT)
+-----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
 NUMERIC FUNCTIONS (ROUND, CEIL, FLOOR, ABS, MOD, POWER, SQRT)
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 CONDITIONAL EXPRESSIONS (CASE, DECODE, IFNULL, COALESCE)
+-----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 QUERY OPTIMIZATION (INDEX USAGE, QUERY PLANS, STATISTICS, HINTS, CACHING)
 QUERY ANALYSIS TOOLS (EXPLAIN PLAN, PROFILING TOOLS, PERFORMANCE MONITORING)
-WINDOW FUNCTIONS (ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD)
+
 FULL-TEXT SEARCH (FULL-TEXT INDEXING, FULL-TEXT SEARCH QUERIES, RELEVANCY RANKING, BOOLEAN MODE SEARCHES)
 SEQEUNCEs (CREATE SEQUENCE, NEXTVAL, CURRVAL, SEQUENCE OPTIONS)
 
@@ -1176,7 +1293,7 @@ DATABASE ADMINISTRATION (INSTALLATION, CONFIGURATION, MONITORING, MAINTENANCE, S
 DATABASE CONNECTIVITY (ODBC, JDBC, DATABASE DRIVERS, CONNECTION POOLING, ORM TOOLS)
 DATABASE MIGRATION TOOLS (DATA MIGRATION, SCHEMA MIGRATION, VERSION CONTROL, ROLLBACK STRATEGIES)
 
-MATERIALIZED VIEWS (CREATION, REFRESH STRATEGIES, USAGE SCENARIOS, PERFORMANCE CONSIDERATIONS)
+
 PARTITIONING (RANGE PARTITIONING, LIST PARTITIONING, HASH PARTITIONING, COMPOSITE PARTITIONING, PARTITION MANAGEMENT)
 SHARDING (HORIZONTAL SHARDING, VERTICAL SHARDING, SHARDING STRATEGIES, DATA DISTRIBUTION)
 REPLICATION (MASTER-SLAVE REPLICATION, MASTER-MASTER REPLICATION, SYNCHRONOUS VS ASYNCHRONOUS REPLICATION, CONFLICT RESOLUTION)
