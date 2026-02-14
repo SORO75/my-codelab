@@ -9,7 +9,16 @@ def calculate_bmi():
         bmi = weigt_kg / (height_cm /100)**2
 
         print( f"\nYour BMI is: {bmi:.2f}")
-       
+
+        if bmi < 18.5:
+            print ("Category: Underwight")
+        elif 18.5 <= bmi < 25:
+            print ("Normal weight")
+        elif 25 <= bmi < 30:
+            print ("Overweight")
+        else:
+            print("Category: Obesity (Class I oder higher)")    
+
     except ValueError:
         # Handle cases where input is not a valid number
         print("Error: Please enter numeric values only (use dots for decimals).")
