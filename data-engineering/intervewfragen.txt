@@ -1,0 +1,271 @@
+AWS Interviewfragen:
+    1. Was ist AWS und welche Dienste bietet es an?
+    2. Was ist der Unterschied zwischen EC2 und S3?
+    Was ist Amazon RDS?
+    Was ist Amazon DynamoDB?
+    Was ist Amazon S3?
+    Was ist Amazon Lambda?
+    Was ist Amazon CloudFront?
+    WAs ist Amzon Glue?
+    Was ist Amazon Redshift?
+    Was Amazon Athena?
+    3. Wie funktioniert die Skalierung in AWS?
+    4. Was ist eine VPC und warum ist sie wichtig?
+    5. Was ist IAM und wie wird es verwendet?
+    6. Was ist der Unterschied zwischen einer öffentlichen und einer privaten Subnetz?
+    7. Wie funktioniert die Abrechnung in AWS?
+    8. Was ist CloudFormation und wie wird es verwendet?
+    9. Was ist der Unterschied zwischen einem Spot-Instance und einem On-Demand-Instance?
+    10. Wie funktioniert die Sicherheit in AWS und welche Maßnahmen sollten ergriffen werden?
+    11. Was ist der Unterschied zwischen einem Load Balancer und einem Auto Scaling Group?
+    12. Was ist Elastic Load Balancing und wie funktioniert es?
+    12. Was ist der Unterschied zwischen einem RDS und einem DynamoDB?
+    13. Was ist der Unterschied zwischen einem Lambda und einem EC2-Instance?
+    14. Was ist der Unterschied zwischen einem S3-Bucket und einem EBS-Volume?
+    15. Was ist der Unterschied zwischen einem CloudFront und einem Route 53?
+    16. Was ist der Unterschied zwischen einem CloudWatch und einem CloudTrail?
+    17. Was ist der Unterschied zwischen einem CloudFormation und einem Terraform?
+    18. Was ist der Unterschied zwischen einem CloudFormation und einem Ansible?
+    19. Was ist AWS S3 und wie funktioniert es?
+    20. Konzept von Regionen und Availability Zones in AWS
+    21. Was ist AWS Lambda und wie funktioniert es? Wie funktioniert Serverless Computing? Was sind die Vorteile von AWS Lambda gegenüber traditionellen Server-basierten Anwendungen?
+    22. Was ist AAmazon RDS und wie funktioniert es und welche Vorteile bietet es gegenüber einer selbstverwalteten Datenbank?  
+    23. Was ist AMazon CLoudWatch und wie funktioniert es und Hauptkomponenten?
+    24. AWS Colde Pipeline und wie funktioniert es? Was sind die Vorteile von AWS CodePipeline gegenüber traditionellen CI/CD-Tools?
+    25. Blue/Green Deployment in AWS: Was ist es und wie funktioniert es? Was sind die Vorteile von Blue/Green Deployment gegenüber traditionellen Deployment-Methoden?
+    26. EKS gegen ECS: Was ist der Unterschied zwischen Amazon EKS und Amazon ECS? Welche Anwendungsfälle eignen sich besser für EKS und welche für ECS?
+    27. AWS Secrets Manager: Was ist es und wie funktioniert es? Was sind die Vorteile von AWS Secrets Manager gegenüber traditionellen Methoden zur Verwaltung von Geheimnissen?
+    28. AWS RDS vs DynamoDB: Was ist der Unterschied zwischen Amazon RDS und Amazon DynamoDB? Welche Anwendungsfälle eignen sich besser für RDS und welche für DynamoDB?
+    29.Amazon Redshift: Was ist es und wie funktioniert es? Was sind die Vorteile von Amazon Redshift gegenüber traditionellen Data Warehousing-Lösungen?
+    30. Was ist die Beziehung zwischen AWS Glue und AWS Lake Formation? Wie können diese Dienste zusammen verwendet werden, um eine Data Lake-Architektur zu erstellen?
+    31. AWS Well-Architected Framework: Was ist es und wie funktioniert es? Was sind die fünf Säulen des AWS Well-Architected Framework und wie können sie bei der Gestaltung von Cloud-Anwendungen helfen?
+    32. Unteschied zwischen Amazon Redshift, RDS und S3: Was ist der Unterschied zwischen Amazon Redshift, Amazon RDS und Amazon S3? Welche Anwendungsfälle eignen sich besser für jeden Dienst?
+    33. wie kann man die Schemaentwicklung in AWS Glue verwalten? Was sind die Vorteile von AWS Glue gegenüber traditionellen ETL-Tools?
+    35 Schema -on-Read vs Schema-on-Write: Was ist der Unterschied zwischen Schema-on-Read und Schema-on-Write? Welche Anwendungsfälle eignen sich besser für jeden Ansatz?
+    36. AWS Data Pipeline: Was ist es und wie funktioniert es? Was sind die Vorteile von AWS Data Pipeline gegenüber traditionellen ETL-Tools?
+    37. AWS Kinesis: Was ist es und wie funktioniert es? Was sind die Vorteile von AWS Kinesis gegenüber traditionellen Streaming-Datenverarbeitungs-Tools?
+    38. AWS Sagemaker: Was ist es und wie funktioniert es? Was sind die Vorteile von AWS Sagemaker gegenüber traditionellen Machine Learning-Tools?
+    39. Wie richtet man ein Data Lake auf WAS und welche Dienste werden dafür benötigt? Was sind die Vorteile eines Data Lake auf AWS gegenüber traditionellen Data Warehousing-Lösungen?
+
+ AWS Glue Fragen:
+    1. Was ist AWS Glue und wie funktioniert es?
+    2. Was sind die Hauptkomponenten von AWS Glue (Datenkatalog, Crawlers, Jobs) und wie arbeiten sie zusammen?
+    3. Unterschied zwischen AWS Glue und traditionellen ETL-Tools: Was sind die Vorteile von AWS Glue gegenüber traditionellen ETL-Tools?
+    4. Unterschied zwischen Glue Crawler und der manuellen Schema Definition: Was ist der Unterschied zwischen einem Glue Crawler und der manuellen Schema Definition? Welche Anwendungsfälle eignen sich besser für jeden Ansatz?
+    5. Was ist Data Catalog und wie funktioniert er in AWS Glue?
+    6. Wie funktioniert ein Data Catalog in Kombination mit Amazon Athena
+    7. Wann würden Sie AWS Glue anstell von AWS EMR oder AWS Lambda verwenden?
+  Wie nutzen Sie Glue Job Bookmarks, um verarbeitete Daten zu verfolgen und erneute Verarbeitung zu vermeiden?
+Wie implementieren Sie benutzerdefinierte Transformationen mit PySpark in einem Glue-Job?
+Was ist ein DynamicFrame in AWS Glue und wie unterscheidet er sich von einem Apache Spark DataFrame?
+Wie partitionieren Sie Daten in S3, um die Abfrageleistung in Athena zu verbessern?
+Wie optimieren Sie die Leistung und Kosten eines Glue-Jobs (z. B. Nutzung von DPU-Einstellungen, Parquet-Format)?
+Wie troubleshoot und debuggen Sie einen fehlgeschlagenen Glue-Job?
+Wie würden Sie eine langsame Transformation in Glue analysieren und beschleunigen?
+Welche Strategien nutzen Sie, um Schema-Evolution (Schema Evolution) ohne Unterbrechung der Pipelines zu handhaben?
+
+Beschreiben Sie ein Projekt, in dem Sie Glue für eine ETL-Pipeline eingesetzt haben".
+"Wie würden Sie Daten aus einer on-premise Datenbank (z.B. SQL Server) in ein S3 Data Lake überführen"?
+"Wie bauen Sie ein Szenario für Slowly Changing Dimensions (SCD) Typ 1 oder 2 mit Glue?
+
+
+
+AWS Glue Interviewfragen:
+    1. Was ist AWS Glue und wie funktioniert es?
+    2. Was sind die Hauptkomponenten von AWS Glue (Datenkatalog, Crawlers, Jobs) und wie arbeiten sie zusammen?
+    3. Unterschied zwischen AWS Glue und traditionellen ETL-Tools: Was sind die Vorteile von AWS Glue gegenüber traditionellen ETL-Tools?
+    4. Unterschied zwischen Glue Crawler und der manuellen Schema Definition: Was ist der Unterschied zwischen einem Glue Crawler und der manuellen Schema Definition? Welche Anwendungsfälle eignen sich besser für jeden Ansatz?
+    5. Was ist Data Catalog und wie funktioniert er in AWS Glue?
+    6. Wie funktioniert ein Data Catalog in Kombination mit Amazon Athena
+    7. Wann würden Sie AWS Glue anstell von AWS EMR oder AWS Lambda verwenden?
+    8. Wie nutzen Sie Glue Job Bookmarks, um verarbeitete Daten zu verfolgen und erneute Verarbeitung zu vermeiden?
+    9. Wie implementieren Sie benutzerdefinierte Transformationen mit PySpark in einem Glue-Job?
+    10. Was ist ein DynamicFrame in AWS Glue und wie unterscheidet er sich von einem Apache Spark DataFrame?
+    11. Wie partitionieren Sie Daten in S3, um die Abfrageleistung in Athena zu verbessern?
+    12. Wie optimieren Sie die Leistung und Kosten eines Glue-Jobs (z. B. Nutzung von DPU-Einstellungen, Parquet-Format)?
+    13. Wie troubleshoot und debuggen Sie einen fehlgeschlagenen Glue-Job?
+    14. Wie würden Sie eine langsame Transformation in Glue analysieren und beschleunigen?
+    15. Welche Strategien nutzen Sie, um Schema-Evolution (Schema Evolution) ohne Unterbrechung der Pipelines zu handhaben?
+    16. Beschreiben Sie ein Projekt, in dem Sie Glue für eine ETL-Pipeline eingesetzt haben".
+    17. "Wie würden Sie Daten aus einer on-premise Datenbank (z.B. SQL Server) in ein S3 Data Lake überführen"?
+    18. "Wie bauen Sie ein Szenario für Slowly Changing Dimensions (SCD) Typ 1 oder 2 mit Glue?
+
+    AWS Glue vs Databricks: Was ist der Unterschied zwischen AWS Glue und Databricks? Welche Anwendungsfälle eignen sich besser für AWS Glue und welche für Databricks?
+    AWS Glue vs Apache Spark: Was ist der Unterschied zwischen AWS Glue und Apache Spark? Welche Anwendungsfälle eignen sich besser für AWS Glue und welche für Apache Spark?
+    AWS Glue vs Talend: Was ist der Unterschied zwischen AWS Glue und Talend? Welche Anwendungsfälle eignen sich besser
+
+
+
+Fragen zu Data Engineering:
+    1. Was ist Data Engineering und welche Aufgaben umfasst es?
+    2. Was sind die wichtigsten Tools und Technologien, die ein Data Engineer beherrschen sollte?
+    3. Wie würden Sie eine ETL-Pipeline entwerfen und implementieren?
+    4. Was ist der Unterschied zwischen Batch- und Stream-Verarbeitung?
+    5. Wie gehen Sie mit großen Datenmengen um und welche Strategien verwenden Sie, um die Leistung zu optimieren?
+    6. Was ist Data Warehousing und wie unterscheidet es sich von einem Data Lake?
+    7. Wie stellen Sie sicher, dass Ihre Datenpipelines robust und fehlertolerant sind?
+    8. Wie gehen Sie mit Datenqualität und -bereinigung um?
+    9. Was ist der Unterschied zwischen einem relationalen und einem NoSQL-Datenbankmanagementsystem?
+    10. Wie integrieren Sie verschiedene Datenquellen in Ihre Datenpipelines?
+    11. Wie stellen Sie sicher, dass Ihre Datenpipelines skalierbar sind?
+    12. Wie gehen Sie mit der Sicherheit und dem Datenschutz in Ihren Datenpipelines um?
+    13. Wie testen Sie Ihre Datenpipelines und stellen sicher, dass sie korrekt funktionieren?
+    14. Wie dokumentieren Sie Ihre Datenpipelines und stellen sicher, dass sie für andere Teammitglieder verständlich sind?
+    15. Wie bleiben Sie über die neuesten Entwicklungen und Trends im Bereich Data Engineering auf dem Laufenden?
+    16. Wie würden Sie eine Datenpipeline für die Verarbeitung von Echtzeitdaten entwerfen und implementieren?
+    17. Wie gehen Sie mit der Datenmodellierung und -architektur um?
+    18. Wie stellen Sie sicher, dass Ihre Datenpipelines wartbar und erweiterbar sind?
+    19. Wie gehen Sie mit der Datenmigration und -integration um?
+    20. Wie würden Sie eine Datenpipeline für die Verarbeitung von unstrukturierten Daten entwerfen und implementieren?
+    21. Wie gehen Sie mit der Datenvisualisierung und -analyse um?
+    22. Wie stellen Sie sicher, dass Ihre Datenpipelines effizient und kostengünstig sind?
+    23. Wie gehen Sie mit der Datenarchivierung und -löschung um?
+    24. Wie würden Sie eine Datenpipeline für die Verarbeitung von sensiblen Daten entwerfen und implementieren?
+    25. Wie gehen Sie mit der Datenüberwachung und -protokollierung um?
+    26. Wie stellen Sie sicher, dass Ihre Datenpipelines den Compliance-Anforderungen entsprechen?
+    27. Wie gehen Sie mit der Datenqualität und -validierung um?
+    28. Wie würden Sie eine Datenpipeline für die Verarbeitung von großen Datenmengen entwerfen und implementieren?
+    29. Wie gehen Sie mit der Datensicherheit und -verschlüsselung um?
+    30. Wie stellen Sie sicher, dass Ihre Datenpipelines den Datenschutzbestimmungen entsprechen?
+    31. Wie gehen Sie mit der Datenintegration und -orchestrierung um?
+    32. Wie würden Sie eine Datenpipeline für die Verarbeitung von Echtzeit-Streaming-Daten entwerfen und implementieren?
+    33. Wie gehen Sie mit der Datenqualität und -bereinigung in Echtzeit-Streaming-Daten um?
+
+
+ Fragen zum Data Lake:
+    1. Was ist ein Data Lake und wie unterscheidet er sich von einem Data Warehouse?
+    2. Welche Vorteile bietet ein Data Lake gegenüber einem Data Warehouse?
+    3. Wie würden Sie einen Data Lake entwerfen und implementieren?
+    4. Welche Tools und Technologien würden Sie für die Implementierung eines Data Lakes verwenden?
+    5. Wie stellen Sie sicher, dass Ihr Data Lake skalierbar und leistungsfähig ist?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in einem Data Lake um?
+    7. Wie integrieren Sie verschiedene Datenquellen in Ihren Data Lake?
+    8. Wie stellen Sie sicher, dass Ihr Data Lake sicher und datenschutzkonform ist?
+    9. Wie gehen Sie mit der Datenarchivierung und -löschung in einem Data Lake um?
+    10. Wie stellen Sie sicher, dass Ihr Data Lake den Compliance-Anforderungen entspricht?
+    11. Wie gehen Sie mit der Datenüberwachung und -protokollierung in einem Data Lake um?
+    12. Wie stellen Sie sicher, dass Ihr Data Lake wartbar und erweiterbar ist?
+    13. Wie gehen Sie mit der Datenmodellierung und -architektur in einem Data Lake um?
+    14. Wie stellen Sie sicher, dass Ihr Data Lake effizient und kostengünstig ist?
+    15. Wie gehen Sie mit der Datenmigration und -integration in einem Data Lake um?
+
+
+    Fragen zum Databricks:
+    1. Was ist Databricks und wie funktioniert es?
+    2. Welche Vorteile bietet Databricks gegenüber traditionellen Datenverarbeitungs-Tools?
+    3. Wie würden Sie eine Datenpipeline mit Databricks entwerfen und implementieren?
+    4. Wie integrieren Sie Databricks mit anderen Tools und Technologien in Ihrer Datenpipeline?
+    5. Wie stellen Sie sicher, dass Ihre Databricks-Pipelines skalierbar und leistungsfähig sind?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in Databricks um?
+    7. Wie stellen Sie sicher, dass Ihre Databricks-Pipelines sicher und datenschutzkonform sind?
+    8. Wie gehen Sie mit der Datenarchivierung und -löschung in Databricks um?
+    9. Wie stellen Sie sicher, dass Ihre Databricks-Pipelines den Compliance-Anforderungen entsprechen?
+    10. Wie gehen Sie mit der Datenüberwachung und -protokollierung in Databricks um?
+    11. Wie stellen Sie sicher, dass Ihre Databricks-Pipelines wartbar und erweiterbar sind?
+    12. Wie gehen Sie mit der Datenmodellierung und -architektur in Databricks um?
+    13. Wie stellen Sie sicher, dass Ihre Databricks-Pipelines effizient und kostengünstig sind?
+    14. Wie gehen Sie mit der Datenmigration und -integration in Databricks um?
+    15. Wie würden Sie eine Datenpipeline für die Verarbeitung von Echtzeit-Streaming-Daten mit Databricks entwerfen und implementieren?
+    16. Wie gehen Sie mit der Datenqualität und -bereinigung in Echtzeit-Streaming-Daten mit Databricks um? 
+
+
+Fragen zu Apache Spark:
+    1. Was ist Apache Spark und wie funktioniert es?
+    2. Welche Vorteile bietet Apache Spark gegenüber traditionellen Datenverarbeitungs-Tools?
+    3. Wie würden Sie eine Datenpipeline mit Apache Spark entwerfen und implementieren?
+    4. Wie integrieren Sie Apache Spark mit anderen Tools und Technologien in Ihrer Datenpipeline?
+    5. Wie stellen Sie sicher, dass Ihre Apache Spark-Pipelines skalierbar und leistungsfähig sind?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in Apache Spark um?
+    7. Wie stellen Sie sicher, dass Ihre Apache Spark-Pipelines sicher und datenschutzkonform sind?
+    8. Wie gehen Sie mit der Datenarchivierung und -löschung in Apache  Spark um?
+    9. Wie stellen Sie sicher, dass Ihre Apache Spark-Pipelines den Compliance-Anforderungen entsprechen?
+    10. Wie gehen Sie mit der Datenüberwachung und -protokollierung in Apache Spark um?
+    11. Wie stellen Sie sicher, dass Ihre Apache Spark-Pipelines wartbar und erweiterbar sind?
+    12. Wie gehen Sie mit der Datenmodellierung und -architektur in Apache Spark um?
+    13. Wie stellen Sie sicher, dass Ihre Apache Spark-Pipelines effizient und kostengünstig sind?
+    14. Wie gehen Sie mit   der Datenmigration und -integration in Apache Spark um?
+    15. Wie würden Sie eine Datenpipeline für die Verarbeitung von Echtzeit-Streaming-Daten mit Apache Spark entwerfen und implementieren?
+    16. Wie gehen Sie mit der Datenqualität und -bereinigung in Echtzeit-Streaming-Daten mit Apache Spark um?
+
+
+    Fragen zu DWH:
+    1. Was ist ein Data Warehouse und wie unterscheidet es sich von einem Data Lake?
+    2. Welche Vorteile bietet ein Data Warehouse gegenüber einem Data Lake?
+    3. Wie würden Sie ein Data Warehouse entwerfen und implementieren?
+    4. Welche Tools und Technologien würden Sie für die Implementierung eines Data Warehouses verwenden?
+    5. Wie stellen Sie sicher, dass Ihr Data Warehouse skalierbar und leistungsfähig ist?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in einem Data Warehouse um?
+    7. Wie integrieren Sie verschiedene Datenquellen in Ihr Data Warehouse?
+    8. Wie stellen Sie sicher, dass Ihr Data Warehouse sicher und datenschutzkonform ist?
+    9. Wie gehen Sie mit der Datenarchivierung und -löschung in einem Data Warehouse um?
+    10. Wie stellen Sie sicher, dass Ihr Data Warehouse den Compliance-Anforderungen entspricht?
+    11. Wie gehen Sie mit der Datenüberwachung und -protokollierung in einem Data Warehouse um?
+    12. Wie stellen Sie sicher, dass Ihr Data Warehouse wartbar und erweiterbar ist?
+    13. Wie gehen Sie mit der Datenmodellierung und -architektur in einem Data Warehouse um?
+    14. Wie stellen Sie sicher, dass Ihr Data Warehouse effizient und kostengünstig ist?
+    15. Wie gehen Sie mit der Datenmigration und -integration in einem Data Warehouse um? 
+
+
+
+    Fragen zu Data Lakehouse:
+    1. Was ist ein Data Lakehouse und wie unterscheidet es sich von einem Data Lake und einem Data Warehouse?
+    2. Welche Vorteile bietet ein Data Lakehouse gegenüber einem Data Lake und einem Data Warehouse?
+    3. Wie würden Sie ein Data Lakehouse entwerfen und implementieren?
+    4. Welche Tools und Technologien würden Sie für die Implementierung eines Data Lakehouses verwenden?
+    5. Wie stellen Sie sicher, dass Ihr Data Lakehouse skalierbar und leistungsfähig ist?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in einem Data Lakehouse um?
+    7. Wie integrieren Sie verschiedene Datenquellen in Ihr Data Lakehouse?
+    8. Wie stellen Sie sicher, dass Ihr Data Lakehouse sicher und datenschutzkonform ist?
+    9. Wie gehen Sie mit der Datenarchivierung und -löschung in einem Data Lakehouse um?
+    10. Wie stellen Sie sicher, dass Ihr Data Lakehouse den Compliance-Anforderungen entspricht?
+    11. Wie gehen Sie mit der Datenüberwachung und -protokollierung in einem Data Lakehouse um?
+    12. Wie stellen Sie sicher, dass Ihr Data Lakehouse wartbar und erweiterbar ist?
+    13. Wie gehen Sie mit der Datenmodellierung und -architektur in einem Data Lakehouse um?
+    14. Wie stellen Sie sicher, dass Ihr Data Lakehouse effizient und kostengünstig ist?
+    15. Wie gehen Sie mit der Datenmigration und -integration in einem Data Lakehouse um?
+
+    Fragen zu Data Mesh:
+    1. Was ist Data Mesh und wie unterscheidet es sich von traditionellen Datenarchitekturen?
+    2. Welche Vorteile bietet Data Mesh gegenüber traditionellen Datenarchitekturen?
+    3. Wie würden Sie eine Data Mesh-Architektur entwerfen und implementieren?
+    4. Welche Tools und Technologien würden Sie für die Implementierung einer Data Mesh-Architektur verwenden?
+    5. Wie stellen Sie sicher, dass Ihre Data Mesh-Architektur skalierbar und leistungsfähig ist?
+    6. Wie gehen Sie mit der Datenqualität und -bereinigung in einer Data Mesh-Architektur um?
+    7. Wie integrieren Sie verschiedene Datenquellen in Ihre Data Mesh-Architektur?
+    8. Wie stellen Sie sicher, dass Ihre Data Mesh-Architektur sicher und datenschutzkonform ist?
+    9. Wie gehen Sie mit der Datenarchivierung und -löschung in einer Data Mesh-Architektur um?
+    10. Wie stellen Sie sicher, dass Ihre Data Mesh-Architektur den Compliance-Anforderungen entspricht?
+    11. Wie gehen Sie mit der Datenüberwachung und -protokollierung in einer Data Mesh-Architektur um?
+    12. Wie stellen Sie sicher, dass Ihre Data Mesh-Architektur wartbar und erweiterbar ist?
+    13. Wie gehen Sie mit der Datenmodellierung und -architektur in einer Data Mesh-Architektur um?
+    14. Wie stellen Sie sicher, dass Ihre Data Mesh-Architektur effizient und kostengünstig ist?
+    15. Wie gehen Sie mit der Datenmigration und -integration in einer Data Mesh-Architektur um
+
+
+
+    1. What is AWS Glue, and how does it simplify ETL tasks?
+2. Can you walk me through the process of creating a job in AWS Glue?
+3. How do you handle data quality issues in ETL processes?
+4. Explain the difference between full load and incremental load in ETL.
+5. Have you used AWS Glue with other AWS services like S3, Redshift, or EMR?
+6. How do you optimize ETL jobs for performance and scalability?
+7. What are some common challenges you might face while working with AWS Glue, and how would you troubleshoot them?
+8. Can you share an example of a complex ETL transformation you implemented using AWS Glue?
+9. How do you ensure data security and compliance in ETL pipelines?
+10. In what scenarios would you recommend using AWS Glue over other ETL tools like Apache Spark or Talend?
+
+Now, let's test your coding skills with these programming questions for AWS Glue & ETL interviews:
+
+1. Write a Python script to automate the execution of an AWS Glue job.
+2. Implement a custom ETL transformation to merge two datasets using AWS Glue.
+3. Develop a solution to handle schema evolution in ETL processes.
+4. Create a script to monitor and optimize AWS Glue job performance.
+5. How would you handle errors and exceptions in an ETL pipeline using AWS Glue?
+
+Takeaway Tip: Before your interview, make sure to practice hands-on exercises, review common ETL patterns, and stay updated on the latest AWS Glue features to impress your interviewers.
+
+What is the process for adding metadata to the AWS Glue Data Catalog?
+
+
+
+
