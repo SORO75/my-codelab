@@ -1,0 +1,35 @@
+Databricks Medallion Architecture
+
+Bronze Layer: Raw Data (Optimized for Ingestion, Storage, and Data Lake)
+Silver Layer: Optimezed for Querying and Analysis (Cleaned, Enriched, and Structured Data)
+Gold Layer: Optimized for Business Intelligence and Machine Learning (Aggregated, Curated, and Ready for Consumption Data)  
+
+Bronze Layer:
+python (pyspark)
+Best practices:
+Enable Optimized Writes to small files and Auto Compaction 
+• Avoid heavy partitioning on high-cardinality columns 
+• Use append-only ingestion where possible 
+• Keep transformations minimal 
+• Do not over-optimize layout unless Bronze is queried directly 
+Goal → Fast and reliable data ingestion 
+
+Silver Layer:
+python (pyspark)
+Best practices: 
+• Use Liquid Clustering for frequently filtered columns 
+• Optimize tables regularly to prevent small files 
+• Tune MERGE operations for CDC pipelines 
+• Ensure good data skipping using clustering or layout optimization 
+• Maintain balanced file sizes 
+Goal → Efficient transformations and downstream data consumption
+
+Gold Layer:
+SQL (Databricks SQL)
+Best practices:
+• Use materialized views for frequently accessed aggregations
+• Cluster tables on common dashboard filter columns (date, region, product) 
+• Use OPTIMIZE + clustering to reduce scan time 
+• Keep data models denormalized and query-friendly 
+• Maintain compact files for faster BI queries 
+Goal → Fast analytical queries and scalable BI workloads 
