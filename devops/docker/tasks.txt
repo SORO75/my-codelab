@@ -4,6 +4,54 @@ docker pull ubuntu
 # Ubuntu-Container starten (interaktiv mit Bash)
 docker run -it ubuntu bash  
 
+
+
+
+
+
+
+
+#Der Befehl, um einen Nginx-Webserver in einem Docker-Container zu starten:
+
+    docker run -d --name mein-webserver -p 8080:80 nginx
+
+    #Dieser Befehl startet einen Nginx-Webserver in einem Docker-Container, der im Hintergrund läuft (-d),
+    mit dem Namen "mein-webserver". 
+    Der Port 8080 auf dem Host wird auf den Port 80 im Container weitergeleitet, sodass du über  http://localhost:8080 auf den Webserver zugreifen kannst.
+
+
+docker ps -a    Auflistung aller laufenden Container anzeigen
+docker images   Auflistung aller Docker-Container und -Images anzeigen
+docker stop mein-webserver Container stoppen
+docker rm mein-webserver   Container entfernen
+docker rmi nginx    Docker-Image entfernen
+
+docker login    Docker-Login durchführen (z.B. für Docker Hub)
+docker push mein-webserver   Docker-Image in ein Repository hochladen (z.B. Docker Hub)
+docker search nginx   Nach Docker-Images suchen (z.B. im Docker Hub)
+docker pull nginx   Ein Docker-Image herunterladen (z.B. von Docker Hub)
+
+
+docker run  --rm -it  debian:stable-slim  /bin/sh
+    --rm: Entfernt den Container automatisch, wenn er gestoppt wird.
+    -it: Ermöglicht die interaktive Nutzung des Containers mit einem Terminal.
+    debian:stable-slim: Das Docker-Image, das verwendet wird (in diesem Fall eine schlanke Version von Debian).
+    /bin/sh: Der Befehl, der im Container ausgeführt wird (in diesem Fall die Shell).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 eigene dockerfile erstellen mit ubuntu als Basis:
 # Erstelle eine Datei namens Dockerfile mit folgendem Inhalt:
 FROM ubuntu:latest
@@ -23,4 +71,12 @@ EXPOSE 5432
 docker build -t my-postgres-db . 
 
 docker run -d --name my-postgres-container -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -v postgres_data:/var/lib/postgresql/data my-postgres-db
+
+
+
+
+
+-------------
+19.04.2026
+-------------
 

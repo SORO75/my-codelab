@@ -19,6 +19,7 @@ docker create
 docker build -t <name>:<tag> <path_to_dockerfile>        Build an imgage               
 docker tag <image> <new_name>:<tag>                      tag an image with a new name and/or tag
 docker rmi <image_id>                                    remvove a docker image
+docler image prune -a                                    remove all unused images
 docker push <name>:<tag>                                 Push a image to a Docker registry                   
 
 -------------------------------------------------------------
@@ -27,6 +28,7 @@ docker push <name>:<tag>                                 Push a image to a Docke
 
 docker ps                                                list running containers
 docker ps -a                                             list all containers (running and stopped)
+docker ps -q                                             list only container IDs
 docker commit
 docker run <image>                                       run a container form an image                           
 docker run --name <name> <image>                         run a container with a custom name
@@ -39,16 +41,17 @@ docker start <container_name_or_id>                      start a stopped contain
 docker stop <container_name_or_id>                       stop a running container
 docker restart <container_name_or_id>                    restart a container
 docker rm <container_name_or_id>                         remove a stopped container
+docker container prune                                   remove all stopped containers
 docker logs <container_name_or_id>                       view logs of a container
 docker logs -f <container_name_or_id>                    follow logs of acontainer (real-time output)
 docker stat                                              display resource usage statistics for containers
 docker diff
-docker export
-docker kill
-docker service
-docker top
-docker update 
-
+docker export                                           export a container's filesystem as a tar archive
+docker kill <container_name_or_id>                      kill a running container
+docker pause <container_name_or_id>                     pause a running container
+docker service logs <service_name>                      view logs of a service in a Docker Swarm
+docker top <container_name_or_id>                       display the running processes of a container
+docker update
 
 
 -------------------------------------------------------------
@@ -61,7 +64,8 @@ docker network inspect <network>                        display deteils about a 
 docker network connest <network> <container>            Connect a container to a network
 docker network disonnect <network> <ontainer>           disconnest a cotainer from a network
 docker network rm <network>                             remove a a Docker network
-docker port
+docker port <container_name_or_id>                      list port mappings for a container
+
 
 
 ------------------------------------------------------------
@@ -117,4 +121,21 @@ VOLUME	                                                Create volume mounts.
 WORKDIR	                                                Change working directory
 
 
+
+Docker File example:
+
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
+# Set the working directory in the container
+WORKDIR /app
+# Copy the current directory contents into the container at /app
+COPY . /app 
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+# Make port 80 available to the world outside this container
+EXPOSE 80
+# Define environment variable
+ENV NAME World
+# Run app.py when the container launches
+CMD ["python", "app.py"]    
 

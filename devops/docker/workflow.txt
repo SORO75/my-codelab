@@ -1,7 +1,7 @@
 Docker Installation on Linux (Ubuntu)
 ============================
 # Update the package database:
-   sudo apt-get update
+sudo apt-get update
 sudo apt-get update
 
 # Install prerequisites:
@@ -24,7 +24,7 @@ echo \
 # Update the package database with the Docker packages from the newly added repo:
 sudo apt-get update
 
- Install Docker Engine:
+# Install Docker Engine:
   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Check Docker version:
@@ -96,32 +96,3 @@ docker run hello-world
 
 
 
-
-####################################
-MariaDB Docker Installation
-=================================
-docker run --detach --name mariadb-test1 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest
-
-docker stop
-docker rm mariadb-test1
-docker rm mariadb-test1
-docker volume prune
-
-docker run --detach --name mariadb-test2 --env MARIADB_ROOT_PASSWORD=123456 mariadb:latest \
--v /home/test/varlibmysql/:/var/lib/mysql mariadb
-
-
-/var/run/docker
-
-#15.07.2024 10:00:00
-
-
- docker run -it -h alpine --name alpine alpine
-
- cat /etc/os-release
-NAME="Alpine Linux"
-ID=alpine
-VERSION_ID=3.22.0
-PRETTY_NAME="Alpine Linux v3.22"
-HOME_URL="https://alpinelinux.org/"
-BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
