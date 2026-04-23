@@ -1,0 +1,9 @@
+MySQL Users
+
+Database:db
+Username:root
+password:changethis!
+
+Database:db
+Username:alchemyfun
+password:alchemyfun
