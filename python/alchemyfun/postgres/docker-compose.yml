@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: local_pgdb
+    restart: always
+    environment:
+      POSTGRES_USER: alchemyfun
+      POSTGRES_PASSWORD: "alchemyfun"
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=alchemyfun
+    ports:
+      - 8888:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  pgadmin-data:
+  db-data:

@@ -1,5 +1,7 @@
 MySQL Users
 
+Port 3306
+
 Database:db
 Username:root
 password:changethis!
