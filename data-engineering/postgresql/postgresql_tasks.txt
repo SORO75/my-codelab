@@ -51,4 +51,18 @@
         
 
 
+==========================================      
+                Docker
+==========================================
 
+docker run --name postgres-testcontainer -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5454:5432 -d postgres:17-alpine
+
+docker exec -it postgres-testcontainer psql -U myuser -d mydb
+
+SELECT version();
+\q
+# stop the container
+docker stop postgres-testcontainer
+
+# volume mounting for data persistence
+docker run --name postgres-testcontainer -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5454:5432 -v pgdata:/var/lib/postgresql/data -d postgres:17-alpine

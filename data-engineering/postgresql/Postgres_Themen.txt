@@ -172,17 +172,3 @@ Datenbanken:
     select with partitioned tables (if supported)
     select with foreign data wrappers (if supported)    
     join tables
-
-
-eine DHW erstellen
-none values
-
-
-
-
-
-    
-
-
-
-
