@@ -1,35 +1,60 @@
-version: '3'
 
 services:
   db:
-    image: postgres:17-alpine
+    image: postgres:17-alpine        # lightweight postgres image based on alpine linux
     container_name: local_pgdb
-    restart: always
+    restart: always                  # restart container automatically on failure
+    networks:
+      - backend_network
     environment:
-      POSTGRES_USER: testuser
-      POSTGRES_PASSWORD: "testpassword"
-      POSTGRES_DB: testdb
+      POSTGRES_USER_FILE: /run/secrets/postgres_user        # read db user from secret file
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password # read db password from secret file
+      POSTGRES_DB: testdb            # database created on first startup if it doesn't exist
     ports:
-      - "5433:5432"
+      - "5433:5432"                  # expose postgres on host port 5433
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data                   # persist database files
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql    # run on first startup only
+    secrets:
+      - postgres_user
+      - postgres_password
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U testuser -d testdb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD-SHELL", "pg_isready -d testdb"]  # check if postgres is accepting connections
+      interval: 10s                  # check every 10 seconds
+      timeout: 5s                    # fail check after 5 seconds
+      retries: 5                     # mark unhealthy after 5 consecutive failures
+      start_period: 10s              # grace period before health checks begin
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
     restart: always
+    networks:
+      - backend_network
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=testpassword
+      PGADMIN_DEFAULT_EMAIL: admin@example.com      # login email for pgadmin UI
+      PGADMIN_DEFAULT_PASSWORD: testpassword        # plaintext password – local dev only
+      PGADMIN_CONFIG_SERVER_MODE: "False"           # disable login screen for local development
     ports:
-      - 8888:80
+      - "8888:80"                    # pgadmin web UI available at localhost:8888
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - pgadmin-data:/var/lib/pgadmin  # persist pgadmin settings and server configs
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro  # pre-configured server on startup
+      - ./pgadmin/pgpass:/pgadmin4/pgpass:ro
+    depends_on:
+      db:
+        condition: service_healthy   # wait until postgres passes health check before starting
+
+secrets:
+  postgres_user:
+    file: ./secrets/postgres_user.txt      # plain text file containing the username
+  postgres_password:
+    file: ./secrets/postgres_password.txt  # plain text file containing the db password
+
+networks:
+  backend_network:
+    driver: bridge                   # isolated bridge network for inter-service communication
 
 volumes:
-  pgadmin-data:
-  db-data:
+  pgadmin-data:                      # named volume for pgadmin data
+  db-data:                           # named volume for postgres data
