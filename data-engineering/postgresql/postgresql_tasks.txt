@@ -66,3 +66,15 @@ docker stop postgres-testcontainer
 
 # volume mounting for data persistence
 docker run --name postgres-testcontainer -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5454:5432 -v pgdata:/var/lib/postgresql/data -d postgres:17-alpine
+
+#Backup and restore
+# backup a database
+docker exec -t postgres-testcontainer pg_dump -U myuser testdb > backup.sql
+# restore a database
+cat backup.sql | docker exec -i postgres-testcontainer psql -U myuser -d testdb
+
+#update the container to a new PostgreSQL version
+docker pull postgres:18-alpine
+docker stop postgres-testcontainer
+docker rm postgres-testcontainer
+docker run --name postgres-testcontainer -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5454:5432 -v pgdata:/var/lib/postgresql/data -d postgres:18-alpine
