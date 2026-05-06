@@ -51,4 +51,22 @@ print(f"Deleted student recort for {student_name}.")
                 #Transaction
 ####################################################
 
+# Create a Customers table
+create_customer_table ='''
+CREATE TABLE IF NOT EXISTS Customers(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    balance INTEGER NOT NULL
+);
+'''
 
+cursor.execute(create_customer_table)
+
+# Insert tho customers
+cursor.execute('''
+INSERT INTO Customers(name, balance) VALUES (?, ?);''', ('Ashutosh, 100.0'))
+
+cursor.execute('''
+INSERT INTO Customers(name, balance) VALUES (?, ?);''', ('Krishna, 50.0'))
+
+conn.commit()
