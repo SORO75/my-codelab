@@ -8,7 +8,7 @@ except sqlite3.OperationalError as err:
     print("Failed to open databse:", err)
 
 
-    
+
 
 
 
