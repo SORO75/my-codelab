@@ -1,4 +1,9 @@
 import sqlite3
+from faker import Faker
+
+#Initialize Faker
+fake = Faker (['en_IN'])
+
 
 try:
     with sqlite3.connect('test.db') as conn:
@@ -22,9 +27,11 @@ try:
     INSERT INTO Students (name, age, email) 
     VALUES (?, ?, ?)
     '''
-    student_data = ('Jane Doe', 23, 'jane@example.com')
-    cursor.execute(insert_query, student_data)
-    print("Record inserted successfully.")
+    student_data = [(fake.name(), fake.random_int(min=18, max=25), fake.email()) for _ in range(5)]
+   # cursor.execute(insert_query, student_data)
+    cursor.executemany(insert_query, student_data)
+    #print("Record inserted successfully.")
+    print("Fake student data successfully inserted.")
 
     conn.commit()
 
