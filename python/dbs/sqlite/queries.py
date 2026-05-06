@@ -21,5 +21,12 @@ with sqlite3.connect('test.db') as conn:
     # SQL command to update a student's age
     update_query = '''UPDATE Students SET Name=? WHERE ID=?'''
 
-    # Data f
+    # Data for the update
+    new_age = 21
+    student_name = 'Jane Doe'
+    cursor.execute(update_query, (student_name, new_age))
+    conn.commit()
+
+    # Print a confirmation message
+    print(f"Updated age for {student_name} to {new_age}")
 
