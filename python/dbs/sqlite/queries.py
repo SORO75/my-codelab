@@ -30,3 +30,25 @@ with sqlite3.connect('test.db') as conn:
     # Print a confirmation message
     print(f"Updated age for {student_name} to {new_age}")
 
+#######################################################
+# Deleting
+#######################################################
+
+# SQL command to delete a student
+delete_query = '''DELETE FROM Students WHERE name=?;'''
+
+# Name of the student to be deleted
+student_name = 'Jane Doe'
+
+# Execute the SQL command with the data
+cursor.execute(delete_query, (student_name, ))
+conn.commit()
+
+# Print a confirmation message
+print(f"Deleted student recort for {student_name}.")
+
+####################################################
+                #Transaction
+####################################################
+
+
