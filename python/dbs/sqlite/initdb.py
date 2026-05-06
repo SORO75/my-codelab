@@ -15,10 +15,19 @@ try:
         email TEXT NOT NULL
     );
     '''
-
     cursor.execute(create_table_query)
-    conn.commit()
     print("Table successfully created.")
+
+    insert_query = '''
+    INSERT INTO Students (name, age, email) 
+    VALUES (?, ?, ?)
+    '''
+    student_data = ('Jane Doe', 23, 'jane@example.com')
+    cursor.execute(insert_query, student_data)
+    print("Record inserted successfully.")
+
+    conn.commit()
+
 
     # No need to call connection.close(); it's done automatically!
 except sqlite3.OperationalError as err:
