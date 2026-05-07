@@ -70,3 +70,17 @@ cursor.execute('''
 INSERT INTO Customers(name, balance) VALUES (?, ?);''', ('Krishna, 50.0'))
 
 conn.commit()
+
+
+select_query = "SELECT * FROM Customers;"
+
+# Execute the SQL command
+cursor.execute(select_query)
+
+ # Fetch all records
+all_customers = cursor.fetchall()
+
+# Display results in the terminal
+print("ALl Customerss:")
+for customer in all_customers:
+    print (student)
