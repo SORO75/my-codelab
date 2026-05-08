@@ -1,4 +1,52 @@
+from sqlalchemy import create_engine, Column, Integer, String, MetaData, Table, select
+from sqlalchemy.orm import sessionmaker, declarative_base
+# Create an engine that stores data in the local directory's
+# sqlalchemy_example
+engine = create_engine('sqlite:///sqlite/sqlalchemy_example.db')
+
+#Base = declarative_base()
+
+
 '''
+Workflow 
+Datenbank anlegen
+Datenbank check
+Datenbank definieren
+Datenbankverbindung chek
+Tabellen mit SQL erstellen
+Tabellen check
+Insert von 3 Werten über Variablen
+Tabellencheck
+Tabelleänderung 
+Tabelle check
+Typ ändern - check
+Werte selecktieren - check
+werte updaten - check
+werte löschen - check
+automatische Füllung den Tabellen mit Fake
+tabellen check
+
+Transaction
+alle werte löschen -check
+alle Tabellen löschen -check
+
+
+
+Table mit Metadate
+SQL Expression
+Joins
+Order by ; Group By
+Update Table
+Reflecting existing Table
+
+Execute()
+somplited Statement
+Insereting Data
+Deleting Data
+Transactions
+ Insert..ReTURNING
+ CTE
+
 Basis model definition
 CRUD Operation with ORM
 Querying with ORM
@@ -67,5 +115,9 @@ Application Scaling
 Debugging
     Debug Logging
 Handling Connections Fehler
+
+Aus einer Datenbank Klassen generieren
+
+
 
 '''
