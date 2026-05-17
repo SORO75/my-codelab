@@ -13,12 +13,15 @@ users = Table(
     Column('name', String(50))
 )
 
-# Create all tables defined in metadata (if they don't exist yet)
-try:
-    metadata.create_all(engine)
-    print("Database and tables created successfully.")
-except SQLAlchemyError as e:
-    print(f"Error creating tables: {e}")
+
+def create_tables():
+    """Create all tables defined in metadata (if they don't exist yet)."""
+    try:
+        metadata.create_all(engine)
+        print("Database and tables created successfully.")
+    except SQLAlchemyError as e:
+        print(f"Error creating tables: {e}")
+        raise
 
 
 def inspect_database():
@@ -29,6 +32,7 @@ def inspect_database():
         print(inspector.get_table_names())
     except SQLAlchemyError as e:
         print(f"Error inspecting database: {e}")
+        raise
 
 
 def inspect_table(table_name):
@@ -40,6 +44,7 @@ def inspect_table(table_name):
             print(f"  - {column['name']} ({column['type']})")
     except SQLAlchemyError as e:
         print(f"Error inspecting table '{table_name}': {e}")
+        raise
 
 
 def upgrade(engine):
@@ -53,11 +58,12 @@ def upgrade(engine):
         print("Database schema upgraded: 'email' column added to 'users_table'.")
     except SQLAlchemyError as e:
         print(f"Error during upgrade: {e}")
+        raise
 
 
 def downgrade(engine):
     """Remove the 'email' column from 'users_table' (schema migration down).
-    
+
     Note: DROP COLUMN requires SQLite >= 3.35.0.
     """
     try:
@@ -69,14 +75,21 @@ def downgrade(engine):
         print("Database schema downgraded: 'email' column removed from 'users_table'.")
     except SQLAlchemyError as e:
         print(f"Error during downgrade: {e}")
+        raise
 
 
 if __name__ == "__main__":
-    inspect_database()
-    inspect_table('users_table')
+    try:
+        create_tables()
 
-    upgrade(engine)
-    inspect_table('users_table')
+        inspect_database()
+        inspect_table('users_table')
 
-    downgrade(engine)
-    inspect_table('users_table')
+        upgrade(engine)
+        inspect_table('users_table')
+
+        downgrade(engine)
+        inspect_table('users_table')
+
+    except SQLAlchemyError:
+        print("Migration pipeline stopped due to an error.")
