@@ -1,7 +1,7 @@
 {
     "python-envs.pythonProjects": [
         {
-            "path": "python/learn/alchemy",
+            "path": "python/learn/sqlalchemy",
             "envManager": "ms-python.python:venv",
             "packageManager": "ms-python.python:pip"
         },
