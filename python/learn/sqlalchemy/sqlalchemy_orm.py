@@ -1,6 +1,6 @@
-from sqlachemy import Column, Integer, String, creare_engine
+from sqlalchemy import Column, Integer, String, create_engine, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import relationship, sessionmaker, joinedload
 
 Base = declarative_base()
 
@@ -12,7 +12,7 @@ class User(Base):
     name = Column(String(50))
     email = Column(String(100))
 
-  def __repr__(self):
+    def __repr__(self):
         return f"<User(id={self.id}, name='{self.name}', email='{self.email}')>"
 
 class Address(Base):
@@ -31,7 +31,7 @@ User.addresses = relationship("Address", order_by=Address.id, back_populates="us
 engine = create_engine('sqlite:///alchemy_tutorial.db', echo=True)
 Base.metadata.create_all(engine)
 
-Sessin = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine)
 session = Session()
 
 new_user = User(name='John Doe', email='john.doe@example.com')
@@ -48,7 +48,7 @@ print(user)
 # UPDATE
 #-------------------------------
 
-user = sessionquery(User).filter_by(name='John Doe').first()
+user = session.query(User).filter_by(name='John Doe').first()
 user.fullname = 'Johnathan Doe'
 session.commit()
 
@@ -128,7 +128,7 @@ user = session.query(User).filter_by(name='John Doe').first()
 print(user)
 for address in user.addresses:  # This will trigger a separate query to load the addresses
     print(f'  {address.email_address}') 
-    
+
 
 
 
