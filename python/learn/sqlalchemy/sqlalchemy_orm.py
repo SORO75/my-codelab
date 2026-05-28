@@ -96,7 +96,7 @@ users_with_addresses = session.query(User).join(Address).all()
 for user in users_with_addresses:
     print(user)
     for address in user.addresses:
-        print(f'  {address.email_address}') 
+        print(f'{address.email_address}') 
 
 # Aggregation
 # Count the number of addresses for each user
@@ -119,7 +119,7 @@ users_with_addresses_eager = session.query(User).options(joinedload(User.address
 for user in users_with_addresses_eager:
     print(user)
     for address in user.addresses:
-        print(f'  {address.email_address}')
+        print(f'{address.email_address}')
 
 
 #lazy loading (default behavior, related objects are loaded on demand when accessed)
@@ -127,7 +127,7 @@ for user in users_with_addresses_eager:
 user = session.query(User).filter_by(name='John Doe').first()
 print(user)
 for address in user.addresses:  # This will trigger a separate query to load the addresses
-    print(f'  {address.email_address}') 
+    print(f'{address.email_address}') 
 
 
 

@@ -90,7 +90,7 @@ def select_all_users():
         else:
             print("All users:")
             for row in rows:
-                print(f"  id={row.id}, name={row.name}, email={row.email}")
+                print(f"id={row.id}, name={row.name}, email={row.email}")
     except SQLAlchemyError as e:
         print(f"Error fetching users: {e}")
         raise
