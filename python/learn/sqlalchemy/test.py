@@ -83,4 +83,81 @@ for course in queried_student.courses:
 
 # Inheritance example
 
-c
+class Employee (Base):
+    __tablename__ = 'employees'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    type = Column(String(50))
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'employee',
+        'polymorphic_on': type
+    }
+
+class Manager(Employee):
+    department = Column(String(50))
+    __mapper_args__ = {
+        'polymorphic_identity': 'manager'
+    }
+
+class Engineer(Employee):
+    programming_language = Column(String(50))
+    __mapper_args__ = {
+        'polymorphic_identity': 'engineer'
+    }
+
+# Create a manager and an engineer
+
+manager = Manager(name='Manager Name', department='Sales')    
+engineer = Engineer(name='Engineer Name', programming_language='Python')    
+
+session.add_all([manager, engineer])
+session.commit()
+
+#Query all employees
+employees = session.query(Employee).all()
+for employee in employees:
+    if isinstance(employee, Manager):
+        print(f"Manager: {employee.name}, Department: {employee.department}")
+    elif isinstance(employee, Engineer):
+        print(f"Engineer: {employee.name}, Programming Language: {employee.programming_language}")
+
+'''delete tabele employees and all its data'''
+session.query(Employee).delete()
+session.commit()
+
+ #Joinded Table inheritance example
+
+class Employee(Base):
+    __tablename__ = 'employee'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    type = Column(String(50))
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'employee',
+        'polymorphic_on': type
+    }
+
+class Manager(Employee):
+    __tablename__ = 'manager'
+    id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
+    department = Column(String(50))
+    
+    __mapper_args__ = {
+        'polymorphic_identity': 'manager'
+    }
+
+class Engineer(Employee):
+    __tablename__ = 'engineer'
+    id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
+    programming_language = Column(String(50))
+    
+    __mapper_args__ = {
+        'polymorphic_identity': 'engineer'
+    }
+
+
+
+
+    
