@@ -158,6 +158,58 @@ class Engineer(Employee):
     }
 
 
-
-
+# Lazy Loading example
+user = Seddion.query (User).all()
+for user in users:
+    print(f"User: {user.name}")
     
+#Eager Loading example
+# Joined eager loading
+user = session.query(User).options(joinedload(User.addresses)).all()
+for user in users:
+    print(f"User: {user.name}")
+    for address in user.addresses:
+        print(f"Address: {address.email_address}")
+
+# Subquery eager loading
+users = session.query(User).options(subqueryload(User.addresses)).all()
+for user in users:
+    print(f"User: {user.name}")
+    for address in user.addresses:
+        print(f"Address: {address.email_address}")
+
+# Select in eager loading
+users = session.query(User).options(selectinload(User.addresses)).all()
+for user in users:
+    print(f"User: {user.name}")
+    for address in user.addresses:
+        print(f"Address: {address.email_address}")
+
+# Caching example
+#Query Caching with Dogpile Cache
+region = make_region().configure('dogpile.cache.memory', expiration_time=3600, arguments={'url': ['localhost:11211']})
+
+@region.cache_on_arguments()
+def get_user_by_name(name):
+    return session.query(User).filter_by(name=name).first()
+
+user = get_user_by_name('John Doe')
+print(f"User: {user.name}")
+
+
+# Result Set Caching example
+import pickle
+from functools import lru_cache
+
+
+
+@lru_cache(maxsize=128)
+def get_all_users():
+    users = session.query(User).all()
+    return pickle.dumps([user.__dict__ for user in users])
+
+
+# Usage
+users = pickle.loads(get_all_users())
+
+
