@@ -213,3 +213,42 @@ def get_all_users():
 users = pickle.loads(get_all_users())
 
 
+#Bulk Operations example
+
+# Inefficient: Individual updates
+for user in users:
+    user.status = 'active'
+    session.add(user)
+
+# Efficient: Bulk update
+session.query(User).filter(User.id.in_([u.id for u in users])).update({"status": "active"}, synchronize_session=False)
+
+
+#proper indexing example
+from sqlalchemy import Index
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    email = Column(String(50))
+
+    # Create an index on the email column
+    __table_args__ = (Index('ix_user_email', 'email'),)
+
+
+# Profiling and Optimization example
+from sqlalchemy import event
+from sqlalchemy.engine import Engine
+
+@event.listens_for(engine, "before_cursor_execute")
+def before_cursor_execute(conn, cursor, statement, parameters, context, executemany):
+    conn.info.setdefault('query_start_time', []).append(time.time())
+    print("Start Query: %s" % statement)
+
+
+@event.listens_for(engine, "after_cursor_execute")
+def after_cursor_execute(conn, cursor, statement, parameters, context, executemany):
+    total = time.time() - conn.info['query_start_time'].pop(-1)
+    print("Query Complete!")
+    print("Total Time: %f" % total)
