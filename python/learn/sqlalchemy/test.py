@@ -276,3 +276,20 @@ finally:
     session.close()
 
 
+#Transaction Management
+#Commiting
+session.add(user1)
+session.add(user2)
+session.commit()
+
+#Rolling Back
+try:
+    session.add(user1)
+    session.add(user2)
+    session.commit()
+except:
+    session.rollback()
+    raise
+finally:
+    session.close()
+
