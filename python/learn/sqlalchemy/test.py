@@ -293,3 +293,37 @@ except:
 finally:
     session.close()
 
+# Transaction management with Context Manager
+
+from contextlib import contextmanager
+
+@contextmanager
+def session_scope():
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+# Usage
+with session_scope() as session:
+    user = User(name = 'Name1')
+    session.add(user)
+
+#Handling Concurrency and Isolaton Levels
+Session = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+
+#Set isolation level
+connection = engine.connect()
+connection = connection.execution_options(isolation_level='READ COMMITED')
+session = Session(bind=connection)
+
+# Common isolation levels
+# READ UNCIMMITTED
+# READ COMMITED
+# REPEATABLE READ
+# SERIALIZABLE
