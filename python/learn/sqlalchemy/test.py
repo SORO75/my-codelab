@@ -252,3 +252,27 @@ def after_cursor_execute(conn, cursor, statement, parameters, context, executema
     total = time.time() - conn.info['query_start_time'].pop(-1)
     print("Query Complete!")
     print("Total Time: %f" % total)
+
+#####
+#Session Lifecycle
+session = Session()
+try:
+    #Add a new user
+    new_user = User (name="John Doe", email="jondoe@example.com")
+    session.add(new_user)
+
+    #Modify an existing user
+    user = session.query(User).filter_by(name="Bob").first()
+    user.email = 'bob_new@exampel.com'
+
+    #Commit the transaction
+    session.commit()
+except:
+    #If an error occurs, rollback the change
+    session.rollback()
+    raise
+finally:
+    #Close the session
+    session.close()
+
+
