@@ -323,7 +323,18 @@ connection = connection.execution_options(isolation_level='READ COMMITED')
 session = Session(bind=connection)
 
 # Common isolation levels
-# READ UNCIMMITTED
+# READ UNCOMMITTED
 # READ COMMITED
 # REPEATABLE READ
 # SERIALIZABLE
+
+
+# Session Binding
+engine1 = create_engine('sqlite:///db1.sqlite')
+engine2 = create_engine('sqlite:///db2.sqlite')
+engine3 = create_engine('sqlite:///:memory:')
+
+Session = sessionmaker(bind={User: engine1, Address: engine2})
+
+
+
