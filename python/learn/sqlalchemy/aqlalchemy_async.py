@@ -113,8 +113,23 @@ async def main():
     user_count = await count_users()
     print(f"Total users: {user_count}")
 
+#Best oractices and considereations for aync usage
+'''
+1. Use async with for session management: This ensures proper handling of async contexts.
+2. Be mindful of the event loop: Avoid mixing sync and async code within the same function.
+3. Use connection pooling: Async SQLAlchemy uses connection pooling by default, which is crucial for managing database connections efficiently.
+4. Handle concurrency carefully: While async allows for concurrent operations, be cautious about race conditions and data integrity.
+5. Profiling and monitoring: Use tools like asyncio.create_task() and asyncio.gather() to manage and monitor multiple async operations.
+6. Error handling: Use try/except blocks to handle database errors gracefully in an async context.
+7. Pagination for large result sets: When dealing with large datasets, implement pagination to avoid loading too much data into memory at once.
 
 
+async def get_users_paginated(page: int, per_page: int):
+    async with async_session() as session:
+        stmt = select(User).limit(per_page).offset((page - 1) * per_page)
+        result = await session.execute(stmt)
+        return result.scalars().all()
+'''
 
 
 
