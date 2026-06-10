@@ -88,6 +88,34 @@ async def delete_user(user_id:int) -> User:
 pass
 
 
+#Querying with async SQLAlchemy
+
+async def get_users_with_addresses():
+    async with async_session() as session:
+        stmt = select(User, Address).join(Address)
+        result = await session.execute(stmt)
+        return result.all()
+
+async def count_users():
+    Querying with Async SQLAlchemy
+#Async SQLAlchemy supports complex queries, including joins and aggregations:async with async_session() as session:
+        stmt = select(func.count(User.id))
+        result = await session.execute(stmt)
+        return result.scalar_one()
+
+
+# Usage
+async def main():
+    users_with_addresses = await get_users_with_addresses()
+    for user, address in users_with_addresses:
+        print(f"User: {user.name}, Address: {address.email}")
+
+    user_count = await count_users()
+    print(f"Total users: {user_count}")
+
+
+
+
 
 
 
