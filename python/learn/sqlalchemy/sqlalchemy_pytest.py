@@ -124,6 +124,31 @@ Testing Asynchronous SQLAlchemy Code
 '''
 
 
+@pytest.fixture(scope='function')
+async def async_db_session():
+    engine = create_async_engine('sqlite+aiosqlite:///:memory:')
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+    async with async_session() as session:
+        yield session
+
+    await engine.dispose()
+
+
+@pytest.mark.asyncio
+async def test_async_user_creation(async_db_session):
+    user = User(name='Alice', email='alice@example.com')
+    async_db_session.add(user)
+    await async_db_session.commit()
+
+    result = await async_db_session.execute(select(User).filter_by(email='alice@example.com'))
+    fetched_user = result.scalar_one_or_none()
+    assert fetched_user is not None
+    assert fetched_user.name == 'Alice'
+
 
 
 
@@ -140,6 +165,4 @@ Best Practices for Testing SQLAlchemy Applications:
 . Test error conditions: Include tests for expected error conditions, such as integrity errors or validation failures.
 . Performance testing: Consider writing performance tests for critical database operations to catch any unintended performance regressions.
 . Continuous Integration: Integrate your SQLAlchemy tests into your CI/CD pipeline to catch issues early.
-
-
 '''
