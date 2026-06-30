@@ -1,1 +1,0 @@
-https://newsapi.org/v2/everything?qInTitle=stock%20market&from=2025-6-07&to=2025-6-08&sortBy=popularity&language=en&apiKey=890603a55bfa47048e4490069ebee18c
